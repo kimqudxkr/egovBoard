@@ -10,6 +10,8 @@
 		<result property="regUser" column="reg_user"/>
 	</resultMap>
 
+	
+	
 	<insert id="insertSample" parameterType="SampleVO">
 
 			INSERT INTO SAMPLE

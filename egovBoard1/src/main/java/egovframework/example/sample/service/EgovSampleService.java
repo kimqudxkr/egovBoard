@@ -35,6 +35,7 @@ import java.util.List;
  */
 public interface EgovSampleService {
 
+	List<?> getBoardList() throws Exception;
 	/**
 	 * 글을 등록한다.
 	 * @param vo - 등록할 정보가 담긴 SampleVO

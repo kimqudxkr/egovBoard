@@ -17,12 +17,12 @@ package egovframework.example.sample.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import egovframework.example.sample.service.BoardVO;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
-
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
-
-import org.springframework.stereotype.Repository;
 
 /**
  * @Class Name : SampleDAO.java
@@ -44,6 +44,10 @@ import org.springframework.stereotype.Repository;
 @Repository("sampleDAO")
 public class SampleDAO extends EgovAbstractDAO {
 
+
+	public List<?> getBoardList() throws Exception {
+		return list("sampleDAO.getBoardList");
+	}
 	/**
 	 * 글을 등록한다.
 	 * @param vo - 등록할 정보가 담긴 SampleVO
@@ -96,12 +100,15 @@ public class SampleDAO extends EgovAbstractDAO {
 
 	/**
 	 * 글 총 갯수를 조회한다.
-	 * @param searchMap - 조회할 정보가 담긴 Map
+	 * @param searchMap - 조회할 정보가 담긴 Map 
 	 * @return 글 총 갯수
 	 * @exception
 	 */
 	public int selectSampleListTotCnt(SampleDefaultVO searchVO) {
 		return (Integer) select("sampleDAO.selectSampleListTotCnt", searchVO);
 	}
-
+	
+	public List<?> selectList(BoardVO boardVO) throws Exception {
+		return list("sampleDAO.selectList", boardVO);
+	}
 }
