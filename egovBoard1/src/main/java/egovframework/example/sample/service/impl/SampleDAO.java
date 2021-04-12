@@ -48,6 +48,11 @@ public class SampleDAO extends EgovAbstractDAO {
 	public List<?> getBoardList() throws Exception {
 		return list("sampleDAO.getBoardList");
 	}
+	
+	public String insertBoard(BoardVO vo) throws Exception {
+		return (String) insert("sampleDAO.insertBoard", vo);
+	}
+	//====================================================================
 	/**
 	 * 글을 등록한다.
 	 * @param vo - 등록할 정보가 담긴 SampleVO

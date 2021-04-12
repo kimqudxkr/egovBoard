@@ -69,6 +69,7 @@ public class EgovSampleController {
 	@Resource(name = "beanValidator")
 	protected DefaultBeanValidator beanValidator;
 
+	//글 목록 불러오는 페이지
 	@RequestMapping(value="/egovBoardList.do")
 	public String selectList(@ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo) throws Exception {
 		/** EgovPropertyService.sample */
@@ -86,8 +87,6 @@ public class EgovSampleController {
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
 		List<?> sampleList = sampleService.getBoardList();
-		System.out.println("in Controller sampleList :  "+sampleList+"  ----------------");
-//		List<?> sampleList = sampleService.selectSampleList(searchVO);
 		model.addAttribute("resultList", sampleList);
 
 		int totCnt = sampleService.selectSampleListTotCnt(searchVO);
@@ -96,6 +95,35 @@ public class EgovSampleController {
 		
 		return "sample/egovBoardList";
 	}
+	
+	//글쓰기 페이지
+	@RequestMapping(value = "/boardWriteView.do")
+	public String boardWrite(@ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
+		
+		model.addAttribute("boardVO", new BoardVO());
+		return "sample/egovBoardWrite";
+	}
+	
+	//글쓰기 버튼 클릭 시 insert하는 곳
+	@RequestMapping(value = "/boardWrite.do", method = RequestMethod.POST)
+	public String insertBoard(@ModelAttribute("searchVO") SampleDefaultVO searchVO, @ModelAttribute("boardVO") BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
+			throws Exception {
+
+		// Server-Side Validation
+//		beanValidator.validate(sampleVO, bindingResult);
+		beanValidator.validate(boardVO, bindingResult);
+//		
+//		if (bindingResult.hasErrors()) {
+//			System.out.println("controller error occured");
+//			model.addAttribute("boardVO", boardVO);
+//			return "sample/egovBoardWrite";
+//		}
+
+		sampleService.insertBoard(boardVO);
+//		status.setComplete();
+		return "forward:/egovBoardList.do";
+	}
+	//==========================================================================================================================
 	/**
 	 * 글 목록을 조회한다. (pageing)
 	 * @param searchVO - 조회할 정보가 담긴 SampleDefaultVO
@@ -140,6 +168,7 @@ public class EgovSampleController {
 	 */
 	@RequestMapping(value = "/addSample.do", method = RequestMethod.GET)
 	public String addSampleView(@ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
+		
 		model.addAttribute("sampleVO", new SampleVO());
 		return "sample/egovSampleRegister";
 	}

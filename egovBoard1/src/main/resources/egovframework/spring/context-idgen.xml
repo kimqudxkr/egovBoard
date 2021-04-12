@@ -7,7 +7,7 @@
 		<property name="strategy" 	ref="mixPrefixSample" />
 		<property name="blockSize" 	value="10"/>
 		<property name="table"	   	value="IDS"/>
-		<property name="tableName"	value="SAMPLE"/>
+		<property name="tableName"	value="boardtest"/>
 	</bean>
 	<bean name="mixPrefixSample" class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
 		<property name="prefix"   value="SAMPLE-" />

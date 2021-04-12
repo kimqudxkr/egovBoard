@@ -9,7 +9,22 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
+	private String option;
+	private String setting;
 	
+	
+	public String getOption() {
+		return option;
+	}
+	public void setOption(String option) {
+		this.option = option;
+	}
+	public String getSetting() {
+		return setting;
+	}
+	public void setSetting(String setting) {
+		this.setting = setting;
+	}
 	public int getIdx() {
 		return idx;
 	}

@@ -36,8 +36,8 @@
         }
         
         /* 글 등록 화면 function */
-        function fn_egov_addView() {
-           	document.listForm.action = "<c:url value='/addSample.do'/>";
+        function fn_egov_write() {
+           	document.listForm.action = "<c:url value='/boardWriteView.do'/>";
            	document.listForm.submit();
         }
         
@@ -110,7 +110,7 @@
         	  <ul>
         	      <li>
         	          <span class="btn_blue_l">
-        	              <a href="javascript:fn_egov_addView();">글쓰기</a>
+        	              <a href="javascript:fn_egov_write();">글쓰기</a>
                           <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
                       </span>
                   </li>

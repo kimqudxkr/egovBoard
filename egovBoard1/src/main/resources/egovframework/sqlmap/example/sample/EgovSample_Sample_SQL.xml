@@ -20,6 +20,25 @@
 		]]>
 	</select>
 	
+	<insert id="sampleDAO.insertBoard">
+		<![CDATA[
+			INSERT INTO boardtest 
+				( writer
+				  , title
+				  , content
+				  , option
+				  , setting
+				 )
+			VALUES ( #writer#
+					  , #title#
+					  , #content#
+					  , #option#
+					  , #setting#
+					  )
+		]]>
+	</insert>
+
+
 	<insert id="sampleDAO.insertSample">
 		<![CDATA[
 			INSERT INTO SAMPLE 

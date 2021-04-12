@@ -71,6 +71,18 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		return sampleDAO.getBoardList();
 	}
 	
+	@Override
+	public String insertBoard(BoardVO vo) throws Exception {
+		LOGGER.debug(vo.toString());
+
+		/** ID Generation Service */
+//		String id = egovIdGnrService.getNextStringId();
+//		vo.setIdx(id);
+		LOGGER.debug(vo.toString());
+
+		return sampleDAO.insertBoard(vo);
+	}
+	//=========================================================================================
 	/**
 	 * 글을 등록한다.
 	 * @param vo - 등록할 정보가 담긴 SampleVO
