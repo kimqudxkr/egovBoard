@@ -98,6 +98,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		sampleDAO.updateBoard(vo);
 	}
 	
+	@Override
+	public void deleteBoard(BoardVO vo) throws Exception {
+		sampleDAO.deleteBoard(vo);
+	}
+	
 	//=========================================================================================
 	/**
 	 * 글을 등록한다.

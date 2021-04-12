@@ -67,6 +67,13 @@
 		]]>
 	</update>
 	
+	<delete id="sampleDAO.deleteBoard">
+		<![CDATA[
+			DELETE FROM boardtest
+			WHERE idx=#idx#
+		]]>
+	</delete>
+	
 	
 	
 

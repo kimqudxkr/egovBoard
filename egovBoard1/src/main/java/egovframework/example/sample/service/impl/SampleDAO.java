@@ -61,6 +61,11 @@ public class SampleDAO extends EgovAbstractDAO {
 		update("sampleDAO.updateBoard", vo);
 	}
 	
+	public void deleteBoard(BoardVO vo) throws Exception {
+		delete("sampleDAO.deleteBoard", vo);
+	}
+
+	
 	//====================================================================
 	/**
 	 * 글을 등록한다.

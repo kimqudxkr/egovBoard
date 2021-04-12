@@ -39,6 +39,7 @@ public interface EgovSampleService {
 	String insertBoard(BoardVO vo) throws Exception;
 	BoardVO selectBoard(BoardVO vo) throws Exception;
 	void updateBoard(BoardVO vo) throws Exception;
+	void deleteBoard(BoardVO vo) throws Exception;
 	
 	//=========================================================================
 	/**

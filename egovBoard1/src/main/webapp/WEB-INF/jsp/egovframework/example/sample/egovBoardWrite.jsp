@@ -43,7 +43,7 @@
         
         /* 글 삭제 function */
         function fn_egov_delete() {
-           	document.detailForm.action = "<c:url value='/deleteSample.do'/>";
+           	document.detailForm.action = "<c:url value='/deleteBoard.do'/>";
            	document.detailForm.submit();
         }
         
@@ -143,7 +143,7 @@
     			<c:if test="${registerFlag == 'modify'}">
                     <li>
                         <span class="btn_blue_l">
-                            <a href="javascript:fn_egov_delete();"><spring:message code="button.delete" /></a>
+                            <a href="javascript:fn_egov_delete();">삭제</a>
                             <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
                         </span>
                     </li>

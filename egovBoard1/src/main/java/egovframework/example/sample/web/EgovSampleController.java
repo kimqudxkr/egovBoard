@@ -159,6 +159,13 @@ public class EgovSampleController {
 		return "forward:/egovBoardList.do";
 	}
 	
+	@RequestMapping("/deleteBoard.do")
+	public String deleteBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO, SessionStatus status) throws Exception {
+		sampleService.deleteBoard(boardVO);
+//		status.setComplete();
+		return "forward:/egovBoardList.do";
+	}
+	
 	//==========================================================================================================================
 	/**
 	 * 글 목록을 조회한다. (pageing)
