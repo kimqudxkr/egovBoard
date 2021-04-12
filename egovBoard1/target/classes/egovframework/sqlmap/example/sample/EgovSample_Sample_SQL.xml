@@ -56,7 +56,19 @@
         ]]>
     </select>
 
-
+	<update id="sampleDAO.updateBoard">
+		<![CDATA[
+			UPDATE boardtest
+			SET idx=#idx#
+				, title=#title#
+				, content=#content#
+				, setting=#setting#
+			WHERE idx=#idx#
+		]]>
+	</update>
+	
+	
+	
 
 	<insert id="sampleDAO.insertSample">
 		<![CDATA[

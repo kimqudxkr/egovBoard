@@ -56,7 +56,7 @@
 //                 return;
 //             }else{
             	console.log("else안에 들어옴");
-            	frm.action = "<c:url value="${registerFlag == 'create' ? '/boardWrite.do' : '/updateSample.do'}"/>";
+            	frm.action = "<c:url value="${registerFlag == 'create' ? '/boardWrite.do' : '/updateBoard.do'}"/>";
                 frm.submit();
 //             }
         }

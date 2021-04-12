@@ -93,6 +93,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		return resultVO;
 	}
 	
+	@Override
+	public void updateBoard(BoardVO vo) throws Exception {
+		sampleDAO.updateBoard(vo);
+	}
+	
 	//=========================================================================================
 	/**
 	 * 글을 등록한다.

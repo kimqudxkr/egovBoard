@@ -132,12 +132,8 @@ public class EgovSampleController {
 //		sampleVO.setId(id);
 		// 변수명은 CoC 에 따라 sampleVO
 		
-		System.out.println("selected Id : "+id+"=============================");
-		
 		BoardVO boardVO = new BoardVO();
 		boardVO.setIdx(id);
-		
-		System.out.println("in Controller boardVO is ==>"+boardVO+"============");
 		
 		model.addAttribute(selectBoard(boardVO, searchVO));
 		return "sample/egovBoardWrite";
@@ -145,6 +141,22 @@ public class EgovSampleController {
 	
 	public BoardVO selectBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO) throws Exception {
 		return sampleService.selectBoard(boardVO);
+	}
+	
+	@RequestMapping("/updateBoard.do")
+	public String updateBoard(@ModelAttribute("searchVO") SampleDefaultVO searchVO, BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
+			throws Exception {
+
+//		beanValidator.validate(sampleVO, bindingResult);
+//
+//		if (bindingResult.hasErrors()) {
+//			model.addAttribute("sampleVO", sampleVO);
+//			return "sample/egovSampleRegister";
+//		}
+
+		sampleService.updateBoard(boardVO);
+//		status.setComplete();
+		return "forward:/egovBoardList.do";
 	}
 	
 	//==========================================================================================================================
