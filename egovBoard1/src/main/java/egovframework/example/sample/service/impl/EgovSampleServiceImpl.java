@@ -82,6 +82,17 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 
 		return sampleDAO.insertBoard(vo);
 	}
+	
+	@Override
+	public BoardVO selectBoard(BoardVO vo) throws Exception {
+		BoardVO resultVO = sampleDAO.selectBoard(vo);
+		System.out.println("in Service resultVO is"+resultVO+"===============");
+		
+		if (resultVO == null)
+			throw processException("info.nodata.msg");
+		return resultVO;
+	}
+	
 	//=========================================================================================
 	/**
 	 * 글을 등록한다.

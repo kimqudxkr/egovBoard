@@ -14,6 +14,16 @@
 		<result property="regUser" column="reg_user"/>
 	</resultMap>
 
+	<resultMap id="board" class="egovframework.example.sample.service.BoardVO">
+		<result property="idx" column="idx"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="regDate" column="reg_date"/>
+		<result property="cnt" column="cnt"/>
+		<result property="option" column="option"/>
+		<result property="setting" column="setting"/>
+	</resultMap>
+	
 	<select id="sampleDAO.getBoardList" resultClass="egovMap">
 		<![CDATA[
 			SELECT * FROM boardtest ORDER BY idx DESC
@@ -37,6 +47,15 @@
 					  )
 		]]>
 	</insert>
+
+	<select id="sampleDAO.selectBoard" resultMap="board">
+        <![CDATA[
+            SELECT *
+            FROM boardtest
+            WHERE idx=#idx#
+        ]]>
+    </select>
+
 
 
 	<insert id="sampleDAO.insertSample">

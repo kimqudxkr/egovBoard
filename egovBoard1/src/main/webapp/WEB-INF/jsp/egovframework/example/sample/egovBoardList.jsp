@@ -30,8 +30,9 @@
         <!--
         /* 글 수정 화면 function */
         function fn_egov_select(id) {
+        	console.log("id : "+id);
         	document.listForm.selectedId.value = id;
-           	document.listForm.action = "<c:url value='/updateSampleView.do'/>";
+           	document.listForm.action = "<c:url value='/updateBoardView.do'/>";
            	document.listForm.submit();
         }
         

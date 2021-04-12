@@ -123,6 +123,30 @@ public class EgovSampleController {
 //		status.setComplete();
 		return "forward:/egovBoardList.do";
 	}
+	
+	
+	//제목을 클릭하여 넘어온 수정페이지
+	@RequestMapping("/updateBoardView.do")
+	public String updateBoardView(@RequestParam("selectedId") int id, @ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
+//		SampleVO sampleVO = new SampleVO();
+//		sampleVO.setId(id);
+		// 변수명은 CoC 에 따라 sampleVO
+		
+		System.out.println("selected Id : "+id+"=============================");
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setIdx(id);
+		
+		System.out.println("in Controller boardVO is ==>"+boardVO+"============");
+		
+		model.addAttribute(selectBoard(boardVO, searchVO));
+		return "sample/egovBoardWrite";
+	}
+	
+	public BoardVO selectBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO) throws Exception {
+		return sampleService.selectBoard(boardVO);
+	}
+	
 	//==========================================================================================================================
 	/**
 	 * 글 목록을 조회한다. (pageing)
