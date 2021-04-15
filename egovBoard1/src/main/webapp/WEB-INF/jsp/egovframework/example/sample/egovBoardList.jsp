@@ -57,6 +57,7 @@
         
         //-->
     </script>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/board.css'/>" />
 </head>
 
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">
@@ -64,12 +65,11 @@
         <input type="hidden" name="selectedId" />
         <div id="content_pop">
         	<!-- 타이틀 -->
-        	<div id="title" align="center">
+        	<div id="title">
         		<ul>
-        			<li><img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt=""/>좋은삼정병원</li>
+        			<li><img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt=""/>&nbsp;좋은삼정병원</li>
         		</ul>
         	</div>
-
         	<!-- List -->
         	<div id="table">
         		<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블">
@@ -94,7 +94,14 @@
             			<tr>
             				<td align="center" class="listtd"><c:out value="${result.idx}"/></td>
             				<td align="center" class="listtd"><input type="checkbox"/></td>
-            				<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
+            				<td align="left" class="listtd"><span class="${result.setting}">
+								<c:choose>
+									<c:when test="${result.setting=='complete'}">처리완료</c:when>
+									<c:when test="${result.setting=='untreated'}">미처리</c:when>
+									<c:when test="${result.setting=='processing'}">처리중</c:when>
+									<c:when test="${result.setting=='hold'}">보류</c:when>
+								</c:choose>
+							</span>&nbsp;<a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
             				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
             				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
             				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>

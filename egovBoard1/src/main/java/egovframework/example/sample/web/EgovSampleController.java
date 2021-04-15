@@ -104,23 +104,27 @@ public class EgovSampleController {
 		return "sample/egovBoardWrite";
 	}
 	
+	//글 내용 조회 페이지
+	@RequestMapping(value = "/boardContentView.do")
+	public String boardContentView(@RequestParam("selectedId") int id, @ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
+		
+		BoardVO boardVO = new BoardVO();
+		boardVO.setIdx(id);
+		
+		model.addAttribute("boardVO", selectBoard(boardVO, searchVO));
+		
+		return "sample/egovBoardContent";
+	}
+	
 	//글쓰기 버튼 클릭 시 insert하는 곳
 	@RequestMapping(value = "/boardWrite.do", method = RequestMethod.POST)
 	public String insertBoard(@ModelAttribute("searchVO") SampleDefaultVO searchVO, @ModelAttribute("boardVO") BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
 			throws Exception {
 
 		// Server-Side Validation
-//		beanValidator.validate(sampleVO, bindingResult);
 		beanValidator.validate(boardVO, bindingResult);
-//		
-//		if (bindingResult.hasErrors()) {
-//			System.out.println("controller error occured");
-//			model.addAttribute("boardVO", boardVO);
-//			return "sample/egovBoardWrite";
-//		}
 
 		sampleService.insertBoard(boardVO);
-//		status.setComplete();
 		return "forward:/egovBoardList.do";
 	}
 	
@@ -128,10 +132,6 @@ public class EgovSampleController {
 	//제목을 클릭하여 넘어온 수정페이지
 	@RequestMapping("/updateBoardView.do")
 	public String updateBoardView(@RequestParam("selectedId") int id, @ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
-//		SampleVO sampleVO = new SampleVO();
-//		sampleVO.setId(id);
-		// 변수명은 CoC 에 따라 sampleVO
-		
 		BoardVO boardVO = new BoardVO();
 		boardVO.setIdx(id);
 		
@@ -139,30 +139,24 @@ public class EgovSampleController {
 		return "sample/egovBoardWrite";
 	}
 	
+	//한 게시글에 대한 정보를 받아오는 메소드
 	public BoardVO selectBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO) throws Exception {
 		return sampleService.selectBoard(boardVO);
 	}
 	
+	//수정 버튼을 누를시 작동하는 메소드
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(@ModelAttribute("searchVO") SampleDefaultVO searchVO, BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
 			throws Exception {
-
-//		beanValidator.validate(sampleVO, bindingResult);
-//
-//		if (bindingResult.hasErrors()) {
-//			model.addAttribute("sampleVO", sampleVO);
-//			return "sample/egovSampleRegister";
-//		}
-
 		sampleService.updateBoard(boardVO);
-//		status.setComplete();
+
 		return "forward:/egovBoardList.do";
 	}
 	
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO, SessionStatus status) throws Exception {
 		sampleService.deleteBoard(boardVO);
-//		status.setComplete();
+
 		return "forward:/egovBoardList.do";
 	}
 	

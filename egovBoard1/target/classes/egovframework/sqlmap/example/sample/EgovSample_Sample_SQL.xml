@@ -2,7 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Sample">
-
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
 
@@ -74,9 +73,8 @@
 		]]>
 	</delete>
 	
+	<!-- =================================================================================================== -->
 	
-	
-
 	<insert id="sampleDAO.insertSample">
 		<![CDATA[
 			INSERT INTO SAMPLE 

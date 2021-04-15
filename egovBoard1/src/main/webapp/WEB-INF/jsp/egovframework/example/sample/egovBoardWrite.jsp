@@ -103,10 +103,10 @@
     			<td class="tbtd_caption"><label for="setting">분류</label></td>
     			<td class="tbtd_content">
     				<form:select path="setting" cssClass="use">
-    					<form:option value="none" label="미처리" />
-    					<form:option value="complete" label="처리완료" />
-    					<form:option value="processing" label="처리중" />
-    					<form:option value="keep" label="보류" />
+    					<form:option value="untreated" label="미처리" />
+    					<form:option value="complete" label="처리완료"/>
+    					<form:option value="processing" label="처리중"/>
+    					<form:option value="hold" label="보류" />
     					<form:option value="notice" label="공지" />
     				</form:select>
     			</td>
@@ -114,14 +114,14 @@
     		<tr>
     			<td class="tbtd_caption"><label for="title">제목</label></td>
     			<td class="tbtd_content">
-    				<form:input path="title" maxlength="30" cssClass="txt" size="40"/>
+    				<form:input path="title" maxlength="30" cssClass="txt" size="30"/>
     				&nbsp;<form:errors path="title" />
     			</td>
     		</tr>
     		<tr>
     			<td class="tbtd_caption"><label for="content">내용</label></td>
     			<td class="tbtd_content">
-    				<form:textarea path="content" rows="15" cols="58" />&nbsp;<form:errors path="content" />
+    				<form:textarea path="content" rows="15" cols="50" />&nbsp;<form:errors path="content" />
                 </td>
     		</tr>
     	</table>
@@ -148,12 +148,6 @@
                         </span>
                     </li>
     			</c:if>
-    			<li>
-                    <span class="btn_blue_l">
-                        <a href="javascript:document.detailForm.reset();"><spring:message code="button.reset" /></a>
-                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                    </span>
-                </li>
             </ul>
     	</div>
     </div>
@@ -162,6 +156,5 @@
     <input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
     <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
 </form:form>
-<p>this is boardWrite page.</p>
 </body>
 </html>
