@@ -57,6 +57,7 @@
         
         //-->
     </script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/board.css'/>" />
 </head>
 
@@ -70,6 +71,13 @@
         			<li><img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt=""/>&nbsp;좋은삼정병원</li>
         		</ul>
         	</div>
+<!-- 			<ul class="navi-bar"> -->
+<!-- 				<li><a href="https://www.naver.com">전체</a></li> -->
+<!-- 				<li><a href="https://www.naver.com">미처리</a></li> -->
+<!-- 				<li><a href="https://www.naver.com">처리완료</a></li> -->
+<!-- 				<li><a href="https://www.naver.com">처리중</a></li> -->
+<!-- 				<li><a href="https://www.naver.com">보류</a></li> -->
+<!-- 			</ul> -->
         	<!-- List -->
         	<div id="table">
         		<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블">
@@ -84,7 +92,7 @@
         			</colgroup>
         			<tr>
         				<th align="center">번호</th>
-        				<th align="center"><input type="checkbox"/></th>
+        				<th align="center"><input type="checkbox" class="allCheck"/></th>
         				<th align="center">제목</th>
         				<th align="center">글쓴이</th>
         				<th align="center">날짜</th>
@@ -93,7 +101,7 @@
         			<c:forEach var="result" items="${resultList}" varStatus="status">
             			<tr>
             				<td align="center" class="listtd"><c:out value="${result.idx}"/></td>
-            				<td align="center" class="listtd"><input type="checkbox"/></td>
+            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
             				<td align="left" class="listtd"><span class="${result.setting}">
 								<c:choose>
 									<c:when test="${result.setting=='complete'}">처리완료</c:when>
@@ -126,5 +134,16 @@
         	</div>
         </div>
     </form:form>
+    <script>
+    	$(document).ready(function() {
+    		$('.allCheck').click(function() {
+    			if($('.allCheck').prop("checked")) {
+    				$("input[name=check]").prop("checked", true);
+    			} else {
+    				$("input[name=check]").prop("checked", false);
+    			}
+    		})
+    	})
+    </script>
 </body>
 </html>
