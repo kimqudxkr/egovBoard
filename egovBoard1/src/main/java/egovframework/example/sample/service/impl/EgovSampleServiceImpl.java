@@ -80,7 +80,6 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	
 	@Override
 	public BoardVO selectBoardByIdx(int idx) throws Exception {
-		
 		return sampleDAO.selectBoardByIdx(idx);
 	}
 	
@@ -101,6 +100,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	@Override
 	public void deleteBoard(BoardVO vo) throws Exception {
 		sampleDAO.deleteBoard(vo);
+	}
+	
+	@Override
+	public void updateCnt(BoardVO vo) throws Exception {
+		sampleDAO.updateCount(vo);
 	}
 	
 	//=========================================================================================

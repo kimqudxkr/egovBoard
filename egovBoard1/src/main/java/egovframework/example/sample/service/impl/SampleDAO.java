@@ -71,6 +71,9 @@ public class SampleDAO extends EgovAbstractDAO {
 		return (BoardVO) select("sampleDAO.selectBoardByIdx", idx);
 	}
 	
+	public void updateCount(BoardVO vo) throws Exception {
+		update("sampleDAO.updateCount", vo);
+	}
 	//====================================================================
 	/**
 	 * 글을 등록한다.

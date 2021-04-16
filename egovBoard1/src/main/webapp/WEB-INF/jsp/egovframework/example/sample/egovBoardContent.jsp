@@ -35,6 +35,7 @@
 				<c:when test="${boardVO.setting=='untreated'}">미처리</c:when>
 				<c:when test="${boardVO.setting=='processing'}">처리중</c:when>
 				<c:when test="${boardVO.setting=='hold'}">보류</c:when>
+				<c:when test="${boardVO.setting=='notice'}">공지</c:when>
 			</c:choose> | ${boardVO.title}</strong></p>
 		<p><input type="checkbox"/>개발여부</p>
 		<p>작성자<strong>${boardVO.writer} ${boardVO.idx}</strong>(222.96.6.150) <fmt:formatDate value="${boardVO.regDate }" pattern="yy-MM-dd HH:mm:ss"/> 조회 ${boardVO.cnt}</p>

@@ -108,6 +108,10 @@ public class EgovSampleController {
 	@RequestMapping(value = "/boardContentView.do")
 	public String boardContentView(@RequestParam("selectedId") int idx, Model model) throws Exception {
 		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
+		int cnt = boardVO.getCnt();
+		boardVO.setCnt(cnt+1);
+		sampleService.updateCnt(boardVO);
+		
 		model.addAttribute("boardVO", boardVO);
 		
 		return "sample/egovBoardContent";

@@ -80,6 +80,11 @@
 		]]>
 	</delete>
 	
+	<update id="sampleDAO.updateCount">
+		UPDATE boardtest
+		SET cnt=#cnt#
+		WHERE idx=#idx#
+	</update>
 	<!-- =================================================================================================== -->
 	
 	<insert id="sampleDAO.insertSample">
