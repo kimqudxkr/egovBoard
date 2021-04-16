@@ -99,20 +99,16 @@ public class EgovSampleController {
 	//글쓰기 페이지
 	@RequestMapping(value = "/boardWriteView.do")
 	public String boardWrite(@ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
-		
 		model.addAttribute("boardVO", new BoardVO());
+		
 		return "sample/egovBoardWrite";
 	}
 	
 	//글 내용 조회 페이지
 	@RequestMapping(value = "/boardContentView.do")
 	public String boardContentView(@RequestParam("selectedId") int idx, Model model) throws Exception {
-		
-//		BoardVO boardVO = new BoardVO();
-//		boardVO.setIdx(id);
 		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
 		model.addAttribute("boardVO", boardVO);
-//		model.addAttribute("boardVO", selectBoard(boardVO, searchVO));
 		
 		return "sample/egovBoardContent";
 	}
@@ -138,14 +134,13 @@ public class EgovSampleController {
 	@RequestMapping("/updateBoardView.do")
 	public String updateBoardView(@ModelAttribute("BoardVO") BoardVO boardVO, SampleDefaultVO searchVO, Model model) throws Exception {
 		model.addAttribute(selectBoard(boardVO));
+		
 		return "sample/egovBoardWrite";
 	}
 	
 	//수정 버튼을 누를시 작동하는 메소드
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(@ModelAttribute("BoardVO") BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
-			throws Exception {
-		System.out.println("updateBoard start in Controller!!");
+	public String updateBoard(@ModelAttribute("BoardVO") BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status) throws Exception {
 		sampleService.updateBoard(boardVO);
 
 		return "redirect:/egovBoardList.do";

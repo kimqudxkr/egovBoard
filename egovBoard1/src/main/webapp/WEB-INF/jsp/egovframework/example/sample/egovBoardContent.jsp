@@ -55,6 +55,10 @@
 			location.href = 'egovBoardList.do';
 		})
 		
+		$('.write').click(function() {
+			location.href = 'boardWriteView.do';
+		})
+		
 		$('.modify').click(function() {
 			location.href = 'javascript:fn_egov_updateBoard();';
 		})

@@ -60,7 +60,6 @@ public class SampleDAO extends EgovAbstractDAO {
 	}
 	
 	public void updateBoard(BoardVO vo) throws Exception {
-		System.out.println("updateBoard start in DAO!!");
 		update("sampleDAO.updateBoard", vo);
 	}
 	
@@ -69,7 +68,6 @@ public class SampleDAO extends EgovAbstractDAO {
 	}
 	
 	public BoardVO selectBoardByIdx(int idx) throws Exception {
-		System.out.println("DAO : "+select("sampleDAO.selectBoardByIdx", idx));
 		return (BoardVO) select("sampleDAO.selectBoardByIdx", idx);
 	}
 	

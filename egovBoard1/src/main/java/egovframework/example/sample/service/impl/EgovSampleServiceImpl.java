@@ -75,11 +75,6 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	public String insertBoard(BoardVO vo) throws Exception {
 		LOGGER.debug(vo.toString());
 
-		/** ID Generation Service */
-//		String id = egovIdGnrService.getNextStringId();
-//		vo.setIdx(id);
-		LOGGER.debug(vo.toString());
-
 		return sampleDAO.insertBoard(vo);
 	}
 	
@@ -92,7 +87,6 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	@Override
 	public BoardVO selectBoard(BoardVO vo) throws Exception {
 		BoardVO resultVO = sampleDAO.selectBoard(vo);
-		System.out.println("Service : "+resultVO);
 		
 		if (resultVO == null)
 			throw processException("info.nodata.msg");
@@ -101,7 +95,6 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	
 	@Override
 	public void updateBoard(BoardVO vo) throws Exception {
-		System.out.println("updateBoard start in ServiceImpl!!");
 		sampleDAO.updateBoard(vo);
 	}
 	
