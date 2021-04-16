@@ -12,14 +12,14 @@
 	<script type="text/javaScript" language="javascript" defer="defer">
         <!--
         /* 글 수정 화면 function */
-        function fn_egov_updateBoar() {
+        function fn_egov_updateBoard() {
            	document.detailForm.action = "<c:url value='/updateBoardView.do'/>";
            	document.detailForm.submit();
         }
         
         /* 글 삭제 function */
-        function fn_egov_delete() {
-           	document.detailForm.action = "<c:url value='/deleteSample.do'/>";
+        function fn_egov_deleteBoard() {
+           	document.detailForm.action = "<c:url value='/deleteBoard.do'/>";
            	document.detailForm.submit();
         }
         -->
@@ -56,12 +56,13 @@
 		})
 		
 		$('.modify').click(function() {
-			location.href = 'javascript:fn_egov_updateBoar();';
+			location.href = 'javascript:fn_egov_updateBoard();';
 		})
 		
 		$('.delete').click(function() {
-			const idx = $('.idx').val();
-			console.log(idx);
+			if(confirm("삭제하시겠습니까?")) {
+				location.href = 'javascript:fn_egov_deleteBoard();';
+			}
 		})
 	});
 </script>

@@ -153,10 +153,10 @@ public class EgovSampleController {
 	
 	//삭제 버튼 누를 시 작동하는 메소드
 	@RequestMapping("/deleteBoard.do")
-	public String deleteBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO, SessionStatus status) throws Exception {
+	public String deleteBoard(@ModelAttribute("BoardVO") BoardVO boardVO, SessionStatus status) throws Exception {
 		sampleService.deleteBoard(boardVO);
 
-		return "forward:/egovBoardList.do";
+		return "redirect:/egovBoardList.do";
 	}
 	
 	//==========================================================================================================================
