@@ -29,6 +29,14 @@
 		]]>
 	</select>
 	
+	<select id="sampleDAO.selectBoardByIdx" resultMap="board">
+		<![CDATA[
+			SELECT *
+            FROM boardtest
+            WHERE idx=#idx#
+		]]>
+	</select>
+	
 	<insert id="sampleDAO.insertBoard">
 		<![CDATA[
 			INSERT INTO boardtest 
@@ -48,18 +56,17 @@
 	</insert>
 
 	<select id="sampleDAO.selectBoard" resultMap="board">
-        <![CDATA[
+        
             SELECT *
             FROM boardtest
             WHERE idx=#idx#
-        ]]>
+       
     </select>
 
 	<update id="sampleDAO.updateBoard">
 		<![CDATA[
 			UPDATE boardtest
-			SET idx=#idx#
-				, title=#title#
+			SET title=#title#
 				, content=#content#
 				, setting=#setting#
 			WHERE idx=#idx#

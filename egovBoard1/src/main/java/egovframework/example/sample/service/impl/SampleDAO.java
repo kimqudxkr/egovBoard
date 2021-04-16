@@ -46,6 +46,7 @@ public class SampleDAO extends EgovAbstractDAO {
 
 
 	public List<?> getBoardList() throws Exception {
+		System.out.println(list("sampleDAO.getBoardList"));
 		return list("sampleDAO.getBoardList");
 	}
 	
@@ -54,17 +55,23 @@ public class SampleDAO extends EgovAbstractDAO {
 	}
 	
 	public BoardVO selectBoard(BoardVO vo) throws Exception {
+		System.out.println("DAO : "+select("sampleDAO.selectBoard", vo));
 		return (BoardVO) select("sampleDAO.selectBoard", vo);
 	}
 	
 	public void updateBoard(BoardVO vo) throws Exception {
+		System.out.println("updateBoard start in DAO!!");
 		update("sampleDAO.updateBoard", vo);
 	}
 	
 	public void deleteBoard(BoardVO vo) throws Exception {
 		delete("sampleDAO.deleteBoard", vo);
 	}
-
+	
+	public BoardVO selectBoardByIdx(int idx) throws Exception {
+		System.out.println("DAO : "+select("sampleDAO.selectBoardByIdx", idx));
+		return (BoardVO) select("sampleDAO.selectBoardByIdx", idx);
+	}
 	
 	//====================================================================
 	/**

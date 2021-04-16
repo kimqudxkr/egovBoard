@@ -49,7 +49,6 @@
         
         /* 글 등록 function */
         function fn_egov_save() {
-        	console.log("버튼 눌림");
         	frm = document.detailForm;
 //         	if(!validate (frm)){
 //         		console.log("if문 안에 들어옴");
@@ -97,6 +96,13 @@
     			<td class="tbtd_content">
 					<input type="checkbox"/>공지
 					<input type="checkbox"/>html
+    			</td>
+    		</tr>
+    		<tr>
+    			<td class="tbtd_caption"><label for="writer">작성자</label></td>
+    			<td class="tbtd_content">
+    				<form:input path="writer" maxlength="30" cssClass="txt" size="30"/>
+    				&nbsp;<form:errors path="writer" />
     			</td>
     		</tr>
     		<tr>

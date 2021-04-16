@@ -25,7 +25,7 @@ package egovframework.example.sample.service;
  * @ 2009.03.16           최초생성
  *
  * @author 개발프레임웍크 실행환경 개발팀
- * @since 2009. 03.16
+ * @since 2009. 03.16list("sampleDAO.getBoardList")
  * @version 1.0
  * @see
  *

@@ -84,9 +84,15 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	}
 	
 	@Override
+	public BoardVO selectBoardByIdx(int idx) throws Exception {
+		
+		return sampleDAO.selectBoardByIdx(idx);
+	}
+	
+	@Override
 	public BoardVO selectBoard(BoardVO vo) throws Exception {
 		BoardVO resultVO = sampleDAO.selectBoard(vo);
-		System.out.println("in Service resultVO is"+resultVO+"===============");
+		System.out.println("Service : "+resultVO);
 		
 		if (resultVO == null)
 			throw processException("info.nodata.msg");
@@ -95,6 +101,7 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	
 	@Override
 	public void updateBoard(BoardVO vo) throws Exception {
+		System.out.println("updateBoard start in ServiceImpl!!");
 		sampleDAO.updateBoard(vo);
 	}
 	

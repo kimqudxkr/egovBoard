@@ -32,7 +32,7 @@
         function fn_egov_select(id) {
         	console.log("id : "+id);
         	document.listForm.selectedId.value = id;
-           	document.listForm.action = "<c:url value='/updateBoardView.do'/>";
+           	document.listForm.action = "<c:url value='/boardContentView.do'/>";
            	document.listForm.submit();
         }
         
@@ -71,13 +71,6 @@
         			<li><img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt=""/>&nbsp;좋은삼정병원</li>
         		</ul>
         	</div>
-<!-- 			<ul class="navi-bar"> -->
-<!-- 				<li><a href="https://www.naver.com">전체</a></li> -->
-<!-- 				<li><a href="https://www.naver.com">미처리</a></li> -->
-<!-- 				<li><a href="https://www.naver.com">처리완료</a></li> -->
-<!-- 				<li><a href="https://www.naver.com">처리중</a></li> -->
-<!-- 				<li><a href="https://www.naver.com">보류</a></li> -->
-<!-- 			</ul> -->
         	<!-- List -->
         	<div id="table">
         		<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블">

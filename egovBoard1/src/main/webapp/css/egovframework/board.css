@@ -5,11 +5,9 @@
 #title ul {text-align:cener; }
 #title ul li {display:inline-block; text-align:center; font-size:20px; vertical-align:middle;}
 
-#table .listtd span {display:inline-block; width:50px; line-height:17px; color:white; border-radius:8px; text-align:center;}
+#content_pop {margin:0 auto;}
 
-.navi-bar {list-style-type:none; border: 1px solid #ddd;}
-.navi-bar li {float:left;}
-.navi-bar li a {display:block; padding:8px; text-decoration:none; text-align:cetner; font-weight:bold;}
+#table .listtd span {display:inline-block; width:50px; line-height:17px; color:white; border-radius:8px; text-align:center;}
 
 .complete {background-color:#888;}
 .untreated {background-color:red;}

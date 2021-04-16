@@ -106,12 +106,13 @@ public class EgovSampleController {
 	
 	//글 내용 조회 페이지
 	@RequestMapping(value = "/boardContentView.do")
-	public String boardContentView(@RequestParam("selectedId") int id, @ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
+	public String boardContentView(@RequestParam("selectedId") int idx, Model model) throws Exception {
 		
-		BoardVO boardVO = new BoardVO();
-		boardVO.setIdx(id);
-		
-		model.addAttribute("boardVO", selectBoard(boardVO, searchVO));
+//		BoardVO boardVO = new BoardVO();
+//		boardVO.setIdx(id);
+		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
+		model.addAttribute("boardVO", boardVO);
+//		model.addAttribute("boardVO", selectBoard(boardVO, searchVO));
 		
 		return "sample/egovBoardContent";
 	}
@@ -125,34 +126,32 @@ public class EgovSampleController {
 		beanValidator.validate(boardVO, bindingResult);
 
 		sampleService.insertBoard(boardVO);
-		return "forward:/egovBoardList.do";
-	}
-	
-	
-	//제목을 클릭하여 넘어온 수정페이지
-	@RequestMapping("/updateBoardView.do")
-	public String updateBoardView(@RequestParam("selectedId") int id, @ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
-		BoardVO boardVO = new BoardVO();
-		boardVO.setIdx(id);
-		
-		model.addAttribute(selectBoard(boardVO, searchVO));
-		return "sample/egovBoardWrite";
+		return "redirect:/egovBoardList.do";
 	}
 	
 	//한 게시글에 대한 정보를 받아오는 메소드
-	public BoardVO selectBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO) throws Exception {
+	public BoardVO selectBoard(BoardVO boardVO) throws Exception {
 		return sampleService.selectBoard(boardVO);
+	}
+	
+	//수정 화면을 띄우는 메소드
+	@RequestMapping("/updateBoardView.do")
+	public String updateBoardView(@ModelAttribute("BoardVO") BoardVO boardVO, SampleDefaultVO searchVO, Model model) throws Exception {
+		model.addAttribute(selectBoard(boardVO));
+		return "sample/egovBoardWrite";
 	}
 	
 	//수정 버튼을 누를시 작동하는 메소드
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(@ModelAttribute("searchVO") SampleDefaultVO searchVO, BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
+	public String updateBoard(@ModelAttribute("BoardVO") BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
 			throws Exception {
+		System.out.println("updateBoard start in Controller!!");
 		sampleService.updateBoard(boardVO);
 
-		return "forward:/egovBoardList.do";
+		return "redirect:/egovBoardList.do";
 	}
 	
+	//삭제 버튼 누를 시 작동하는 메소드
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(BoardVO boardVO, @ModelAttribute("searchVO") SampleDefaultVO searchVO, SessionStatus status) throws Exception {
 		sampleService.deleteBoard(boardVO);

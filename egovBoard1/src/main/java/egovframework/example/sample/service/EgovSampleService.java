@@ -40,7 +40,7 @@ public interface EgovSampleService {
 	BoardVO selectBoard(BoardVO vo) throws Exception;
 	void updateBoard(BoardVO vo) throws Exception;
 	void deleteBoard(BoardVO vo) throws Exception;
-	
+	BoardVO selectBoardByIdx(int idx) throws Exception;
 	//=========================================================================
 	/**
 	 * 글을 등록한다.
