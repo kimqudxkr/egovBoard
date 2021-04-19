@@ -74,10 +74,11 @@
 	</update>
 	
 	<delete id="sampleDAO.deleteBoard">
-		<![CDATA[
-			DELETE FROM boardtest
-			WHERE idx=#idx#
-		]]>
+			DELETE FROM boardtest WHERE idx=#idx#;
+			
+			ALTER TABLE boardtest AUTO_INCREMENT=1;
+			SET @COUNT = 0;
+			UPDATE boardtest SET idx = @COUNT:=@COUNT+1;
 	</delete>
 	
 	<update id="sampleDAO.updateCount">
