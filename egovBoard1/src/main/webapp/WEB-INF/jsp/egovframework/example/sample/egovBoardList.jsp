@@ -31,7 +31,6 @@
         <!--
         /* 글 수정 화면 function */
         function fn_egov_select(id) {
-        	console.log("id : "+id);
         	document.listForm.selectedId.value = id;
            	document.listForm.action = "<c:url value='/boardContentView.do'/>";
            	document.listForm.submit();
@@ -44,8 +43,9 @@
         }
         
         /* 글 목록 화면 function */
-        function fn_egov_selectList() {
-        	document.listForm.action = "<c:url value='/egovSampleList.do'/>";
+        function fn_egov_selectList(menu) {
+        	document.listForm.selectedMenu.value = menu;
+        	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
            	document.listForm.submit();
         }
         
@@ -66,12 +66,24 @@
     <form:form commandName="searchVO" id="listForm" name="listForm" method="post">
     	<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
 	        <input type="hidden" name="selectedId" />
+	        <input type="hidden" name="selectedMenu" />
+	        <input type="hidden" id="menu" value="${menu}"/>
 	        <div id="content_pop">
 	        	<!-- 타이틀 -->
 	        	<div id="title">
 	        		<h2>좋은삼정병원</h2>
 	        	</div>
 	        	<!-- List -->
+	        	<div id="nav_menu">
+	        		<br/><br/><br/>
+					<ul >
+						<li><a class="all now" href="javascript:fn_egov_selectList('all')" >전체</a></li>
+						<li><a class="untreated" href="javascript:fn_egov_selectList('untreated')">미처리</a></li>
+						<li><a class="complete" href="javascript:fn_egov_selectList('complete')">처리완료</a></li>
+						<li><a class="processing" href="javascript:fn_egov_selectList('processing')">처리중</a></li>
+						<li><a class="hold" href="javascript:fn_egov_selectList('hold')">보류</a></li>
+					</ul>
+	        	</div>
 	        	<div id="table">
 	        		<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블">
 	        			<caption style="visibility:hidden">카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블</caption>
@@ -92,7 +104,7 @@
 	        				<th align="center">조회</th>
 	        			</tr>
 	        			<c:forEach var="result" items="${noticeList}" varStatus="status">
-	            			<tr style="background-color:#d3d3d3">
+	            			<tr style="background-color:#eff1f4">
 	            				<td align="center" class="listtd" style="font-weight:bold;"><c:out value="공지"/></td>
 	            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
 								<td align="left" class="listtd" ><a style="color:red; font-weight:bold;" href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
@@ -141,13 +153,19 @@
     </form:form>
     <script>
     	$(document).ready(function() {
+    		console.log($('#menu').val());
+    		
     		$('.allCheck').click(function() {
     			if($('.allCheck').prop("checked")) {
     				$("input[name=check]").prop("checked", true);
     			} else {
     				$("input[name=check]").prop("checked", false);
     			}
-    		})
+    		});
+    		
+    		const menu = $('#menu').val()
+    		$('#nav_menu ul li a').removeClass("now");
+    		$('#nav_menu ul li .'+menu).addClass("now");
     	})
     </script>
 </body>

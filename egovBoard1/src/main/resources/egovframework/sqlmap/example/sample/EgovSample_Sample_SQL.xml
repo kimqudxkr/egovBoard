@@ -35,6 +35,12 @@
 		]]>
 	</select>
 	
+	<select id="sampleDAO.getFilteredBoardList" resultClass="egovMap">
+		<![CDATA[
+			SELECT * FROM boardtest WHERE setting IN (#menu#) ORDER BY idx DESC
+		]]>
+	</select>
+	
 	<select id="sampleDAO.selectBoardByIdx" resultMap="board">
 		<![CDATA[
 			SELECT *

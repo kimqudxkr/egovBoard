@@ -71,7 +71,7 @@ public class EgovSampleController {
 
 	//글 목록 불러오는 페이지
 	@RequestMapping(value="/egovBoardList.do")
-	public String selectList(@ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo) throws Exception {
+	public String selectList(@RequestParam(value="selectedMenu", required=false) String menu, @ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo) throws Exception {
 		/** EgovPropertyService.sample */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
@@ -89,8 +89,9 @@ public class EgovSampleController {
 		List<?> noticeList = sampleService.getNoticeList();
 		model.addAttribute("noticeList", noticeList);
 
-		List<?> sampleList = sampleService.getBoardList();
+		List<?> sampleList = (menu == null || menu.equals("all")) ? sampleService.getBoardList() : sampleService.getFilteredBoardList(menu);
 		model.addAttribute("resultList", sampleList);
+		model.addAttribute("menu", menu);
 
 		int totCnt = sampleService.selectSampleListTotCnt(searchVO);
 		paginationInfo.setTotalRecordCount(totCnt);

@@ -43,14 +43,16 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("sampleDAO")
 public class SampleDAO extends EgovAbstractDAO {
-
-
 	public List<?> getBoardList() throws Exception {
 		return list("sampleDAO.getBoardList");
 	}
 	
 	public List<?> getNoticeList() throws Exception {
 		return list("sampleDAO.getNoticeList");
+	}
+	
+	public List<?> getFilteredBoardList(String menu) throws Exception {
+		return list("sampleDAO.getFilteredBoardList", menu);
 	}
 	
 	public String insertBoard(BoardVO vo) throws Exception {
