@@ -105,3 +105,5 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
 #nav_menu a {display:block; height:30px; vertical-align:middle; line-height:30px;}
 #nav_menu a:hover {background-color:white; font-weight:bold; color:black; } 
 #nav_menu .now {background-color:white; font-weight:bold; color:black;}
+
+.btn-group button {float:right;}

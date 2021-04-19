@@ -133,11 +133,6 @@
 	        			</c:forEach>
 	        		</table>
 	        	</div>
-	        	<!-- /List -->
-	        	<div id="paging">
-	        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
-	        		<form:hidden path="pageIndex" />
-	        	</div>
 	        	<div id="sysbtn">
 	        	  <ul>
 	        	      <li>
@@ -148,13 +143,16 @@
 	                  </li>
 	              </ul>
 	        	</div>
+	        	<!-- /List -->
+	        	<div id="paging">
+	        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
+	        		<form:hidden path="pageIndex" />
+	        	</div>
 	        </div>
     	</div>
     </form:form>
     <script>
     	$(document).ready(function() {
-    		console.log($('#menu').val());
-    		
     		$('.allCheck').click(function() {
     			if($('.allCheck').prop("checked")) {
     				$("input[name=check]").prop("checked", true);
@@ -163,9 +161,12 @@
     			}
     		});
     		
-    		const menu = $('#menu').val()
-    		$('#nav_menu ul li a').removeClass("now");
-    		$('#nav_menu ul li .'+menu).addClass("now");
+    		//필터 적용 시 현재 적용중인 필터를 표시하는 부분
+    		const menu = $('#menu').val();
+    		if(menu != '') {
+	    		$('#nav_menu ul li a').removeClass("now");
+	    		$('#nav_menu ul li .'+menu).addClass("now");
+    		}
     	})
     </script>
 </body>

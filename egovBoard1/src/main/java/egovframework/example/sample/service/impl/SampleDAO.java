@@ -60,7 +60,6 @@ public class SampleDAO extends EgovAbstractDAO {
 	}
 	
 	public BoardVO selectBoard(BoardVO vo) throws Exception {
-		System.out.println("DAO : "+select("sampleDAO.selectBoard", vo));
 		return (BoardVO) select("sampleDAO.selectBoard", vo);
 	}
 	

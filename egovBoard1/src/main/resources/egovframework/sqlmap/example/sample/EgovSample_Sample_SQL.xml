@@ -16,6 +16,7 @@
 	<resultMap id="board" class="egovframework.example.sample.service.BoardVO">
 		<result property="idx" column="idx"/>
 		<result property="title" column="title"/>
+		<result property="writer" column="writer"/>
 		<result property="content" column="content"/>
 		<result property="regDate" column="reg_date"/>
 		<result property="cnt" column="cnt"/>

@@ -38,20 +38,38 @@
 					<c:when test="${boardVO.setting=='notice'}">공지</c:when>
 				</c:choose> | ${boardVO.title}</strong></p>
 			<p style="text-align:left"><input type="checkbox" />개발여부</p>
-			<p style="text-align:left">작성자<strong>${boardVO.writer} ${boardVO.idx}</strong>(222.96.6.150) <fmt:formatDate value="${boardVO.regDate }" pattern="yy-MM-dd HH:mm:ss"/> 조회 ${boardVO.cnt}회</p>
+			<p style="text-align:left">작성자
+				<strong style="padding-right:30px;">${boardVO.writer}</strong>
+				<fmt:formatDate value="${boardVO.regDate }" pattern="yy-MM-dd HH:mm:ss"/> 
+				<span style="padding-left:15px;">조회 ${boardVO.cnt}회</span>
+			</p>
 			<HR>
-			<div class="btn-group" style="padding:10px;">
-				<button type="button" class="modify">수정</button>
-				<button type="button" class="delete">삭제</button>
-				<button type="button" class="list">목록</button>
-				<button type="button" class="write">글쓰기</button>
+			<div class="btn-group">
+				<div class="btn-group-left" style="padding:10px; float:left">
+					<button type="button" class="before">이전글</button>
+					<button type="button" class="after">다음글</button>
+				</div>
+				<div class="btn-group-right" style="padding:10px; float:right">
+					<button type="button" class="modify">수정</button>
+					<button type="button" class="delete">삭제</button>
+					<button type="button" class="list">목록</button>
+					<button type="button" class="write">글쓰기</button>
+				</div>
 			</div>
-			<p id="content" style="text-align:left; border-bottom:solid 1px">${boardVO.content}</p>
-			<div class="btn-group" style="padding:10px;">
-				<button type="button" class="modify">수정</button>
-				<button type="button" class="delete">삭제</button>
-				<button type="button" class="list">목록</button>
-				<button type="button" class="write">글쓰기</button>
+			<BR/><BR/>
+			<p id="content" style="text-align:left; margin-bottom:30px;">${boardVO.content}</p>
+			<hr/>
+			<div class="btn-group">
+				<div class="btn-group-left" style="padding:10px; float:left">
+					<button type="button" class="before">이전글</button>
+					<button type="button" class="after">다음글</button>
+				</div>
+				<div class="btn-group-right" style="padding:10px; float:right">
+					<button type="button" class="modify">수정</button>
+					<button type="button" class="delete">삭제</button>
+					<button type="button" class="list">목록</button>
+					<button type="button" class="write">글쓰기</button>
+				</div>
 			</div>
 		</div>
 	</form:form>

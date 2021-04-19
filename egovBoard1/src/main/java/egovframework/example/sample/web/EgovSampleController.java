@@ -86,9 +86,11 @@ public class EgovSampleController {
 		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
+		//공지사항 받아오는 곳
 		List<?> noticeList = sampleService.getNoticeList();
 		model.addAttribute("noticeList", noticeList);
 
+		//필터 적용시키는 곳
 		List<?> sampleList = (menu == null || menu.equals("all")) ? sampleService.getBoardList() : sampleService.getFilteredBoardList(menu);
 		model.addAttribute("resultList", sampleList);
 		model.addAttribute("menu", menu);
@@ -111,6 +113,7 @@ public class EgovSampleController {
 	//글 내용 조회 페이지
 	@RequestMapping(value = "/boardContentView.do")
 	public String boardContentView(@RequestParam("selectedId") int idx, Model model) throws Exception {
+		//조회수 증가 부분
 		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
 		int cnt = boardVO.getCnt();
 		boardVO.setCnt(cnt+1);
