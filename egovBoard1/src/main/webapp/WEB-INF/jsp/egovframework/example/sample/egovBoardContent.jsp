@@ -25,30 +25,36 @@
         -->
     </script>
 </head>
-<body style="text-align:left; margin:0 auto; display:inline; padding-top:100px;">
-<form:form commandName="boardVO" id="detailForm" name="detailForm">
-	<div id="content_pop">
-		<input type="hidden" name="idx" class="idx" value="${boardVO.idx}"/>
-		<p><strong>
-			<c:choose>
-				<c:when test="${boardVO.setting=='complete'}">처리완료</c:when>
-				<c:when test="${boardVO.setting=='untreated'}">미처리</c:when>
-				<c:when test="${boardVO.setting=='processing'}">처리중</c:when>
-				<c:when test="${boardVO.setting=='hold'}">보류</c:when>
-				<c:when test="${boardVO.setting=='notice'}">공지</c:when>
-			</c:choose> | ${boardVO.title}</strong></p>
-		<p><input type="checkbox"/>개발여부</p>
-		<p>작성자<strong>${boardVO.writer} ${boardVO.idx}</strong>(222.96.6.150) <fmt:formatDate value="${boardVO.regDate }" pattern="yy-MM-dd HH:mm:ss"/> 조회 ${boardVO.cnt}</p>
-		<HR>
-		<div class="btn-group">
-			<button type="button" class="modify">수정</button>
-			<button type="button" class="delete">삭제</button>
-			<button type="button" class="list">목록</button>
-			<button type="button" class="write">글쓰기</button>
+<body style="text-align:center; margin:0 auto; display:inline; padding-top:50px;">
+	<form:form commandName="boardVO" id="detailForm" name="detailForm">
+		<div id="content_pop" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9; padding:10px; width:750px" >
+			<input type="hidden" name="idx" class="idx" value="${boardVO.idx}"/>
+			<p style="text-align:left"><strong>
+				<c:choose>
+					<c:when test="${boardVO.setting=='complete'}">처리완료</c:when>
+					<c:when test="${boardVO.setting=='untreated'}">미처리</c:when>
+					<c:when test="${boardVO.setting=='processing'}">처리중</c:when>
+					<c:when test="${boardVO.setting=='hold'}">보류</c:when>
+					<c:when test="${boardVO.setting=='notice'}">공지</c:when>
+				</c:choose> | ${boardVO.title}</strong></p>
+			<p style="text-align:left"><input type="checkbox" />개발여부</p>
+			<p style="text-align:left">작성자<strong>${boardVO.writer} ${boardVO.idx}</strong>(222.96.6.150) <fmt:formatDate value="${boardVO.regDate }" pattern="yy-MM-dd HH:mm:ss"/> 조회 ${boardVO.cnt}회</p>
+			<HR>
+			<div class="btn-group" style="padding:10px;">
+				<button type="button" class="modify">수정</button>
+				<button type="button" class="delete">삭제</button>
+				<button type="button" class="list">목록</button>
+				<button type="button" class="write">글쓰기</button>
+			</div>
+			<p id="content" style="text-align:left; border-bottom:solid 1px">${boardVO.content}</p>
+			<div class="btn-group" style="padding:10px;">
+				<button type="button" class="modify">수정</button>
+				<button type="button" class="delete">삭제</button>
+				<button type="button" class="list">목록</button>
+				<button type="button" class="write">글쓰기</button>
+			</div>
 		</div>
-		<p>${boardVO.content}</p>
-	</div>
-</form:form>
+	</form:form>
 </body>
 <script>
 	$(function() {

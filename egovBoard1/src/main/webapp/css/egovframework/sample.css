@@ -56,10 +56,11 @@ a:hover { font-size:11px; font-family:"돋움"; color:#339999; text-decoration:n
 #sub .sub_menu_en dd {font-weight:bold; padding-left:0px; padding-right:0px; padding-bottom:0px; padding-top:10px; margin:0;}
 #sub .sub_menu_en dt {list-style:none;  padding-left:0px; padding-right:0px; padding-bottom:0px; padding-top:8px; margin:0px;}
 #content {float:left; text-align:left; /*overflow:hidden;*/width:680px; background-color:#FFFFFF; padding:10px 0px 10px 0px;}
-#content_pop {float:left; text-align:left; /*overflow:hidden;*/width:680px; background-color:#FFFFFF; padding:10px 10px 10px 10px;}
-#title {float:left; text-align:left; margin:0 0 10 0; padding:0; height:30px; border-bottom:1px solid #e5e5e5; width:680px;}
-#title ul {float:left; margin:0; padding:0;}
-#title li {list-style-type:none; width:200px; padding:3px 0px 2px 0px; float:left; font-family:"돋움"; font-size:16px; font-weight:bold; color:#000000;}
+#content_pop {margin:0 auto; border-right:1px solid #dde4e9; border-left:1px solid #dde4e9; float:left; text-align:left; /*overflow:hidden;*/width:680px; background-color:#FFFFFF; padding:10px 10px 10px 10px;}
+#title {float:left; text-align:center; margin:0 0 10 0; padding:0; height:30px; border-bottom:1px solid #e5e5e5; width:680px;}
+#title ul {float:left; margin:0; padding:0; text-align:center}
+#title li {display:inline-block; list-style-type:none; padding:3px 0px 2px 0px; font-family:"돋움"; font-size:16px; font-weight:bold; color:#000000;}
+#title h2 {font-size:20px; font-weight:bold;}
 #title .location {float:right; height:20px; margin:0; padding:5 0 0 0; font-family:"돋움"; font-size:11px;}
 #foot {margin:0; padding:0 0 0 0; text-align:left; /*overflow:hidden;*/ height:40px; clear:both; background-color:#F7F7F7; border-top:1px solid #e5e5e5; font-family:Tahoma; font-size:11px; color:#999999;}
 #search {float:right; margin:0; padding:10px 0 10px 0; width:680px;}

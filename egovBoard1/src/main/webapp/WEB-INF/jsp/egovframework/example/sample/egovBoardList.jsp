@@ -63,69 +63,69 @@
 
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">
     <form:form commandName="searchVO" id="listForm" name="listForm" method="post">
-        <input type="hidden" name="selectedId" />
-        <div id="content_pop">
-        	<!-- 타이틀 -->
-        	<div id="title">
-        		<ul>
-        			<li><img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt=""/>&nbsp;좋은삼정병원</li>
-        		</ul>
-        	</div>
-        	<!-- List -->
-        	<div id="table">
-        		<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블">
-        			<caption style="visibility:hidden">카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블</caption>
-        			<colgroup>
-        				<col width="43"/>
-        				<col width="36"/>
-        				<col width="410"/>
-        				<col width="145"/>
-        				<col width="57"/>
-        				<col width="36"/>
-        			</colgroup>
-        			<tr>
-        				<th align="center">번호</th>
-        				<th align="center"><input type="checkbox" class="allCheck"/></th>
-        				<th align="center">제목</th>
-        				<th align="center">글쓴이</th>
-        				<th align="center">날짜</th>
-        				<th align="center">조회</th>
-        			</tr>
-        			<c:forEach var="result" items="${resultList}" varStatus="status">
-            			<tr>
-            				<td align="center" class="listtd"><c:out value="${result.idx}"/></td>
-            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
-            				<td align="left" class="listtd"><span class="${result.setting}">
-								<c:choose>
-									<c:when test="${result.setting=='complete'}">처리완료</c:when>
-									<c:when test="${result.setting=='untreated'}">미처리</c:when>
-									<c:when test="${result.setting=='processing'}">처리중</c:when>
-									<c:when test="${result.setting=='hold'}">보류</c:when>
-								</c:choose>
-							</span>&nbsp;<a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
-            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
-            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
-            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
-            			</tr>
-        			</c:forEach>
-        		</table>
-        	</div>
-        	<!-- /List -->
-        	<div id="paging">
-        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
-        		<form:hidden path="pageIndex" />
-        	</div>
-        	<div id="sysbtn">
-        	  <ul>
-        	      <li>
-        	          <span class="btn_blue_l">
-        	              <a href="javascript:fn_egov_write();">글쓰기</a>
-                          <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                      </span>
-                  </li>
-              </ul>
-        	</div>
-        </div>
+    	<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
+	        <input type="hidden" name="selectedId" />
+	        <div id="content_pop">
+	        	<!-- 타이틀 -->
+	        	<div id="title">
+	        		<h2>좋은삼정병원</h2>
+	        	</div>
+	        	<!-- List -->
+	        	<div id="table">
+	        		<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블">
+	        			<caption style="visibility:hidden">카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블</caption>
+	        			<colgroup>
+	        				<col width="43"/>
+	        				<col width="36"/>
+	        				<col width="410"/>
+	        				<col width="145"/>
+	        				<col width="57"/>
+	        				<col width="36"/>
+	        			</colgroup>
+	        			<tr>
+	        				<th align="center">번호</th>
+	        				<th align="center"><input type="checkbox" class="allCheck"/></th>
+	        				<th align="center">제목</th>
+	        				<th align="center">글쓴이</th>
+	        				<th align="center">날짜</th>
+	        				<th align="center">조회</th>
+	        			</tr>
+	        			<c:forEach var="result" items="${resultList}" varStatus="status">
+	            			<tr>
+	            				<td align="center" class="listtd"><c:out value="${result.idx}"/></td>
+	            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
+	            				<td align="left" class="listtd"><span class="${result.setting}">
+									<c:choose>
+										<c:when test="${result.setting=='complete'}">처리완료</c:when>
+										<c:when test="${result.setting=='untreated'}">미처리</c:when>
+										<c:when test="${result.setting=='processing'}">처리중</c:when>
+										<c:when test="${result.setting=='hold'}">보류</c:when>
+									</c:choose>
+								</span>&nbsp;<a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
+	            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
+	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
+	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
+	            			</tr>
+	        			</c:forEach>
+	        		</table>
+	        	</div>
+	        	<!-- /List -->
+	        	<div id="paging">
+	        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
+	        		<form:hidden path="pageIndex" />
+	        	</div>
+	        	<div id="sysbtn">
+	        	  <ul>
+	        	      <li>
+	        	          <span class="btn_blue_l">
+	        	              <a href="javascript:fn_egov_write();">글쓰기</a>
+	                          <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
+	                      </span>
+	                  </li>
+	              </ul>
+	        	</div>
+	        </div>
+    	</div>
     </form:form>
     <script>
     	$(document).ready(function() {

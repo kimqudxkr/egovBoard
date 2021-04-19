@@ -64,103 +64,102 @@
     </script>
 </head>
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">
-
-<form:form commandName="boardVO" id="detailForm" name="detailForm">
-    <div id="content_pop">
-    	<!-- 타이틀 -->
-    	<div id="title">
-    		<ul>
-    			<li><img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt=""/>
-                    <c:if test="${registerFlag == 'create'}">좋은삼정병원 글쓰기</c:if>
-                    <c:if test="${registerFlag == 'modify'}">좋은삼정병원 글수정</c:if>
-                </li>
-    		</ul>
-    	</div>
-    	<!-- // 테이블 -->
-    	<div id="table">
-    	<table width="100%" border="1" cellpadding="0" cellspacing="0" style="bordercolor:#D3E2EC; bordercolordark:#FFFFFF; BORDER-TOP:#C2D0DB 2px solid; BORDER-LEFT:#ffffff 1px solid; BORDER-RIGHT:#ffffff 1px solid; BORDER-BOTTOM:#C2D0DB 1px solid; border-collapse: collapse;">
-    		<colgroup>
-    			<col width="150"/>
-    			<col width="?"/>
-    		</colgroup>
-    		<c:if test="${registerFlag == 'modify'}">
-        		<tr>
-        			<td class="tbtd_caption"><label for="idx">idx</label></td>
-        			<td class="tbtd_content">
-        				<form:input path="idx" cssClass="essentiality" maxlength="10" readonly="true" />
-        			</td>
-        		</tr>
-    		</c:if>
-    		<tr>
-    			<td class="tbtd_caption"><label for="option">옵션</label></td>
-    			<td class="tbtd_content">
-					<input type="checkbox"/>공지
-					<input type="checkbox"/>html
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="tbtd_caption"><label for="writer">작성자</label></td>
-    			<td class="tbtd_content">
-    				<form:input path="writer" maxlength="30" cssClass="txt" size="30"/>
-    				&nbsp;<form:errors path="writer" />
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="tbtd_caption"><label for="setting">분류</label></td>
-    			<td class="tbtd_content">
-    				<form:select path="setting" cssClass="use">
-    					<form:option value="untreated" label="미처리" />
-    					<form:option value="complete" label="처리완료"/>
-    					<form:option value="processing" label="처리중"/>
-    					<form:option value="hold" label="보류" />
-    					<form:option value="notice" label="공지" />
-    				</form:select>
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="tbtd_caption"><label for="title">제목</label></td>
-    			<td class="tbtd_content">
-    				<form:input path="title" maxlength="30" cssClass="txt" size="30"/>
-    				&nbsp;<form:errors path="title" />
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="tbtd_caption"><label for="content">내용</label></td>
-    			<td class="tbtd_content">
-    				<form:textarea path="content" rows="15" cols="50" />&nbsp;<form:errors path="content" />
-                </td>
-    		</tr>
-    	</table>
-      </div>
-    	<div id="sysbtn">
-    		<ul>    			
-    			<li>
-                    <span class="btn_blue_l">
-                        <a href="javascript:fn_egov_save();">작성완료</a>
-                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                    </span>
-                </li>
-                <li>
-                    <span class="btn_blue_l">
-                        <a href="javascript:fn_egov_selectList();">취소</a>
-                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                    </span>
-                </li>
-    			<c:if test="${registerFlag == 'modify'}">
-                    <li>
-                        <span class="btn_blue_l">
-                            <a href="javascript:fn_egov_delete();">삭제</a>
-                            <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                        </span>
-                    </li>
-    			</c:if>
-            </ul>
-    	</div>
-    </div>
-    <!-- 검색조건 유지 -->
-    <input type="hidden" name="searchCondition" value="<c:out value='${searchVO.searchCondition}'/>"/>
-    <input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
-    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
-</form:form>
+	<form:form commandName="boardVO" id="detailForm" name="detailForm">
+		<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
+		    <div id="content_pop" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9; padding:10px; width:750px">
+		    	<!-- 타이틀 -->
+		    	<div id="title">
+		    		<h2>
+		    			<c:if test="${registerFlag == 'create'}">좋은삼정병원 글쓰기</c:if>
+	                    <c:if test="${registerFlag == 'modify'}">좋은삼정병원 글수정</c:if>
+		    		</h2>
+		    	</div>
+		    	<!-- // 테이블 -->
+		    	<div id="table">
+		    	<table width="100%" border="1" cellpadding="0" cellspacing="0" style="bordercolor:#D3E2EC; bordercolordark:#FFFFFF; BORDER-TOP:#C2D0DB 2px solid; BORDER-LEFT:#ffffff 1px solid; BORDER-RIGHT:#ffffff 1px solid; BORDER-BOTTOM:#C2D0DB 1px solid; border-collapse: collapse;">
+		    		<colgroup>
+		    			<col width="150"/>
+		    			<col width="?"/>
+		    		</colgroup>
+		    		<c:if test="${registerFlag == 'modify'}">
+		        		<tr>
+		        			<td class="tbtd_caption"><label for="idx">idx</label></td>
+		        			<td class="tbtd_content">
+		        				<form:input path="idx" cssClass="essentiality" maxlength="10" readonly="true" />
+		        			</td>
+		        		</tr>
+		    		</c:if>
+		    		<tr>
+		    			<td class="tbtd_caption"><label for="option">옵션</label></td>
+		    			<td class="tbtd_content">
+							<input type="checkbox"/>공지
+							<input type="checkbox"/>html
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td class="tbtd_caption"><label for="writer">작성자</label></td>
+		    			<td class="tbtd_content">
+		    				<form:input path="writer" maxlength="30" cssClass="txt" size="30"/>
+		    				&nbsp;<form:errors path="writer" />
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td class="tbtd_caption"><label for="setting">분류</label></td>
+		    			<td class="tbtd_content">
+		    				<form:select path="setting" cssClass="use">
+		    					<form:option value="untreated" label="미처리" />
+		    					<form:option value="complete" label="처리완료"/>
+		    					<form:option value="processing" label="처리중"/>
+		    					<form:option value="hold" label="보류" />
+		    					<form:option value="notice" label="공지" />
+		    				</form:select>
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td class="tbtd_caption"><label for="title">제목</label></td>
+		    			<td class="tbtd_content">
+		    				<form:input path="title" maxlength="30" cssClass="txt" size="30"/>
+		    				&nbsp;<form:errors path="title" />
+		    			</td>
+		    		</tr>
+		    		<tr>
+		    			<td class="tbtd_caption"><label for="content">내용</label></td>
+		    			<td class="tbtd_content">
+		    				<form:textarea path="content" rows="15" cols="50" />&nbsp;<form:errors path="content" />
+		                </td>
+		    		</tr>
+		    	</table>
+		      </div>
+		    	<div id="sysbtn">
+		    		<ul>    			
+		    			<li>
+		                    <span class="btn_blue_l">
+		                        <a href="javascript:fn_egov_save();">작성완료</a>
+		                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
+		                    </span>
+		                </li>
+		                <li>
+		                    <span class="btn_blue_l">
+		                        <a href="javascript:fn_egov_selectList();">취소</a>
+		                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
+		                    </span>
+		                </li>
+		    			<c:if test="${registerFlag == 'modify'}">
+		                    <li>
+		                        <span class="btn_blue_l">
+		                            <a href="javascript:fn_egov_delete();">삭제</a>
+		                            <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
+		                        </span>
+		                    </li>
+		    			</c:if>
+		            </ul>
+		    	</div>
+		    </div>
+		    <!-- 검색조건 유지 -->
+		    <input type="hidden" name="searchCondition" value="<c:out value='${searchVO.searchCondition}'/>"/>
+		    <input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
+		    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
+		</div>
+	</form:form>
 </body>
 </html>
