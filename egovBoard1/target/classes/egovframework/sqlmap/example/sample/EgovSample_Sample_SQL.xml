@@ -25,7 +25,13 @@
 	
 	<select id="sampleDAO.getBoardList" resultClass="egovMap">
 		<![CDATA[
-			SELECT * FROM boardtest ORDER BY idx DESC
+			SELECT * FROM boardtest WHERE setting NOT IN ('notice') ORDER BY idx DESC
+		]]>
+	</select>
+	
+	<select id="sampleDAO.getNoticeList" resultClass="egovMap">
+		<![CDATA[
+			SELECT * FROM boardtest WHERE setting IN ('notice') ORDER BY idx DESC
 		]]>
 	</select>
 	

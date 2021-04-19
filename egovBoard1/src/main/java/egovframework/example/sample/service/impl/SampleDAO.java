@@ -46,8 +46,11 @@ public class SampleDAO extends EgovAbstractDAO {
 
 
 	public List<?> getBoardList() throws Exception {
-		System.out.println(list("sampleDAO.getBoardList"));
 		return list("sampleDAO.getBoardList");
+	}
+	
+	public List<?> getNoticeList() throws Exception {
+		return list("sampleDAO.getNoticeList");
 	}
 	
 	public String insertBoard(BoardVO vo) throws Exception {

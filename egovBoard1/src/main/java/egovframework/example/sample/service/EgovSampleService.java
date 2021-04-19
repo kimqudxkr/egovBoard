@@ -36,6 +36,7 @@ import java.util.List;
 public interface EgovSampleService {
 
 	List<?> getBoardList() throws Exception;
+	List<?> getNoticeList() throws Exception;
 	String insertBoard(BoardVO vo) throws Exception;
 	BoardVO selectBoard(BoardVO vo) throws Exception;
 	void updateBoard(BoardVO vo) throws Exception;

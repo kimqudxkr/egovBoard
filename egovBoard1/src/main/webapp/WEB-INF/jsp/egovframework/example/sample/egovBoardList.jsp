@@ -4,6 +4,7 @@
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
   /**
   * @Class Name : egovSampleList.jsp
@@ -90,9 +91,20 @@
 	        				<th align="center">날짜</th>
 	        				<th align="center">조회</th>
 	        			</tr>
+	        			<c:forEach var="result" items="${noticeList}" varStatus="status">
+	            			<tr style="background-color:#d3d3d3">
+	            				<td align="center" class="listtd" style="font-weight:bold;"><c:out value="공지"/></td>
+	            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
+								<td align="left" class="listtd" ><a style="color:red; font-weight:bold;" href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
+	            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
+	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
+	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
+	            			</tr>
+	        			</c:forEach>
 	        			<c:forEach var="result" items="${resultList}" varStatus="status">
+	        				<c:set var="cnt" value="${cnt-1}"/>
 	            			<tr>
-	            				<td align="center" class="listtd"><c:out value="${result.idx}"/></td>
+	            				<td align="center" class="listtd"><c:out value="${cnt+fn:length(resultList)+1}"/></td>
 	            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
 	            				<td align="left" class="listtd"><span class="${result.setting}">
 									<c:choose>

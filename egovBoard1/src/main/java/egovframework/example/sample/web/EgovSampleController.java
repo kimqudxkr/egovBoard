@@ -86,6 +86,9 @@ public class EgovSampleController {
 		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
+		List<?> noticeList = sampleService.getNoticeList();
+		model.addAttribute("noticeList", noticeList);
+
 		List<?> sampleList = sampleService.getBoardList();
 		model.addAttribute("resultList", sampleList);
 

@@ -72,6 +72,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	}
 	
 	@Override
+	public List<?> getNoticeList() throws Exception {
+		return sampleDAO.getNoticeList();
+	}
+	
+	@Override
 	public String insertBoard(BoardVO vo) throws Exception {
 		LOGGER.debug(vo.toString());
 
