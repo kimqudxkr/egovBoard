@@ -150,6 +150,8 @@ public class EgovSampleController {
 		int idx = replyVO.getIdx();
 		redirect.addAttribute("selectedId", idx);
 		
+		System.out.println(replyVO.getReplyIdx());
+		
 		sampleService.insertReply(replyVO);
 		
 		return "redirect:/boardContentView.do";

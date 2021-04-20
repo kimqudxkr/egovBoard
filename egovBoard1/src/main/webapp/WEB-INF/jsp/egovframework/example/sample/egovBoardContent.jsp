@@ -26,6 +26,8 @@
         
         /* 댓글 삭제 function */
         function fn_egov_deleteReply(replyIdx) {
+        	const input = document.getElementById('replyIdx');
+        	input.disabled = false;
         	document.detailForm.replyIdx.value = replyIdx;
            	document.detailForm.action = "<c:url value='/deleteReply.do'/>";
            	document.detailForm.submit();
@@ -33,7 +35,9 @@
         
         /* 글 등록 function */
         function fn_egov_save() {
+        	console.log("start");
         	frm = document.detailForm;
+        	console.log(frm);
            	frm.action = "<c:url value='writeReply.do'/>";
             frm.submit();
         }
@@ -45,7 +49,7 @@
 		<div id="content_pop" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9; padding:10px; width:750px" >
 			<input type="hidden" name="idx" class="idx" value="${boardVO.idx}"/>
 			<input type="hidden" name="writer" class="writer" value="최고관리자"}/>
-			<input type="hidden" name="replyIdx" class="replyIdx"/>
+			<input type="hidden" name="replyIdx" class="replyIdx" id="replyIdx" disabled/>
 			<p style="text-align:left"><strong>
 				<c:choose>
 					<c:when test="${boardVO.setting=='complete'}">처리완료</c:when>
