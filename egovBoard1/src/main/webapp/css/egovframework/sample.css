@@ -107,3 +107,5 @@ input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BC
 #nav_menu .now {background-color:white; font-weight:bold; color:black;}
 
 .btn-group button {float:right;}
+
+.reply-menu a {text-decoration:none;}

@@ -12,7 +12,6 @@ public class BoardVO {
 	private String option;
 	private String setting;
 	
-	
 	public String getOption() {
 		return option;
 	}

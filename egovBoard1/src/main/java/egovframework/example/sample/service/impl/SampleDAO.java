@@ -55,6 +55,10 @@ public class SampleDAO extends EgovAbstractDAO {
 		return list("sampleDAO.getFilteredBoardList", menu);
 	}
 	
+	public List<?> getReplyList(int idx) throws Exception {
+		return list("sampleDAO.getReplyList", idx);
+	}
+	
 	public String insertBoard(BoardVO vo) throws Exception {
 		return (String) insert("sampleDAO.insertBoard", vo);
 	}

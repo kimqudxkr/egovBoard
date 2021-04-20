@@ -9,6 +9,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/board.css'/>" />
 	<script type="text/javaScript" language="javascript" defer="defer">
         <!--
         /* 글 수정 화면 function */
@@ -58,6 +59,26 @@
 			</div>
 			<BR/><BR/>
 			<p id="content" style="text-align:left; margin-bottom:30px;">${boardVO.content}</p>
+			<BR/><BR/>
+			<div class="reply" align="left" style="width:90%; margin:0 auto; border:1px solid black; background-color:#eff1f4; padding:7px 7px 7px 7px;">
+				<strong style="margin:0;">댓글목록</strong>
+				<c:if test="${empty replyList}"><p id="empty-reply">등록된 댓글이 없습니다.</p></c:if>
+				<c:if test="${not empty replyList}">
+					<c:forEach var="reply" items="${replyList}" varStatus="status">
+						<hr/>
+						<p>
+							<strong style="padding-right:10px;"><c:out value="${reply.writer}"/></strong><span>작성일&nbsp;<fmt:formatDate value="${reply.regDate }" pattern="yy-MM-dd HH:mm"/></span>
+						</p>
+						<p><c:out value="${reply.reply}"/></p>
+						<div class="reply-menu" align="right">
+							<a href="/">변경</a>
+							<a href="/">수정</a>
+							<a href="/">삭제</a>
+						</div>
+        			</c:forEach>
+				</c:if>
+			</div>
+			<br/>
 			<hr/>
 			<div class="btn-group">
 				<div class="btn-group-left" style="padding:10px; float:left">

@@ -121,6 +121,11 @@ public class EgovSampleController {
 		
 		model.addAttribute("boardVO", boardVO);
 		
+		//댓글 조회 부분
+		List<?> replyList = sampleService.getReplyList(idx);
+		model.addAttribute("replyList", replyList);
+		System.out.println(replyList);
+		
 		return "sample/egovBoardContent";
 	}
 	

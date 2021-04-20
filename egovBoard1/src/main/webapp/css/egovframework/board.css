@@ -13,7 +13,10 @@
 #table .processing {background-color:blue;}
 #table .notice {background-color:yellow; }
 
-#content_pop #content {text-align:left; border-bottom:solid;}
+#content_pop #content {text-align:left;}
 
 .btn-group {padding:10px;}
 
+.reply-menu a {text-decoration:none;}
+
+#empty-reply {margin-bottom:20px; text-align:center;}

@@ -26,6 +26,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><spring:message code="title.sample" /></title>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/board.css'/>" />
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
     <script type="text/javaScript" language="javascript" defer="defer">
         <!--
@@ -59,7 +60,7 @@
         //-->
     </script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/board.css'/>" />
+    
 </head>
 
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">

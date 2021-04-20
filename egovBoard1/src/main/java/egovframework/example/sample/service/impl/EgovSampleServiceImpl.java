@@ -82,6 +82,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	}
 	
 	@Override
+	public List<?> getReplyList(int idx) throws Exception {
+		return sampleDAO.getReplyList(idx);
+	}
+	
+	@Override
 	public String insertBoard(BoardVO vo) throws Exception {
 		LOGGER.debug(vo.toString());
 

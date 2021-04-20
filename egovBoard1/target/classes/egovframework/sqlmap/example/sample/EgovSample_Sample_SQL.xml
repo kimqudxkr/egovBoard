@@ -42,6 +42,12 @@
 		]]>
 	</select>
 	
+	<select id="sampleDAO.getReplyList" resultClass="egovMap">
+		<![CDATA[
+			SELECT * FROM board_reply WHERE idx=#idx# ORDER BY reg_date ASC
+		]]>
+	</select>
+	
 	<select id="sampleDAO.selectBoardByIdx" resultMap="board">
 		<![CDATA[
 			SELECT *
