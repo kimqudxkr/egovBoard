@@ -24,6 +24,13 @@
 		<result property="setting" column="setting"/>
 	</resultMap>
 	
+	<resultMap id="reply" class="egovframework.example.sample.service.ReplyVO">
+		<result property="replyIdx" column="reply_idx"/>
+		<result property="idx" column="idx"/>
+		<result property="writer" column="writer"/>
+		<result property="regDate" column="reg_date"/>
+	</resultMap>
+	
 	<select id="sampleDAO.getBoardList" resultClass="egovMap">
 		<![CDATA[
 			SELECT * FROM boardtest WHERE setting NOT IN ('notice') ORDER BY idx DESC
@@ -112,6 +119,10 @@
 			ALTER TABLE boardtest AUTO_INCREMENT=1;
 			SET @COUNT = 0;
 			UPDATE boardtest SET idx = @COUNT:=@COUNT+1;
+	</delete>
+	
+	<delete id="sampleDAO.deleteReply">
+			DELETE FROM board_reply WHERE reply_idx=#replyIdx#;
 	</delete>
 	
 	<update id="sampleDAO.updateCount">

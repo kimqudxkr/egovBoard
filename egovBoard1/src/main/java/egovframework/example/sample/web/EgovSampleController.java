@@ -139,6 +139,7 @@ public class EgovSampleController {
 		beanValidator.validate(boardVO, bindingResult);
 
 		sampleService.insertBoard(boardVO);
+		
 		return "redirect:/egovBoardList.do";
 	}
 	
@@ -150,6 +151,22 @@ public class EgovSampleController {
 		redirect.addAttribute("selectedId", idx);
 		
 		sampleService.insertReply(replyVO);
+		
+		return "redirect:/boardContentView.do";
+	}
+		
+	//댓글 삭제하는 부분
+	@RequestMapping(value = "/deleteReply.do", method = RequestMethod.POST)
+	public String deleteReply(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("replyIdx") int replyIdx,  Model model, RedirectAttributes redirect)
+				throws Exception {
+		//전달할 파라미터 입력
+		int idx = replyVO.getIdx();
+		redirect.addAttribute("selectedId", idx);
+		
+		//삭제할 댓글 설정 부분
+		replyVO.setReplyIdx(replyIdx);
+		sampleService.deleteReply(replyVO);
+		
 		return "redirect:/boardContentView.do";
 	}
 		

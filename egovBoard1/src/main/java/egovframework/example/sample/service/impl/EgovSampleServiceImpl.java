@@ -124,6 +124,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	}
 	
 	@Override
+	public void deleteReply(ReplyVO vo) throws Exception {
+		sampleDAO.deleteReply(vo);
+	}
+	
+	@Override
 	public void updateCnt(BoardVO vo) throws Exception {
 		sampleDAO.updateCount(vo);
 	}

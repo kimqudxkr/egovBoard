@@ -44,6 +44,7 @@ public interface EgovSampleService {
 	BoardVO selectBoard(BoardVO vo) throws Exception;
 	void updateBoard(BoardVO vo) throws Exception;
 	void deleteBoard(BoardVO vo) throws Exception;
+	void deleteReply(ReplyVO vo) throws Exception;
 	BoardVO selectBoardByIdx(int idx) throws Exception;
 	void updateCnt(BoardVO vo) throws Exception;
 	//=========================================================================

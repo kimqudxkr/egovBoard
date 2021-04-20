@@ -3,11 +3,18 @@ package egovframework.example.sample.service;
 import java.util.Date;
 
 public class ReplyVO {
+	private int replyIdx;
 	private int idx;
 	private String writer;
 	private String reply;
 	private Date regDate;
 	
+	public int getReplyIdx() {
+		return replyIdx;
+	}
+	public void setReplyIdx(int replyIdx) {
+		this.replyIdx = replyIdx;
+	}
 	public int getIdx() {
 		return idx;
 	}

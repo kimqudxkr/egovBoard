@@ -80,6 +80,10 @@ public class SampleDAO extends EgovAbstractDAO {
 		delete("sampleDAO.deleteBoard", vo);
 	}
 	
+	public void deleteReply(ReplyVO vo) throws Exception {
+		delete("sampleDAO.deleteReply", vo);
+	}
+	
 	public BoardVO selectBoardByIdx(int idx) throws Exception {
 		return (BoardVO) select("sampleDAO.selectBoardByIdx", idx);
 	}
