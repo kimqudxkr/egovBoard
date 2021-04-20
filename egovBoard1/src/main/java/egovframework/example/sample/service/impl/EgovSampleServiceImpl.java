@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import egovframework.example.sample.service.BoardVO;
 import egovframework.example.sample.service.EgovSampleService;
+import egovframework.example.sample.service.ReplyVO;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -91,6 +92,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		LOGGER.debug(vo.toString());
 
 		return sampleDAO.insertBoard(vo);
+	}
+	
+	@Override
+	public void insertReply(ReplyVO vo) throws Exception {
+		sampleDAO.insertReply(vo);
 	}
 	
 	@Override

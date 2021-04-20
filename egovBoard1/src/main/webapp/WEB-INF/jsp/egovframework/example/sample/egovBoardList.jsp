@@ -30,7 +30,7 @@
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
     <script type="text/javaScript" language="javascript" defer="defer">
         <!--
-        /* 글 수정 화면 function */
+        /* 글 내용 조회 화면 function */
         function fn_egov_select(id) {
         	document.listForm.selectedId.value = id;
            	document.listForm.action = "<c:url value='/boardContentView.do'/>";

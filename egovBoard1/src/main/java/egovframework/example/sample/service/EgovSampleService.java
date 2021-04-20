@@ -40,6 +40,7 @@ public interface EgovSampleService {
 	List<?> getFilteredBoardList(String menu) throws Exception;
 	List<?> getReplyList(int idx) throws Exception;
 	String insertBoard(BoardVO vo) throws Exception;
+	void insertReply(ReplyVO vo) throws Exception;
 	BoardVO selectBoard(BoardVO vo) throws Exception;
 	void updateBoard(BoardVO vo) throws Exception;
 	void deleteBoard(BoardVO vo) throws Exception;

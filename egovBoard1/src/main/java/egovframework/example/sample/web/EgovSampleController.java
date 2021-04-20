@@ -28,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.BoardVO;
 import egovframework.example.sample.service.EgovSampleService;
+import egovframework.example.sample.service.ReplyVO;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -112,7 +114,7 @@ public class EgovSampleController {
 	
 	//글 내용 조회 페이지
 	@RequestMapping(value = "/boardContentView.do")
-	public String boardContentView(@RequestParam("selectedId") int idx, Model model) throws Exception {
+	public String boardContentView(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("selectedId") int idx, Model model) throws Exception {
 		//조회수 증가 부분
 		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
 		int cnt = boardVO.getCnt();
@@ -124,7 +126,6 @@ public class EgovSampleController {
 		//댓글 조회 부분
 		List<?> replyList = sampleService.getReplyList(idx);
 		model.addAttribute("replyList", replyList);
-		System.out.println(replyList);
 		
 		return "sample/egovBoardContent";
 	}
@@ -141,6 +142,17 @@ public class EgovSampleController {
 		return "redirect:/egovBoardList.do";
 	}
 	
+	//댓글 작성하는 부분
+	@RequestMapping(value = "/writeReply.do", method = RequestMethod.POST)
+	public String insertReply(@ModelAttribute("replyVO") ReplyVO replyVO, Model model, RedirectAttributes redirect) throws Exception {
+		//전달할 파라미터 입력
+		int idx = replyVO.getIdx();
+		redirect.addAttribute("selectedId", idx);
+		
+		sampleService.insertReply(replyVO);
+		return "redirect:/boardContentView.do";
+	}
+		
 	//한 게시글에 대한 정보를 받아오는 메소드
 	public BoardVO selectBoard(BoardVO boardVO) throws Exception {
 		return sampleService.selectBoard(boardVO);
@@ -161,6 +173,7 @@ public class EgovSampleController {
 
 		return "redirect:/egovBoardList.do";
 	}
+	
 	
 	//삭제 버튼 누를 시 작동하는 메소드
 	@RequestMapping("/deleteBoard.do")

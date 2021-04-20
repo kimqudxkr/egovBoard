@@ -20,6 +20,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.example.sample.service.BoardVO;
+import egovframework.example.sample.service.ReplyVO;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
@@ -61,6 +62,10 @@ public class SampleDAO extends EgovAbstractDAO {
 	
 	public String insertBoard(BoardVO vo) throws Exception {
 		return (String) insert("sampleDAO.insertBoard", vo);
+	}
+	
+	public void insertReply(ReplyVO vo) throws Exception {
+		insert("sampleDAO.insertReply", vo);
 	}
 	
 	public BoardVO selectBoard(BoardVO vo) throws Exception {

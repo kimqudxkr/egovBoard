@@ -74,6 +74,20 @@
 		]]>
 	</insert>
 
+	<insert id="sampleDAO.insertReply">
+		<![CDATA[
+			INSERT INTO board_reply 
+				( idx 
+				  , writer
+				  , reply
+				 )
+			VALUES ( #idx#
+					  , #writer#
+					  , #reply#
+					  )
+		]]>
+	</insert>
+	
 	<select id="sampleDAO.selectBoard" resultMap="board">
         
             SELECT *

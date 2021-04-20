@@ -23,13 +23,21 @@
            	document.detailForm.action = "<c:url value='/deleteBoard.do'/>";
            	document.detailForm.submit();
         }
+        
+        /* 글 등록 function */
+        function fn_egov_save() {
+        	frm = document.detailForm;
+           	frm.action = "<c:url value='writeReply.do'/>";
+            frm.submit();
+        }
         -->
     </script>
 </head>
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:50px;">
-	<form:form commandName="boardVO" id="detailForm" name="detailForm">
+	<form:form commandName="replyVO" id="detailForm" name="detailForm">
 		<div id="content_pop" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9; padding:10px; width:750px" >
 			<input type="hidden" name="idx" class="idx" value="${boardVO.idx}"/>
+			<input type="hidden" name="writer" class="writer" value="최고관리자"}/>
 			<p style="text-align:left"><strong>
 				<c:choose>
 					<c:when test="${boardVO.setting=='complete'}">처리완료</c:when>
@@ -60,23 +68,37 @@
 			<BR/><BR/>
 			<p id="content" style="text-align:left; margin-bottom:30px;">${boardVO.content}</p>
 			<BR/><BR/>
-			<div class="reply" align="left" style="width:90%; margin:0 auto; border:1px solid black; background-color:#eff1f4; padding:7px 7px 7px 7px;">
+			<div class="reply" align="left">
 				<strong style="margin:0;">댓글목록</strong>
 				<c:if test="${empty replyList}"><p id="empty-reply">등록된 댓글이 없습니다.</p></c:if>
 				<c:if test="${not empty replyList}">
-					<c:forEach var="reply" items="${replyList}" varStatus="status">
+					<c:forEach var="replyList" items="${replyList}" varStatus="status">
 						<hr/>
 						<p>
-							<strong style="padding-right:10px;"><c:out value="${reply.writer}"/></strong><span>작성일&nbsp;<fmt:formatDate value="${reply.regDate }" pattern="yy-MM-dd HH:mm"/></span>
+							<strong style="padding-right:10px;"><c:out value="${replyList.writer}"/></strong><span>작성일&nbsp;<fmt:formatDate value="${replyList.regDate }" pattern="yy-MM-dd HH:mm"/></span>
 						</p>
-						<p><c:out value="${reply.reply}"/></p>
+						<p><c:out value="${replyList.reply}"/></p>
 						<div class="reply-menu" align="right">
-							<a href="/">변경</a>
 							<a href="/">수정</a>
 							<a href="/">삭제</a>
 						</div>
         			</c:forEach>
 				</c:if>
+			</div>
+			<BR/>
+			<div class="reply-write">
+				<table>
+					<tr>
+						<th>비밀글사용</th>
+						<td style="text-align:left;"><input type="checkbox" id="secret"/></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td><textarea class="reply" name="reply" rows="15"></textarea></td>
+					</tr>
+				</table>
+				<br/>
+				<button type="button" class="write_reply">댓글등록</button>
 			</div>
 			<br/>
 			<hr/>
@@ -113,6 +135,10 @@
 			if(confirm("삭제하시겠습니까?")) {
 				location.href = 'javascript:fn_egov_deleteBoard();';
 			}
+		})
+		
+		$('.write_reply').click(function() {
+			location.href = 'javascript:fn_egov_save();';
 		})
 	});
 </script>
