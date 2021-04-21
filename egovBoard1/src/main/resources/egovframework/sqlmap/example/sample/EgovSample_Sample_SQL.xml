@@ -33,13 +33,19 @@
 	
 	<select id="sampleDAO.getBoardList" resultClass="egovMap">
 		<![CDATA[
-			SELECT * FROM boardtest WHERE setting NOT IN ('notice') ORDER BY idx DESC
+			SELECT A.*, B.replyCnt
+			FROM boardtest A
+			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
+			ON A.idx = B.idx WHERE setting NOT IN ('notice') ORDER BY idx DESC
 		]]>
 	</select>
 	
 	<select id="sampleDAO.getNoticeList" resultClass="egovMap">
 		<![CDATA[
-			SELECT * FROM boardtest WHERE setting IN ('notice') ORDER BY idx DESC
+			SELECT A.*, B.replyCnt
+			FROM boardtest A
+			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
+			ON A.idx = B.idx WHERE setting IN ('notice') ORDER BY idx DESC
 		]]>
 	</select>
 	

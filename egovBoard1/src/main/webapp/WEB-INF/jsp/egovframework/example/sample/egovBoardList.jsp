@@ -108,7 +108,12 @@
 	            			<tr style="background-color:#eff1f4">
 	            				<td align="center" class="listtd" style="font-weight:bold;"><c:out value="공지"/></td>
 	            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
-								<td align="left" class="listtd" ><a style="color:red; font-weight:bold;" href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
+								<td align="left" class="listtd" >
+									<a style="color:red; font-weight:bold;" href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')">
+										${result.title} 
+										<strong class="replyCnt"><c:if test="${not empty result.replyCnt}">[${result.replyCnt}]</c:if></strong>&nbsp;
+									</a>
+								</td>
 	            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
@@ -126,7 +131,10 @@
 										<c:when test="${result.setting=='processing'}">처리중</c:when>
 										<c:when test="${result.setting=='hold'}">보류</c:when>
 									</c:choose>
-								</span>&nbsp;<a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')"><c:out value="${result.title}"/>&nbsp;</a></td>
+								</span>&nbsp;
+									<a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')">
+										${result.title} <strong><c:if test="${not empty result.replyCnt}">[${result.replyCnt}]</c:if></strong>&nbsp;
+									</a></td>
 	            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>

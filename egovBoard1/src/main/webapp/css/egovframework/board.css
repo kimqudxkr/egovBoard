@@ -6,12 +6,12 @@
 #title ul li {display:inline-block; text-align:center; font-size:20px; vertical-align:middle;}
 
 #table .listtd span {display:inline-block; width:50px; line-height:17px; color:white; border-radius:8px; text-align:center;}
+#table .listtd strong {color:orange}
 
 #table .complete {background-color:#888;}
 #table .untreated {background-color:red;}
 #table .hold {background-color:green;}
 #table .processing {background-color:blue;}
-#table .notice {background-color:yellow; }
 
 #content_pop #content {text-align:left;}
 

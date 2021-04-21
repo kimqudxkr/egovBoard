@@ -73,7 +73,8 @@ public class EgovSampleController {
 
 	//글 목록 불러오는 페이지
 	@RequestMapping(value="/egovBoardList.do")
-	public String selectList(@RequestParam(value="selectedMenu", required=false) String menu, @ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo) throws Exception {
+	public String selectList(@RequestParam(value="selectedMenu", required=false) String menu,
+							 @ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo) throws Exception {
 		/** EgovPropertyService.sample */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
@@ -96,6 +97,7 @@ public class EgovSampleController {
 		List<?> sampleList = (menu == null || menu.equals("all")) ? sampleService.getBoardList() : sampleService.getFilteredBoardList(menu);
 		model.addAttribute("resultList", sampleList);
 		model.addAttribute("menu", menu);
+		System.out.println(sampleList);
 
 		int totCnt = sampleService.selectSampleListTotCnt(searchVO);
 		paginationInfo.setTotalRecordCount(totCnt);
@@ -114,7 +116,8 @@ public class EgovSampleController {
 	
 	//글 내용 조회 페이지
 	@RequestMapping(value = "/boardContentView.do")
-	public String boardContentView(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("selectedId") int idx, Model model) throws Exception {
+	public String boardContentView(@ModelAttribute("replyVO") ReplyVO replyVO, 
+								   @RequestParam("selectedId") int idx, Model model) throws Exception {
 		//조회수 증가 부분
 		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
 		int cnt = boardVO.getCnt();
@@ -132,8 +135,8 @@ public class EgovSampleController {
 	
 	//글쓰기 버튼 클릭 시 insert하는 곳
 	@RequestMapping(value = "/boardWrite.do", method = RequestMethod.POST)
-	public String insertBoard(@ModelAttribute("searchVO") SampleDefaultVO searchVO, @ModelAttribute("boardVO") BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
-			throws Exception {
+	public String insertBoard(@ModelAttribute("searchVO") SampleDefaultVO searchVO, @ModelAttribute("boardVO") BoardVO boardVO, 
+							 BindingResult bindingResult, Model model, SessionStatus status) throws Exception {
 
 		// Server-Side Validation
 		beanValidator.validate(boardVO, bindingResult);
@@ -159,8 +162,8 @@ public class EgovSampleController {
 		
 	//댓글 삭제하는 부분
 	@RequestMapping(value = "/deleteReply.do", method = RequestMethod.POST)
-	public String deleteReply(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("replyIdx") int replyIdx,  Model model, RedirectAttributes redirect)
-				throws Exception {
+	public String deleteReply(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("replyIdx") int replyIdx,  
+							  Model model, RedirectAttributes redirect) throws Exception {
 		//전달할 파라미터 입력
 		int idx = replyVO.getIdx();
 		redirect.addAttribute("selectedId", idx);
@@ -174,7 +177,8 @@ public class EgovSampleController {
 		
 	//댓글 수정하는 부분
 	@RequestMapping("/updateReply.do")
-	public String updateReply(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("replyIdx") int replyIdx,  Model model, RedirectAttributes redirect) throws Exception {
+	public String updateReply(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("replyIdx") int replyIdx, 
+							  Model model, RedirectAttributes redirect) throws Exception {
 		//전달할 파라미터 입력
 		int idx = replyVO.getIdx();
 		redirect.addAttribute("selectedId", idx);
@@ -201,7 +205,8 @@ public class EgovSampleController {
 	
 	//수정 버튼을 누를시 작동하는 메소드
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(@ModelAttribute("BoardVO") BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status) throws Exception {
+	public String updateBoard(@ModelAttribute("BoardVO") BoardVO boardVO, BindingResult bindingResult, 
+							  Model model, SessionStatus status) throws Exception {
 		sampleService.updateBoard(boardVO);
 
 		return "redirect:/egovBoardList.do";

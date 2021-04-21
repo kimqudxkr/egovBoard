@@ -11,7 +11,14 @@ public class BoardVO {
 	private int cnt;
 	private String option;
 	private String setting;
+	private int replyCnt;
 	
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
 	public String getOption() {
 		return option;
 	}
