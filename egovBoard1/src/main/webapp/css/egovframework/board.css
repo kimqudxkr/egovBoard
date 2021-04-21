@@ -1,6 +1,9 @@
 @charset "UTF-8";
 * {margin:0;padding:0;}
 * html {height:1px;}
+
+button {padding:8px; background-color:#fafafa; border:1px solid black; border-radius:5px; cursor:pointer;}
+
 #title {margin:0 auto; }
 #title ul {text-align:cener; }
 #title ul li {display:inline-block; text-align:center; font-size:20px; vertical-align:middle;}
