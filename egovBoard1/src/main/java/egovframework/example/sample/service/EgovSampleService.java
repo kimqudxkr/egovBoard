@@ -35,60 +35,45 @@ import java.util.List;
  */
 public interface EgovSampleService {
 
+	//게시글 목록을 받아옴
 	List<?> getBoardList() throws Exception;
+	
+	//공지 게시글 목록을 받아옴
 	List<?> getNoticeList() throws Exception;
+	
+	//메뉴를이용하여 원하는 게시글만 보이도록 받아옴
 	List<?> getFilteredBoardList(String menu) throws Exception;
+	
+	//댓글 목록을 받아옴
 	List<?> getReplyList(int idx) throws Exception;
+	
+	//게시글 작성
 	String insertBoard(BoardVO vo) throws Exception;
+	
+	//댓글 작성
 	void insertReply(ReplyVO vo) throws Exception;
+	
+	//게시글 내용 확인
 	BoardVO selectBoard(BoardVO vo) throws Exception;
+	
+	//게시글 내용 수정
 	void updateBoard(BoardVO vo) throws Exception;
+	
+	//게시글 삭제
 	void deleteBoard(BoardVO vo) throws Exception;
+	
+	//댓글 삭제
 	void deleteReply(ReplyVO vo) throws Exception;
+	
+	//댓글 수정
 	void updateReply(ReplyVO vo) throws Exception;
+	
+	//특정 게시글 선택
 	BoardVO selectBoardByIdx(int idx) throws Exception;
+	
+	//조회수 증가
 	void updateCnt(BoardVO vo) throws Exception;
 	//=========================================================================
-	/**
-	 * 글을 등록한다.
-	 * @param vo - 등록할 정보가 담긴 SampleVO
-	 * @return 등록 결과
-	 * @exception Exception
-	 */
-	String insertSample(SampleVO vo) throws Exception;
-
-	/**
-	 * 글을 수정한다.
-	 * @param vo - 수정할 정보가 담긴 SampleVO
-	 * @return void형
-	 * @exception Exception
-	 */
-	void updateSample(SampleVO vo) throws Exception;
-
-	/**
-	 * 글을 삭제한다.
-	 * @param vo - 삭제할 정보가 담긴 SampleVO
-	 * @return void형
-	 * @exception Exception
-	 */
-	void deleteSample(SampleVO vo) throws Exception;
-
-	/**
-	 * 글을 조회한다.
-	 * @param vo - 조회할 정보가 담긴 SampleVO
-	 * @return 조회한 글
-	 * @exception Exception
-	 */
-	SampleVO selectSample(SampleVO vo) throws Exception;
-
-	/**
-	 * 글 목록을 조회한다.
-	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @return 글 목록
-	 * @exception Exception
-	 */
-	List<?> selectSampleList(SampleDefaultVO searchVO) throws Exception;
-
 	/**
 	 * 글 총 갯수를 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO

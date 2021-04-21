@@ -5,14 +5,6 @@
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
 
-	<resultMap id="sample" class="egovframework.example.sample.service.SampleVO">
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="description" column="description"/>
-		<result property="useYn" column="use_yn"/>
-		<result property="regUser" column="reg_user"/>
-	</resultMap>
-
 	<resultMap id="board" class="egovframework.example.sample.service.BoardVO">
 		<result property="idx" column="idx"/>
 		<result property="title" column="title"/>
@@ -53,13 +45,19 @@
 	
 	<select id="sampleDAO.getFilteredBoardList" resultClass="egovMap">
 		<![CDATA[
-			SELECT * FROM boardtest WHERE setting IN (#menu#) ORDER BY idx DESC
+			SELECT * 
+			FROM boardtest 
+			WHERE setting IN (#menu#)
+			ORDER BY idx DESC
 		]]>
 	</select>
 	
 	<select id="sampleDAO.getReplyList" resultClass="egovMap">
 		<![CDATA[
-			SELECT * FROM board_reply WHERE idx=#idx# ORDER BY reg_date ASC
+			SELECT *
+			FROM board_reply 
+			WHERE idx=#idx# 
+			ORDER BY reg_date ASC
 		]]>
 	</select>
 	
@@ -128,15 +126,16 @@
 	</update>
 	
 	<delete id="sampleDAO.deleteBoard">
-			DELETE FROM boardtest WHERE idx=#idx#;
-			
-			ALTER TABLE boardtest AUTO_INCREMENT=1;
-			SET @COUNT = 0;
-			UPDATE boardtest SET idx = @COUNT:=@COUNT+1;
+		DELETE FROM boardtest WHERE idx=#idx#;
+		
+		ALTER TABLE boardtest AUTO_INCREMENT=1;
+		SET @COUNT = 0;
+		UPDATE boardtest SET idx = @COUNT:=@COUNT+1;
 	</delete>
 	
 	<delete id="sampleDAO.deleteReply">
-			DELETE FROM board_reply WHERE reply_idx=#replyIdx#;
+		DELETE FROM board_reply 
+		WHERE reply_idx=#replyIdx#;
 	</delete>
 	
 	<update id="sampleDAO.updateReply">
@@ -151,66 +150,6 @@
 		WHERE idx=#idx#
 	</update>
 	<!-- =================================================================================================== -->
-	
-	<insert id="sampleDAO.insertSample">
-		<![CDATA[
-			INSERT INTO SAMPLE 
-				( ID
-				  , NAME
-				  , DESCRIPTION
-				  , USE_YN
-				  , REG_USER )
-			VALUES ( #id#
-				  , #name#
-				  , #description#
-				  , #useYn#
-				  , #regUser# )
-		]]>
-	</insert>
-	
-	<update id="sampleDAO.updateSample">
-		<![CDATA[
-			UPDATE SAMPLE
-			SET ID=#id#
-				, NAME=#name#
-				, DESCRIPTION=#description#
-				, USE_YN=#useYn#
-			WHERE ID=#id#
-		]]>
-	</update>
-	
-	<delete id="sampleDAO.deleteSample">
-		<![CDATA[
-			DELETE FROM SAMPLE 
-			WHERE ID=#id#
-		]]>
-	</delete>
-    
-    <select id="sampleDAO.selectSample" resultMap="sample">
-        <![CDATA[
-            SELECT
-                ID, NAME, DESCRIPTION, USE_YN, REG_USER
-            FROM SAMPLE 
-            WHERE ID=#id#
-        ]]>
-    </select>
-	
-	<select id="sampleDAO.selectSampleList" parameterClass="searchVO" resultClass="egovMap">
-
-			SELECT
-				ID, NAME, DESCRIPTION, USE_YN, REG_USER
-			FROM SAMPLE
-			WHERE 1=1
-			<isEqual prepend="AND" property="searchCondition" compareValue="0">
-				ID LIKE '%' || #searchKeyword# || '%'
-			</isEqual>
-			<isEqual prepend="AND" property="searchCondition" compareValue="1">
-				NAME LIKE '%' || #searchKeyword# || '%'
-			</isEqual>
-			ORDER BY ID DESC
-			LIMIT #recordCountPerPage# OFFSET #firstIndex#		
-	</select>
-	
 	<select id="sampleDAO.selectSampleListTotCnt" parameterClass="searchVO" resultClass="int">
 
 			SELECT COUNT(*) totcnt

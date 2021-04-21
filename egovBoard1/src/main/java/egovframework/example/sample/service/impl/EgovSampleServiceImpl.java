@@ -64,26 +64,31 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	@Resource(name = "egovIdGnrService")
 	private EgovIdGnrService egovIdGnrService;
 
+	//게시글 목록을 받아옴
 	@Override
 	public List<?> getBoardList() throws Exception {
 		return sampleDAO.getBoardList();
 	}
 	
+	//공지 게시글 목록을 받아옴
 	@Override
 	public List<?> getNoticeList() throws Exception {
 		return sampleDAO.getNoticeList();
 	}
 	
+	//메뉴를이용하여 원하는 게시글만 보이도록 받아옴
 	@Override
 	public List<?> getFilteredBoardList(String menu) throws Exception {
 		return sampleDAO.getFilteredBoardList(menu);
 	}
 	
+	//댓글 목록을 받아옴
 	@Override
 	public List<?> getReplyList(int idx) throws Exception {
 		return sampleDAO.getReplyList(idx);
 	}
 	
+	//게시글 작성
 	@Override
 	public String insertBoard(BoardVO vo) throws Exception {
 		LOGGER.debug(vo.toString());
@@ -91,16 +96,19 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		return sampleDAO.insertBoard(vo);
 	}
 	
+	//댓글 작성
 	@Override
 	public void insertReply(ReplyVO vo) throws Exception {
 		sampleDAO.insertReply(vo);
 	}
 	
+	//특정 게시글 선택
 	@Override
 	public BoardVO selectBoardByIdx(int idx) throws Exception {
 		return sampleDAO.selectBoardByIdx(idx);
 	}
 	
+	//게시글 내용 확인
 	@Override
 	public BoardVO selectBoard(BoardVO vo) throws Exception {
 		BoardVO resultVO = sampleDAO.selectBoard(vo);
@@ -110,98 +118,37 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		return resultVO;
 	}
 	
+	//게시글 내용 수정
 	@Override
 	public void updateBoard(BoardVO vo) throws Exception {
 		sampleDAO.updateBoard(vo);
 	}
 	
+	//게시글 삭제
 	@Override
 	public void deleteBoard(BoardVO vo) throws Exception {
 		sampleDAO.deleteBoard(vo);
 	}
 	
+	//댓글 삭제
 	@Override
 	public void deleteReply(ReplyVO vo) throws Exception {
 		sampleDAO.deleteReply(vo);
 	}
 	
+	//댓글 수정
 	@Override
 	public void updateReply(ReplyVO vo) throws Exception {
 		sampleDAO.updateReply(vo);
 	}
 	
+	//조회수 증가
 	@Override
 	public void updateCnt(BoardVO vo) throws Exception {
 		sampleDAO.updateCount(vo);
 	}
 	
 	//=========================================================================================
-	/**
-	 * 글을 등록한다.
-	 * @param vo - 등록할 정보가 담긴 SampleVO
-	 * @return 등록 결과
-	 * @exception Exception
-	 */
-	@Override
-	public String insertSample(SampleVO vo) throws Exception {
-		LOGGER.debug(vo.toString());
-
-		/** ID Generation Service */
-		String id = egovIdGnrService.getNextStringId();
-		vo.setId(id);
-		LOGGER.debug(vo.toString());
-
-		sampleDAO.insertSample(vo);
-		return id;
-	}
-
-	/**
-	 * 글을 수정한다.
-	 * @param vo - 수정할 정보가 담긴 SampleVO
-	 * @return void형
-	 * @exception Exception
-	 */
-	@Override
-	public void updateSample(SampleVO vo) throws Exception {
-		sampleDAO.updateSample(vo);
-	}
-
-	/**
-	 * 글을 삭제한다.
-	 * @param vo - 삭제할 정보가 담긴 SampleVO
-	 * @return void형
-	 * @exception Exception
-	 */
-	@Override
-	public void deleteSample(SampleVO vo) throws Exception {
-		sampleDAO.deleteSample(vo);
-	}
-
-	/**
-	 * 글을 조회한다.
-	 * @param vo - 조회할 정보가 담긴 SampleVO
-	 * @return 조회한 글
-	 * @exception Exception
-	 */
-	@Override
-	public SampleVO selectSample(SampleVO vo) throws Exception {
-		SampleVO resultVO = sampleDAO.selectSample(vo);
-		if (resultVO == null)
-			throw processException("info.nodata.msg");
-		return resultVO;
-	}
-
-	/**
-	 * 글 목록을 조회한다.
-	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @return 글 목록
-	 * @exception Exception
-	 */
-	@Override
-	public List<?> selectSampleList(SampleDefaultVO searchVO) throws Exception {
-		return sampleDAO.selectSampleList(searchVO);
-	}
-
 	/**
 	 * 글 총 갯수를 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO

@@ -3,16 +3,37 @@ package egovframework.example.sample.service;
 import java.util.Date;
 
 public class BoardVO {
+	//게시글 번호
 	private int idx;
+	
+	//게시글 제목
 	private String title;
+	
+	//게시글 작성자
 	private String writer;
+	
+	//게시글 내용
 	private String content;
+	
+	//게시글 등록 일자
 	private Date regDate;
+	
+	//게시글 조회수
 	private int cnt;
+	
+	//게시글 옵션(공지, html)
 	private String option;
+	
+	//처리상황 선택
 	private String setting;
+	
+	//댓글 갯수
 	private int replyCnt;
+	
+	//링크1
 	private String link1;
+	
+	//링크2
 	private String link2;
 	
 	public String getLink1() {

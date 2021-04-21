@@ -3,10 +3,19 @@ package egovframework.example.sample.service;
 import java.util.Date;
 
 public class ReplyVO {
+	//댓글 번호
 	private int replyIdx;
+	
+	//게시글 번호(외래키)
 	private int idx;
+	
+	//댓글 작성자
 	private String writer;
+	
+	//댓글 내용
 	private String reply;
+	
+	//댓글 작성 일자
 	private Date regDate;
 	
 	public int getReplyIdx() {

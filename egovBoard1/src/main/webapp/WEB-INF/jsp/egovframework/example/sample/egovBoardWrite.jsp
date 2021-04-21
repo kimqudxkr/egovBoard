@@ -112,7 +112,7 @@
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="title">제목</label></td>
 		    			<td class="tbtd_content">
-		    				<form:input path="title" maxlength="30" cssClass="txt" size="40"/>
+		    				<form:input path="title" maxlength="30" cssClass="txt" size="40" autocomplete='off'/>
 		    				&nbsp;<form:errors path="title" />
 		    			</td>
 		    		</tr>
@@ -125,13 +125,13 @@
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="link1">링크1</label></td>
 		    			<td class="tbtd_content">
-		    				<form:input path="link1" maxlength="30" cssClass="txt" size="40"/>&nbsp;<form:errors path="link1" />
+		    				<form:input path="link1" maxlength="30" cssClass="txt" size="40" autocomplete='off'/>&nbsp;<form:errors path="link1" />
 		                </td>
 		    		</tr>
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="link2">링크2</label></td>
 		    			<td class="tbtd_content">
-		    				<form:input path="link2" maxlength="30" cssClass="txt" size="40"/>&nbsp;<form:errors path="link2" />
+		    				<form:input path="link2" maxlength="30" cssClass="txt" size="40" autocomplete='off'/>&nbsp;<form:errors path="link2" />
 		                </td>
 		    		</tr>
 		    	</table>
