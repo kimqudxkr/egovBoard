@@ -133,7 +133,11 @@
 									</c:choose>
 								</span>&nbsp;
 									<a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')">
-										${result.title} <strong><c:if test="${not empty result.replyCnt}">[${result.replyCnt}]</c:if></strong>&nbsp;
+										${result.title} 
+										<strong><c:if test="${not empty result.replyCnt}">[${result.replyCnt}]</c:if></strong>
+										<c:if test="${not empty result.link1}">
+											<img src="<c:url value='/images/egovframework/example/small_link.png'/>" alt=""/>
+										</c:if>
 									</a></td>
 	            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>

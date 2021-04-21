@@ -98,6 +98,26 @@
 				<span style="padding-left: 15px;">조회 ${boardVO.cnt}회</span>
 			</p>
 			<HR>
+			
+			<!-- 나중에 파일도 추가해줘야댐 -->
+			<c:if test="${not empty boardVO.link1}">
+				<div class="linkAndFile" style="text-align:left;">
+					<c:if test="${not empty boardVO.link1}">
+						<div class="link1">
+							<img src="<c:url value='/images/egovframework/example/small_link.png'/>" alt=""/>
+							<a href="${boardVO.link1}">${boardVO.link1}</a>
+							<HR>
+						</div>
+					</c:if>
+					<c:if test="${not empty boardVO.link2}">
+						<div class="link2">
+							<img src="<c:url value='/images/egovframework/example/small_link.png'/>" alt=""/>
+							<a href="${boardVO.link2}">${boardVO.link2}</a>
+							<HR>
+						</div>
+					</c:if>
+				</div>
+			</c:if>
 			<div class="btn-group">
 				<div class="btn-group-left" style="padding: 10px; float: left">
 					<button type="button" class="before">이전글</button>

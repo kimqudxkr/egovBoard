@@ -22,6 +22,8 @@
 		<result property="cnt" column="cnt"/>
 		<result property="option" column="option"/>
 		<result property="setting" column="setting"/>
+		<result property="link1" column="link1"/>
+		<result property="link2" column="link2"/>
 	</resultMap>
 	
 	<resultMap id="reply" class="egovframework.example.sample.service.ReplyVO">
@@ -77,12 +79,16 @@
 				  , content
 				  , option
 				  , setting
+				  , link1
+				  , link2
 				 )
 			VALUES ( #writer#
 					  , #title#
 					  , #content#
 					  , #option#
 					  , #setting#
+					  , #link1#
+				  	  , #link2#
 					  )
 		]]>
 	</insert>
@@ -115,6 +121,8 @@
 			SET title=#title#
 				, content=#content#
 				, setting=#setting#
+				, link1=#link1#
+				, link2=#link2#
 			WHERE idx=#idx#
 		]]>
 	</update>

@@ -50,14 +50,8 @@
         /* 글 등록 function */
         function fn_egov_save() {
         	frm = document.detailForm;
-//         	if(!validate (frm)){
-//         		console.log("if문 안에 들어옴");
-//                 return;
-//             }else{
-            	console.log("else안에 들어옴");
-            	frm.action = "<c:url value="${registerFlag == 'create' ? '/boardWrite.do' : '/updateBoard.do'}"/>";
-                frm.submit();
-//             }
+	      	frm.action = "<c:url value="${registerFlag == 'create' ? '/boardWrite.do' : '/updateBoard.do'}"/>";
+	        frm.submit();
         }
         
         -->
@@ -99,7 +93,7 @@
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="writer">작성자</label></td>
 		    			<td class="tbtd_content">
-		    				<form:input path="writer" maxlength="30" cssClass="txt" size="30"/>
+		    				<form:input path="writer" maxlength="30" cssClass="txt" size="40"/>
 		    				&nbsp;<form:errors path="writer" />
 		    			</td>
 		    		</tr>
@@ -118,14 +112,26 @@
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="title">제목</label></td>
 		    			<td class="tbtd_content">
-		    				<form:input path="title" maxlength="30" cssClass="txt" size="30"/>
+		    				<form:input path="title" maxlength="30" cssClass="txt" size="40"/>
 		    				&nbsp;<form:errors path="title" />
 		    			</td>
 		    		</tr>
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="content">내용</label></td>
 		    			<td class="tbtd_content">
-		    				<form:textarea path="content" rows="15" cols="50" />&nbsp;<form:errors path="content" />
+		    				<form:textarea path="content" rows="15" style="width:100%;"/>&nbsp;<form:errors path="content" />
+		                </td>
+		    		</tr>
+		    		<tr>
+		    			<td class="tbtd_caption"><label for="link1">링크1</label></td>
+		    			<td class="tbtd_content">
+		    				<form:input path="link1" maxlength="30" cssClass="txt" size="40"/>&nbsp;<form:errors path="link1" />
+		                </td>
+		    		</tr>
+		    		<tr>
+		    			<td class="tbtd_caption"><label for="link2">링크2</label></td>
+		    			<td class="tbtd_content">
+		    				<form:input path="link2" maxlength="30" cssClass="txt" size="40"/>&nbsp;<form:errors path="link2" />
 		                </td>
 		    		</tr>
 		    	</table>

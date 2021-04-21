@@ -98,6 +98,8 @@ public class EgovSampleController {
 		model.addAttribute("resultList", sampleList);
 		model.addAttribute("menu", menu);
 
+		System.out.println(sampleList);
+		
 		int totCnt = sampleService.selectSampleListTotCnt(searchVO);
 		paginationInfo.setTotalRecordCount(totCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
@@ -124,7 +126,7 @@ public class EgovSampleController {
 		sampleService.updateCnt(boardVO);
 		
 		model.addAttribute("boardVO", boardVO);
-		
+		System.out.println(boardVO);
 		//댓글 조회 부분
 		List<?> replyList = sampleService.getReplyList(idx);
 		model.addAttribute("replyList", replyList);

@@ -12,7 +12,21 @@ public class BoardVO {
 	private String option;
 	private String setting;
 	private int replyCnt;
+	private String link1;
+	private String link2;
 	
+	public String getLink1() {
+		return link1;
+	}
+	public void setLink1(String link1) {
+		this.link1 = link1;
+	}
+	public String getLink2() {
+		return link2;
+	}
+	public void setLink2(String link2) {
+		this.link2 = link2;
+	}
 	public int getReplyCnt() {
 		return replyCnt;
 	}
