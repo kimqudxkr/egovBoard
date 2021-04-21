@@ -18,6 +18,18 @@
            	document.detailForm.submit();
         }
         
+        /* 댓글 수정 화면 function */
+        function fn_egov_updateReply(cnt) {
+			const writeDiv = $('.reply-write');
+			const dest = $('.'+cnt).parent();
+			
+			writeDiv.insertBefore(dest);
+			
+			const content = $('.reply-content-'+cnt).html();
+			
+			$('.reply').val(content);
+        }
+        
         /* 글 삭제 function */
         function fn_egov_deleteBoard() {
            	document.detailForm.action = "<c:url value='/deleteBoard.do'/>";
@@ -33,12 +45,26 @@
            	document.detailForm.submit();
         }
         
-        /* 글 등록 function */
+        /* 댓글 등록 function */
         function fn_egov_save() {
-        	console.log("start");
         	frm = document.detailForm;
-        	console.log(frm);
-           	frm.action = "<c:url value='writeReply.do'/>";
+			const point = document.getElementsByClassName('reply-write')[0].parentNode.childElementCount;
+
+			// 등록 시의 point는 19, 수정시의 point는 댓글 수에 따라 다름. 하지만 child element count라서 나중에 이 페이지를 수정하게 되면 바꿔야함
+			// 불안정한 코드
+			if(point == 19) {
+            	frm.action = "<c:url value='writeReply.do'/>";
+			} else {
+				const input = document.getElementById('replyIdx');
+	        	input.disabled = false;
+	        	
+	        	const classVal = $('.reply-write').prev().prev().attr('class').split('-');
+	        	const idx = classVal[classVal.length-1];
+	        	
+	        	document.detailForm.replyIdx.value = idx;
+	        	
+	           	document.detailForm.action = "<c:url value='/updateReply.do'/>";
+			}
             frm.submit();
         }
         -->
@@ -89,9 +115,10 @@
 						<p>
 							<strong style="padding-right:10px;"><c:out value="${replyList.writer}"/></strong><span>작성일&nbsp;<fmt:formatDate value="${replyList.regDate }" pattern="yy-MM-dd HH:mm"/></span>
 						</p>
-						<p><c:out value="${replyList.reply}"/></p>
+						<p class="reply-content-${replyList.replyIdx}"><c:out value="${replyList.reply}"/></p>
+						<br/>
 						<div class="reply-menu" align="right">
-							<a href="/">수정</a>
+							<a class="${replyList.replyIdx}" href="javascript:fn_egov_updateReply(${replyList.replyIdx})">수정</a>
 							<a href="javascript:fn_egov_deleteReply(${replyList.replyIdx})">삭제</a>
 						</div>
         			</c:forEach>

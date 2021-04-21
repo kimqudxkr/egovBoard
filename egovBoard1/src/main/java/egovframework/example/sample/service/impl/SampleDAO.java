@@ -84,6 +84,10 @@ public class SampleDAO extends EgovAbstractDAO {
 		delete("sampleDAO.deleteReply", vo);
 	}
 	
+	public void updateReply(ReplyVO vo) throws Exception {
+		delete("sampleDAO.updateReply", vo);
+	}
+	
 	public BoardVO selectBoardByIdx(int idx) throws Exception {
 		return (BoardVO) select("sampleDAO.selectBoardByIdx", idx);
 	}

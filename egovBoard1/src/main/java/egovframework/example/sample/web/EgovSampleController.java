@@ -172,6 +172,20 @@ public class EgovSampleController {
 		return "redirect:/boardContentView.do";
 	}
 		
+	//댓글 수정하는 부분
+	@RequestMapping("/updateReply.do")
+	public String updateReply(@ModelAttribute("replyVO") ReplyVO replyVO, @RequestParam("replyIdx") int replyIdx,  Model model, RedirectAttributes redirect) throws Exception {
+		//전달할 파라미터 입력
+		int idx = replyVO.getIdx();
+		redirect.addAttribute("selectedId", idx);
+		
+		//삭제할 댓글 설정 부분
+		replyVO.setReplyIdx(replyIdx);
+		sampleService.updateReply(replyVO);
+		
+		return "redirect:/boardContentView.do";
+	}
+		
 	//한 게시글에 대한 정보를 받아오는 메소드
 	public BoardVO selectBoard(BoardVO boardVO) throws Exception {
 		return sampleService.selectBoard(boardVO);
@@ -192,7 +206,6 @@ public class EgovSampleController {
 
 		return "redirect:/egovBoardList.do";
 	}
-	
 	
 	//삭제 버튼 누를 시 작동하는 메소드
 	@RequestMapping("/deleteBoard.do")

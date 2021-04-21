@@ -125,6 +125,12 @@
 			DELETE FROM board_reply WHERE reply_idx=#replyIdx#;
 	</delete>
 	
+	<update id="sampleDAO.updateReply">
+		UPDATE board_reply
+		SET reply=#reply#
+		WHERE reply_idx=#replyIdx#
+	</update>
+	
 	<update id="sampleDAO.updateCount">
 		UPDATE boardtest
 		SET cnt=#cnt#

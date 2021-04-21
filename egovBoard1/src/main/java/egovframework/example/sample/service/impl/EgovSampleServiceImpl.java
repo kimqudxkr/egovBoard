@@ -50,11 +50,8 @@ import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
 @Service("sampleService")
 public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements EgovSampleService {
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovSampleServiceImpl.class);
 
-	
-	
 	/** SampleDAO */
 	// TODO ibatis 사용
 	@Resource(name = "sampleDAO")
@@ -126,6 +123,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	@Override
 	public void deleteReply(ReplyVO vo) throws Exception {
 		sampleDAO.deleteReply(vo);
+	}
+	
+	@Override
+	public void updateReply(ReplyVO vo) throws Exception {
+		sampleDAO.updateReply(vo);
 	}
 	
 	@Override

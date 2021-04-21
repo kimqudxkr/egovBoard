@@ -22,6 +22,7 @@
 
 #empty-reply {margin-bottom:20px; text-align:center;}
 
+.reply-write {text-align:center;}
 .reply-write table {border-collapse:collapse; width:93%; margin:0 auto;}
 .reply-write th {background-color:#eff1f4; border:1px solid black; width:15%;}
 .reply-write td {padding:7px 7px 7px 7px; border:1px solid black;}
