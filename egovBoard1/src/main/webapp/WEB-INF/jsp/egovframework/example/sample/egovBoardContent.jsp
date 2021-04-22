@@ -52,7 +52,7 @@
 
 		// 등록 시의 point는 20, 수정시의 point는 댓글 수에 따라 다름. 하지만 child element count라서 나중에 이 페이지를 수정하게 되면 바꿔야함
 		// 불안정한 코드
-		if (point == 21) {
+		if (point == 20) {
 			frm.action = "<c:url value='writeReply.do'/>";
 			console.log(point);
 		} else {
@@ -78,7 +78,7 @@
 		<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
 			<div id="content_pop" style="display: inline-block; border-left: 1px solid #dde4e9; border-right: 1px solid #dde4e9; padding: 10px; width: 750px">
 				<input type="hidden" name="idx" class="idx" value="${boardVO.idx}" />
-				<input type="hidden" name="writer" class="writer" value="최고관리자"/>
+				<input type="hidden" name="writer" class="writer" value="${userInfo.name}"/>
 				<input type="hidden" name="replyIdx" class="replyIdx" id="replyIdx" disabled />
 				<p style="text-align: left">
 					<strong> 

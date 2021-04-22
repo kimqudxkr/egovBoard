@@ -114,7 +114,7 @@
 										<strong class="replyCnt"><c:if test="${not empty result.replyCnt}">[${result.replyCnt}]</c:if></strong>&nbsp;
 									</a>
 								</td>
-	            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
+	            				<td align="left" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
 	            			</tr>
@@ -139,7 +139,7 @@
 											<img src="<c:url value='/images/egovframework/example/small_link.png'/>" alt=""/>
 										</c:if>
 									</a></td>
-	            				<td align="center" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
+	            				<td align="left" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
 	            			</tr>

@@ -61,6 +61,7 @@
 	<form:form commandName="boardVO" id="detailForm" name="detailForm">
 		<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
 		    <div id="content_pop" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9; padding:10px; width:750px">
+				<form:input path="writer" maxlength="30" cssClass="txt" size="40" value="${userInfo.name}" type="hidden"/>		    	
 		    	<!-- 타이틀 -->
 		    	<div id="title">
 		    		<h2>
@@ -88,13 +89,6 @@
 		    			<td class="tbtd_content">
 							<input type="checkbox"/>공지
 							<input type="checkbox"/>html
-		    			</td>
-		    		</tr>
-		    		<tr>
-		    			<td class="tbtd_caption"><label for="writer">작성자</label></td>
-		    			<td class="tbtd_content">
-		    				<form:input path="writer" maxlength="30" cssClass="txt" size="40"/>
-		    				&nbsp;<form:errors path="writer" />
 		    			</td>
 		    		</tr>
 		    		<tr>

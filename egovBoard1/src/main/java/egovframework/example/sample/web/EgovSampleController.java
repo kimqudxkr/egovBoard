@@ -108,10 +108,7 @@ public class EgovSampleController {
 		
 		
 		//HttpSession을 이용하여 회원 정보를 세션에 저장하여 사용
-		LoginVO userInfo = new LoginVO();
-		userInfo.setId(session.getAttribute("id").toString());
-		userInfo.setPassword(session.getAttribute("password").toString());
-		userInfo.setName(session.getAttribute("name").toString());
+		LoginVO userInfo = (LoginVO) session.getAttribute("userInfo");
 		model.addAttribute("userInfo", userInfo);
 		 
 		return "sample/egovBoardList";
@@ -119,15 +116,17 @@ public class EgovSampleController {
 	
 	//글쓰기 페이지
 	@RequestMapping(value = "/boardWriteView.do")
-	public String boardWrite(@ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model) throws Exception {
+	public String boardWrite(@ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model, LoginVO userInfo,HttpSession session) throws Exception {
 		model.addAttribute("boardVO", new BoardVO());
+		userInfo = (LoginVO) session.getAttribute("userInfo");
+		model.addAttribute("userInfo", userInfo);
 		
 		return "sample/egovBoardWrite";
 	}
 	
 	//글 내용 조회 페이지
 	@RequestMapping(value = "/boardContentView.do")
-	public String boardContentView(@ModelAttribute("replyVO") ReplyVO replyVO, 
+	public String boardContentView(@ModelAttribute("replyVO") ReplyVO replyVO, LoginVO userInfo, HttpSession session,
 								   @RequestParam("selectedId") int idx, Model model) throws Exception {
 		//조회수 증가 부분
 		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
@@ -140,6 +139,10 @@ public class EgovSampleController {
 		//댓글 조회 부분
 		List<?> replyList = sampleService.getReplyList(idx);
 		model.addAttribute("replyList", replyList);
+		
+		//세션을 이용하여 댓글 작성자 설정 부분
+		userInfo = (LoginVO) session.getAttribute("userInfo");
+		model.addAttribute("userInfo", userInfo);
 		
 		return "sample/egovBoardContent";
 	}
@@ -247,9 +250,7 @@ public class EgovSampleController {
 			LoginVO userInfo = sampleService.getUser(loginVO);
 
 			//HttpSession을 이용하여 DB에서 받아온 회원 정보를 session에 저장
-			session.setAttribute("id", userInfo.getId());
-			session.setAttribute("password", userInfo.getPassword());
-			session.setAttribute("name", userInfo.getName());
+			session.setAttribute("userInfo", userInfo);
 			
 			return "redirect:/egovBoardList.do";
 		} else {
@@ -261,9 +262,8 @@ public class EgovSampleController {
 	//로그아웃을 수행하는 메서드
 	@RequestMapping(value="/logout.do")
 	public String logout(HttpSession session) throws Exception {
-		session.setAttribute("id", null);
-		session.setAttribute("password", null);
-		session.setAttribute("name", null);
+		//세션에 저장된 정보를 리셋
+		session.setAttribute("userInfo", null);
 		
 		return "redirect:/egovLogin.do";
 	}
