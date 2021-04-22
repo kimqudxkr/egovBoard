@@ -257,4 +257,14 @@ public class EgovSampleController {
 			return "sample/egovLogin";
 		}
 	}
+	
+	//로그아웃을 수행하는 메서드
+	@RequestMapping(value="/logout.do")
+	public String logout(HttpSession session) throws Exception {
+		session.setAttribute("id", null);
+		session.setAttribute("password", null);
+		session.setAttribute("name", null);
+		
+		return "redirect:/egovLogin.do";
+	}
 }

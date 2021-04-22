@@ -189,7 +189,7 @@
 	        	 <button type="button">관리자 모드</button><br/>
 	        	 <button type="button">유지보수게시판메인</button><br/>
 	        	 <button type="button">미처리 게시글 확인</button><br/>
-	        	 <button type="button" class="logout">로그아웃</button>
+	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
 	        </div>
 		</div>
 	</form:form>
