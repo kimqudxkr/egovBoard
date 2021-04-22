@@ -25,9 +25,9 @@ import org.springframework.stereotype.Service;
 
 import egovframework.example.sample.service.BoardVO;
 import egovframework.example.sample.service.EgovSampleService;
+import egovframework.example.sample.service.LoginVO;
 import egovframework.example.sample.service.ReplyVO;
 import egovframework.example.sample.service.SampleDefaultVO;
-import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 
@@ -148,6 +148,15 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		sampleDAO.updateCount(vo);
 	}
 	
+	//로그인 시도
+	public String getName(LoginVO vo) throws Exception {
+		return sampleDAO.getName(vo);
+	}
+	
+	//회원 정보 얻기
+	public LoginVO getUser(LoginVO vo) throws Exception {
+		return sampleDAO.getUser(vo);
+	}
 	//=========================================================================================
 	/**
 	 * 글 총 갯수를 조회한다.

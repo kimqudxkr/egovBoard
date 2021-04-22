@@ -20,9 +20,9 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import egovframework.example.sample.service.BoardVO;
+import egovframework.example.sample.service.LoginVO;
 import egovframework.example.sample.service.ReplyVO;
 import egovframework.example.sample.service.SampleDefaultVO;
-import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 /**
@@ -107,6 +107,16 @@ public class SampleDAO extends EgovAbstractDAO {
 	//조회수 증가
 	public void updateCount(BoardVO vo) throws Exception {
 		update("sampleDAO.updateCount", vo);
+	}
+	
+	//로그인 시도
+	public String getName(LoginVO vo) throws Exception {
+		return (String) select("sampleDAO.getName", vo);
+	}
+	
+	//회원 정보 얻기
+	public LoginVO getUser(LoginVO vo) throws Exception {
+		return (LoginVO) select("sampleDAO.getUser", vo);
 	}
 	//====================================================================
 	/**

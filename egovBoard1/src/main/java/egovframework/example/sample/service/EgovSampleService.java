@@ -73,6 +73,12 @@ public interface EgovSampleService {
 	
 	//조회수 증가
 	void updateCnt(BoardVO vo) throws Exception;
+	
+	//로그인 시도
+	String getName(LoginVO vo) throws Exception;
+	
+	//회원 정보 얻기
+	LoginVO getUser(LoginVO vo) throws Exception;
 	//=========================================================================
 	/**
 	 * 글 총 갯수를 조회한다.

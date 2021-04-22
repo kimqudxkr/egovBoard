@@ -33,6 +33,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.BoardVO;
 import egovframework.example.sample.service.EgovSampleService;
+import egovframework.example.sample.service.LoginVO;
 import egovframework.example.sample.service.ReplyVO;
 import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
@@ -214,5 +215,28 @@ public class EgovSampleController {
 		sampleService.deleteBoard(boardVO);
 
 		return "redirect:/egovBoardList.do";
+	}
+	
+	//로그인 페이지를 띄우는 메소드
+	@RequestMapping("/egovLogin.do")
+	public String login(@ModelAttribute("LoginVO") LoginVO loginVO) throws Exception {
+		return "sample/egovLogin";
+	}
+	
+	//로그인 페이지를 띄우는 메소드
+	@RequestMapping(value = "/startLogin.do", method = RequestMethod.POST)
+	public String startLogin(@ModelAttribute("LoginVO") LoginVO loginVO, Model model) throws Exception {
+		//먼저 로그인 결과 얻기
+		String name = sampleService.getName(loginVO);
+		
+		if(!name.equals("noName")) {
+			//회원 정보 얻기
+			LoginVO userInfo = sampleService.getUser(loginVO);
+			model.addAttribute("userInfo", userInfo);
+			return "redirect:/egovBoardList.do";
+		} else {
+			model.addAttribute("result", "가입된 회원이 아니거나 비밀번호가 틀립니다.");
+			return "sample/egovLogin";
+		}
 	}
 }

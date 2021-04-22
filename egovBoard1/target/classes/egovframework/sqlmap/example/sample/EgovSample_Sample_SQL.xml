@@ -25,6 +25,12 @@
 		<result property="regDate" column="reg_date"/>
 	</resultMap>
 	
+	<resultMap id="login" class="egovframework.example.sample.service.LoginVO">
+<!-- 		<result property="id" column="id" nullValue="no"/> -->
+<!-- 		<result property="password" column="password" nullValue="no"/> -->
+		<result property="name" column="name" nullValue="no"/>
+	</resultMap>
+	
 	<select id="sampleDAO.getBoardList" resultClass="egovMap">
 		<![CDATA[
 			SELECT A.*, B.replyCnt
@@ -149,6 +155,18 @@
 		SET cnt=#cnt#
 		WHERE idx=#idx#
 	</update>
+	
+	<select id="sampleDAO.getName" resultClass="String">
+		SELECT IFNULL(MAX(name), 'noName') AS name
+		FROM board_user
+		WHERE id=#id# AND password=#password#
+	</select>
+	
+	<select id="sampleDAO.getUser" resultMap="login">
+		SELECT *
+		FROM board_user
+		WHERE id=#id# AND name=#name#
+	</select>
 	<!-- =================================================================================================== -->
 	<select id="sampleDAO.selectSampleListTotCnt" parameterClass="searchVO" resultClass="int">
 
