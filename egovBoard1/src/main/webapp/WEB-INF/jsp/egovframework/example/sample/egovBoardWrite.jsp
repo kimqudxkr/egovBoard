@@ -27,6 +27,7 @@
     <title>Sample <c:if test="${registerFlag == 'create'}"><spring:message code="button.create" /></c:if>
                   <c:if test="${registerFlag == 'modify'}"><spring:message code="button.modify" /></c:if>
     </title>
+    <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/board.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
     
     <!--For Commons Validator Client Side-->
@@ -160,11 +161,18 @@
 		    			</c:if>
 		            </ul>
 		    	</div>
+		    	<!-- 검색조건 유지 -->
+			    <input type="hidden" name="searchCondition" value="<c:out value='${searchVO.searchCondition}'/>"/>
+			    <input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
+			    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
 		    </div>
-		    <!-- 검색조건 유지 -->
-		    <input type="hidden" name="searchCondition" value="<c:out value='${searchVO.searchCondition}'/>"/>
-		    <input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
-		    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
+		    <div id="user-menu">
+	        	 <strong id="writer">${userInfo.name}님</strong><br/>
+	        	 <button type="button">관리자 모드</button><br/>
+	        	 <button type="button">유지보수게시판메인</button><br/>
+	        	 <button type="button">미처리 게시글 확인</button><br/>
+	        	 <button type="button" class="logout">로그아웃</button>
+	        </div>
 		</div>
 	</form:form>
 </body>

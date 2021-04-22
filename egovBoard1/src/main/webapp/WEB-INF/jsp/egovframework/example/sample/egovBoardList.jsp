@@ -71,13 +71,6 @@
 	        <input type="hidden" id="menu" value="${menu}"/>
 	        
 	        <div id="content_pop">
-	        	<div id="user-menu" style="float:right; width:210px;">
-		        	 <strong id="writer">${userInfo.name}님</strong>
-		        	 <button type="button">관리자 모드</button>
-		        	 <button type="button">유지보수게시판메인</button>
-		        	 <button type="button">미처리 게시글 확인</button>
-		        	 <button type="button">로그아웃</button>
-		        </div>
 	        	<!-- 타이틀 -->
 	        	<div id="title">
 	        		<h2>좋은삼정병원</h2>
@@ -169,6 +162,13 @@
 	        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
 	        		<form:hidden path="pageIndex" />
 	        	</div>
+	        </div>
+	        <div id="user-menu">
+	        	 <strong id="writer">${userInfo.name}님</strong><br/>
+	        	 <button type="button">관리자 모드</button><br/>
+	        	 <button type="button">유지보수게시판메인</button><br/>
+	        	 <button type="button">미처리 게시글 확인</button><br/>
+	        	 <button type="button" class="logout">로그아웃</button>
 	        </div>
     	</div>
     </form:form>

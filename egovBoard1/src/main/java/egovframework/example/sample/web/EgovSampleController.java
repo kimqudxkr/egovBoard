@@ -20,8 +20,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,7 +32,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import egovframework.example.sample.service.BoardVO;
@@ -78,7 +77,8 @@ public class EgovSampleController {
 	//글 목록 불러오는 페이지
 	@RequestMapping(value="/egovBoardList.do")
 	public String selectList( @RequestParam(value="selectedMenu", required=false) String menu, HttpServletRequest request,
-							 @ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo) throws Exception {
+							 @ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo,
+							 HttpSession session) throws Exception {
 		/** EgovPropertyService.sample */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
@@ -106,12 +106,14 @@ public class EgovSampleController {
 		paginationInfo.setTotalRecordCount(totCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
 		
-		 Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
-		 if(flashMap != null) {
-			 LoginVO userInfo = (LoginVO) flashMap.get("userInfo");
-			 model.addAttribute("userInfo", userInfo);
-		 }
 		
+		//HttpSession을 이용하여 회원 정보를 세션에 저장하여 사용
+		LoginVO userInfo = new LoginVO();
+		userInfo.setId(session.getAttribute("id").toString());
+		userInfo.setPassword(session.getAttribute("password").toString());
+		userInfo.setName(session.getAttribute("name").toString());
+		model.addAttribute("userInfo", userInfo);
+		 
 		return "sample/egovBoardList";
 	}
 	
@@ -235,7 +237,7 @@ public class EgovSampleController {
 	
 	//로그인을 수행하는 메서드
 	@RequestMapping(value = "/startLogin.do", method = RequestMethod.POST)
-	public String startLogin(@ModelAttribute("LoginVO") LoginVO loginVO, Model model, RedirectAttributes redirect) throws Exception {
+	public String startLogin(@ModelAttribute("LoginVO") LoginVO loginVO, Model model, HttpSession session) throws Exception {
 		//먼저 로그인 결과 얻기
 		String name = sampleService.getName(loginVO);
 		
@@ -243,9 +245,12 @@ public class EgovSampleController {
 			//회원 정보 얻기
 			loginVO.setName(name);
 			LoginVO userInfo = sampleService.getUser(loginVO);
-			System.out.println(ToStringBuilder.reflectionToString(userInfo));
 
-			redirect.addFlashAttribute("userInfo", userInfo);
+			//HttpSession을 이용하여 DB에서 받아온 회원 정보를 session에 저장
+			session.setAttribute("id", userInfo.getId());
+			session.setAttribute("password", userInfo.getPassword());
+			session.setAttribute("name", userInfo.getName());
+			
 			return "redirect:/egovBoardList.do";
 		} else {
 			model.addAttribute("result", "가입된 회원이 아니거나 비밀번호가 틀립니다.");
