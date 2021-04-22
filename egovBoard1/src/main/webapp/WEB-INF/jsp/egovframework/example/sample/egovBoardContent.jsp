@@ -53,7 +53,7 @@
 
 		// 등록 시의 point는 20, 수정시의 point는 댓글 수에 따라 다름. 하지만 child element count라서 나중에 이 페이지를 수정하게 되면 바꿔야함
 		// 불안정한 코드
-		if (point == 20) {
+		if (point == 21) {
 			frm.action = "<c:url value='writeReply.do'/>";
 			console.log(point);
 		} else {
