@@ -167,6 +167,11 @@
 		FROM board_user
 		WHERE id=#id# AND name=#name#
 	</select>
+	
+	<select id="sampleDAO.getIdxCnt" resultClass="String">
+		SELECT COUNT(*)
+		FROM boardtest;
+	</select>
 	<!-- =================================================================================================== -->
 	<select id="sampleDAO.selectSampleListTotCnt" parameterClass="searchVO" resultClass="int">
 

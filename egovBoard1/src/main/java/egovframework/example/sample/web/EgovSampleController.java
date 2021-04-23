@@ -134,6 +134,7 @@ public class EgovSampleController {
 		boardVO.setCnt(cnt+1);
 		sampleService.updateCnt(boardVO);
 		
+		//조회수 증가 후 게시글 정보 
 		model.addAttribute("boardVO", boardVO);
 
 		//댓글 조회 부분
@@ -143,6 +144,10 @@ public class EgovSampleController {
 		//세션을 이용하여 댓글 작성자 설정 부분
 		userInfo = (LoginVO) session.getAttribute("userInfo");
 		model.addAttribute("userInfo", userInfo);
+		
+		//다음글을 위하여 게시글 갯수 설정 부분
+		String idxCnt = sampleService.getIdxCnt();
+		model.addAttribute("idxCnt", idxCnt);
 		
 		return "sample/egovBoardContent";
 	}

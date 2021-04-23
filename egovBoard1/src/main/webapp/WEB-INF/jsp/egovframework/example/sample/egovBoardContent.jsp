@@ -12,6 +12,13 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/egovframework/board.css'/>" />
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
+	/* 글 내용 조회 화면 function */
+	function fn_egov_select(id) {
+		document.detailForm.selectedId.value = id;
+	   	document.detailForm.action = "<c:url value='/boardContentView.do'/>";
+	   	document.detailForm.submit();
+	}
+	
 	/* 글 수정 화면 function */
 	function checkWriter(type) {
 		const name = $('#name').html();
@@ -107,6 +114,7 @@
 		<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
 			<div id="content_pop" style="display: inline-block; border-left: 1px solid #dde4e9; border-right: 1px solid #dde4e9; padding: 10px; width: 750px;">
 				<input type="hidden" name="idx" class="idx" value="${boardVO.idx}" />
+				<input type="hidden" name="selectedId" />
 				<input type="hidden" name="writer" class="writer" value="${userInfo.name}"/>
 				<input type="hidden" name="replyIdx" class="replyIdx" id="replyIdx" disabled />
 				<p style="text-align: left">
@@ -149,8 +157,8 @@
 				</c:if>
 				<div class="btn-group">
 					<div class="btn-group-left" style="padding: 10px; float: left">
-						<button type="button" class="before">이전글</button>
-						<button type="button" class="after">다음글</button>
+						<c:if test="${boardVO.idx ne 1}"><button type="button" class="before">이전글</button></c:if>
+						<c:if test="${boardVO.idx ne idxCnt}"><button type="button" class="after">다음글</button></c:if>
 					</div>
 					<div class="btn-group-right" style="padding: 10px; float: right">
 						<button type="button" class="modify">수정</button>
@@ -202,8 +210,8 @@
 				<hr />
 				<div class="btn-group">
 					<div class="btn-group-left" style="padding: 10px; float: left">
-						<button type="button" class="before">이전글</button>
-						<button type="button" class="after">다음글</button>
+						<c:if test="${boardVO.idx ne 1}"><button type="button" class="before">이전글</button></c:if>
+						<c:if test="${boardVO.idx ne idxCnt}"><button type="button" class="after">다음글</button></c:if>
 					</div>
 					<div class="btn-group-right" style="padding: 10px; float: right">
 						<button type="button" class="modify">수정</button>
@@ -243,6 +251,18 @@
 
 		$('.write_reply').click(function() {
 			location.href = 'javascript:fn_egov_save();';
+		})
+		
+		$('.before').click(function() {
+			const beforeIdx = $('.idx').val() - 1;
+			
+			location.href = 'javascript:fn_egov_select('+beforeIdx+');';
+		})
+		
+		$('.after').click(function() {
+			const nextIdx = $('.idx').val()*1 + 1;
+
+			location.href = 'javascript:fn_egov_select('+nextIdx+');';
 		})
 	});
 </script>

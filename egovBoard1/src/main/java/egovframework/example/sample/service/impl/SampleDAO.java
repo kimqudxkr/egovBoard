@@ -118,6 +118,11 @@ public class SampleDAO extends EgovAbstractDAO {
 	public LoginVO getUser(LoginVO vo) throws Exception {
 		return (LoginVO) select("sampleDAO.getUser", vo);
 	}
+	
+	//게시글 갯수 얻기
+	public String getIdxCnt() throws Exception {
+		return (String) select("sampleDAO.getIdxCnt");
+	}
 	//====================================================================
 	/**
 	 * 글 총 갯수를 조회한다.

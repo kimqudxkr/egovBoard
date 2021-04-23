@@ -79,6 +79,9 @@ public interface EgovSampleService {
 	
 	//회원 정보 얻기
 	LoginVO getUser(LoginVO vo) throws Exception;
+	
+	//게시글 개수 얻기
+	String getIdxCnt() throws Exception;
 	//=========================================================================
 	/**
 	 * 글 총 갯수를 조회한다.

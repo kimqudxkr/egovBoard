@@ -157,6 +157,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	public LoginVO getUser(LoginVO vo) throws Exception {
 		return sampleDAO.getUser(vo);
 	}
+	
+	//게시글 갯수 얻기
+	public String getIdxCnt() throws Exception {
+		return sampleDAO.getIdxCnt();
+	}
 	//=========================================================================================
 	/**
 	 * 글 총 갯수를 조회한다.
