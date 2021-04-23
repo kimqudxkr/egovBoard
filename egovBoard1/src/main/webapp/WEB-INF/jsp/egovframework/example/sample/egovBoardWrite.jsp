@@ -160,7 +160,7 @@
 			    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
 		    </div>
 		    <div id="user-menu">
-	        	 <strong id="writer">${userInfo.name}님</strong><br/>
+	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
 	        	 <button type="button">관리자 모드</button><br/>
 	        	 <button type="button">유지보수게시판메인</button><br/>
 	        	 <button type="button">미처리 게시글 확인</button><br/>
