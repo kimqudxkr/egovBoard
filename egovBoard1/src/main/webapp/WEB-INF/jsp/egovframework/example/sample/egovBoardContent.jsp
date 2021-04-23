@@ -13,18 +13,18 @@
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
 	/* 글 수정 화면 function */
-	function checkWriter() {
+	function checkWriter(type) {
 		const name = $('#name').html();
-		const contentWriter = $('#content_writer').text();
+		const writer = $('#'+type+'_writer').text();
 		
-		if(name === contentWriter || name === '최고관리자')
+		if(name === writer || name === '최고관리자')
 			return true;
 		else
 			return false;
 	}
 	
 	function fn_egov_updateBoard() {
-		if(checkWriter()) {
+		if(checkWriter('content')) {
 			document.detailForm.action = "<c:url value='/updateBoardView.do'/>";
 			document.detailForm.submit();
 		} else {
@@ -35,7 +35,7 @@
 	
 	/* 글 삭제 function */
 	function fn_egov_deleteBoard() {
-		if(checkWriter()) {
+		if(checkWriter('content')) {
 			if (confirm("삭제하시겠습니까?")) {
 				document.detailForm.action = "<c:url value='/deleteBoard.do'/>";
 				document.detailForm.submit();
@@ -47,23 +47,31 @@
 
 	/* 댓글 수정 화면 function */
 	function fn_egov_updateReply(cnt) {
-		const writeDiv = $('.reply-write');
-		const dest = $('.' + cnt).parent();
+		if(checkWriter('reply')) {
+			const writeDiv = $('.reply-write');
+			const dest = $('.' + cnt).parent();
 
-		writeDiv.insertBefore(dest);
+			writeDiv.insertBefore(dest);
 
-		const content = $('.reply-content-' + cnt).html();
+			const content = $('.reply-content-' + cnt).html();
 
-		$('.reply').val(content);
+			$('.reply').val(content);
+		} else {
+			alert("작성자가 아닙니다!");
+		}
 	}
 
 	/* 댓글 삭제 function */
 	function fn_egov_deleteReply(replyIdx) {
-		const input = document.getElementById('replyIdx');
-		input.disabled = false;
-		document.detailForm.replyIdx.value = replyIdx;
-		document.detailForm.action = "<c:url value='/deleteReply.do'/>";
-		document.detailForm.submit();
+		if(checkWriter('reply')) {
+			const input = document.getElementById('replyIdx');
+			input.disabled = false;
+			document.detailForm.replyIdx.value = replyIdx;
+			document.detailForm.action = "<c:url value='/deleteReply.do'/>";
+			document.detailForm.submit();
+		} else {
+			alert("작성자가 아닙니다!");
+		}
 	}
 
 	/* 댓글 등록 function */
