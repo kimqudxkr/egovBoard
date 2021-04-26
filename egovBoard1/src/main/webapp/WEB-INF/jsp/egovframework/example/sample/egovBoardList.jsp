@@ -68,7 +68,7 @@
 	        <input type="hidden" name="selectedId" />
 	        <input type="hidden" name="selectedMenu" />
 	        <input type="hidden" id="menu" value="${menu}"/>
-	        
+	        <input type="hidden" id="idxCnt" value="${idxCnt}" />
 	        <div id="content_pop">
 	        	<!-- 타이틀 -->
 	        	<div id="title">
@@ -107,7 +107,11 @@
 	        			<c:forEach var="result" items="${noticeList}" varStatus="status">
 	            			<tr style="background-color:#eff1f4">
 	            				<td align="center" class="listtd" style="font-weight:bold;"><c:out value="공지"/></td>
-	            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
+	            				<td align="center" class="listtd">
+	            					<c:if test="${userInfo.name eq result.writer || userInfo.name eq '최고관리자'}">
+	            						<input type="checkbox" name="check" class="check_${result.idx}"/>
+            						</c:if>
+	            				</td>
 								<td align="left" class="listtd" >
 									<a style="color:red; font-weight:bold;" href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')">
 										${result.title} 
@@ -123,7 +127,11 @@
 	        				<c:set var="cnt" value="${cnt-1}"/>
 	            			<tr>
 	            				<td align="center" class="listtd"><c:out value="${cnt+fn:length(resultList)+1}"/></td>
-	            				<td align="center" class="listtd"><input type="checkbox" name="check"/></td>
+	            				<td align="center" class="listtd">
+	            					<c:if test="${userInfo.name eq result.writer || userInfo.name eq '최고관리자'}">
+	            						<input type="checkbox" name="check" class="check_${result.idx}"/>
+	            					</c:if>
+	            				</td>
 	            				<td align="left" class="listtd"><span class="${result.setting}">
 									<c:choose>
 										<c:when test="${result.setting=='complete'}">처리완료</c:when>
@@ -139,24 +147,22 @@
 											<img src="<c:url value='/images/egovframework/example/small_link.png'/>" alt=""/>
 										</c:if>
 									</a></td>
-	            				<td align="left" class="listtd"><c:out value="${result.writer}"/>&nbsp;</td>
+	            				<td align="left" class="listtd"><c:out value="${result.writer}"/></td>
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
 	            			</tr>
 	        			</c:forEach>
 	        		</table>
 	        	</div>
-	        	<div id="sysbtn">
-	        	  <ul>
-	        	      <li>
-	        	          <span class="btn_blue_l">
-	        	              <a href="javascript:fn_egov_write();">글쓰기</a>
-	                          <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-	                      </span>
-	                  </li>
-	              </ul>
-	        	</div>
-	        	<!-- /List -->
+	        	<div class="btn-group">
+					<div class="btn-group-left" style="padding: 10px; float: left">
+						<button type="button" class="delete_select">선택삭제</button>
+					</div>
+					<div class="btn-group-right" style="padding: 10px; float: right">
+						<button type="button" class="write" onclick='javascript:fn_egov_write();'>글쓰기</button>
+					</div>
+				</div>
+	        	<!-- List -->
 	        	<div id="paging">
 	        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
 	        		<form:hidden path="pageIndex" />
@@ -173,6 +179,7 @@
     </form:form>
     <script>
     	$(document).ready(function() {
+    		//표 제목의 체크박스를 선택 시 전부 선택되는 효과
     		$('.allCheck').click(function() {
     			if($('.allCheck').prop("checked")) {
     				$("input[name=check]").prop("checked", true);
@@ -187,6 +194,43 @@
 	    		$('#nav_menu ul li a').removeClass("now");
 	    		$('#nav_menu ul li .'+menu).addClass("now");
     		}
+    		
+    		//선택 삭제 버튼 클릭 시
+    		$('.delete_select').click(function() {
+    			const checkArr = [];
+				$('input[name=check]:checked').each(function() {
+					const check = $(this).attr('class');
+					const words = check.split('_');
+// 					const writer = $(this).parents('tr').children(':eq(3)').html();
+// 					const name = $('#name').html();
+					
+					checkArr.push(words[1]);
+				})
+				
+				const objParams = {
+					"idxs": checkArr
+				};
+				
+				if(checkArr.length !== 0) {
+					if(confirm("선택한 게시글을 삭제하시겠습니까?")) {
+						$.ajax({
+							url:"deleteBoardMany.do",
+							data: objParams,
+							type:'POST',
+							success : function(result) {
+		 						location.reload();
+							},
+							error : function(request, status, error) {
+								console.log("=========error=======");
+								console.log("request : "+request.getOwnPropertyNames());
+								console.log("status : "+status);
+								console.log("error : "+error);
+							}
+						});
+					}
+				} else
+					alert("하나 이상 선택하세요");
+    		});
     	})
     </script>
 </body>

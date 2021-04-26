@@ -15,6 +15,7 @@
  */
 package egovframework.example.sample.web;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springmodules.validation.commons.DefaultBeanValidator;
@@ -111,6 +113,10 @@ public class EgovSampleController {
 		LoginVO userInfo = (LoginVO) session.getAttribute("userInfo");
 		model.addAttribute("userInfo", userInfo);
 		 
+		//다음글을 위하여 게시글 갯수 설정 부분
+		String idxCnt = sampleService.getIdxCnt();
+		model.addAttribute("idxCnt", idxCnt);
+				
 		return "sample/egovBoardList";
 	}
 	
@@ -233,10 +239,30 @@ public class EgovSampleController {
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(@ModelAttribute("BoardVO") BoardVO boardVO, SessionStatus status) throws Exception {
 		sampleService.deleteBoard(boardVO);
-
+		
+		//게시글 idx 재정렬
+		sampleService.updateIdx();
+		
 		return "redirect:/egovBoardList.do";
 	}
 	
+	//선택 삭제 버튼 누를 시 작동하는 메소드
+	@RequestMapping(value="/deleteBoardMany.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteBoardMany(@RequestParam(value="idxs[]") List<Integer> idxs) throws Exception {
+		//List 속 idx 개수 만큼 반복하여 delete 수행
+		for(Integer idx : idxs) {
+			BoardVO boardVO = new BoardVO();
+			boardVO.setIdx(idx);
+			sampleService.deleteBoard(boardVO);
+		}
+		
+		//게시글 idx 재정렬
+		sampleService.updateIdx();
+		
+		return "success";
+	}
+		
 	//로그인 페이지를 띄우는 메소드
 	@RequestMapping("/egovLogin.do")
 	public String login(@ModelAttribute("LoginVO") LoginVO loginVO) throws Exception {

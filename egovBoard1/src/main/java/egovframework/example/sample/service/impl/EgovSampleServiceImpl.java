@@ -130,6 +130,12 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		sampleDAO.deleteBoard(vo);
 	}
 	
+	//게시글 idx 재정렬
+	@Override
+	public void updateIdx() throws Exception {
+		sampleDAO.updateIdx();
+	}
+	
 	//댓글 삭제
 	@Override
 	public void deleteReply(ReplyVO vo) throws Exception {

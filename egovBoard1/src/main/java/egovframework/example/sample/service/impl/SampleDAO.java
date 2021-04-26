@@ -89,6 +89,11 @@ public class SampleDAO extends EgovAbstractDAO {
 		delete("sampleDAO.deleteBoard", vo);
 	}
 	
+	//게시글 idx 재정렬
+	public void updateIdx() throws Exception {
+		update("sampleDAO.updateIdx");
+	}
+	
 	//댓글 삭제
 	public void deleteReply(ReplyVO vo) throws Exception {
 		delete("sampleDAO.deleteReply", vo);

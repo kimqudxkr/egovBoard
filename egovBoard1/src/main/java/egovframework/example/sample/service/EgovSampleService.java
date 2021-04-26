@@ -62,6 +62,9 @@ public interface EgovSampleService {
 	//게시글 삭제
 	void deleteBoard(BoardVO vo) throws Exception;
 	
+	//게시글 idx 재정렬
+	void updateIdx() throws Exception;
+	
 	//댓글 삭제
 	void deleteReply(ReplyVO vo) throws Exception;
 	

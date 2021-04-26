@@ -132,12 +132,14 @@
 	</update>
 	
 	<delete id="sampleDAO.deleteBoard">
-		DELETE FROM boardtest WHERE idx=#idx#;
-		
+		DELETE FROM boardtest WHERE idx=#idx#
+	</delete>
+	
+	<update id="sampleDAO.updateIdx">
 		ALTER TABLE boardtest AUTO_INCREMENT=1;
 		SET @COUNT = 0;
 		UPDATE boardtest SET idx = @COUNT:=@COUNT+1;
-	</delete>
+	</update>
 	
 	<delete id="sampleDAO.deleteReply">
 		DELETE FROM board_reply 
