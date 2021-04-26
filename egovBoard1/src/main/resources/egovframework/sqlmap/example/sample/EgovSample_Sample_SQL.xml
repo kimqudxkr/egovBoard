@@ -36,7 +36,7 @@
 			SELECT A.*, B.replyCnt
 			FROM boardtest A
 			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
-			ON A.idx = B.idx WHERE setting NOT IN ('notice') ORDER BY idx DESC
+			ON A.idx = B.idx WHERE setting NOT IN ('notice') ORDER BY idx DESC LIMIT #limit# OFFSET #offset#
 		]]>
 	</select>
 	

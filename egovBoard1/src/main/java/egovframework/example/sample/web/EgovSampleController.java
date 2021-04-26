@@ -81,42 +81,40 @@ public class EgovSampleController {
 	public String selectList( @RequestParam(value="selectedMenu", required=false) String menu, HttpServletRequest request,
 							 @ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model, BoardVO vo,
 							 HttpSession session) throws Exception {
-		/** EgovPropertyService.sample */
-		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
-		searchVO.setPageSize(propertiesService.getInt("pageSize"));
-
 		/** pageing setting */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
 		paginationInfo.setPageSize(searchVO.getPageSize());
-
+		
 		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
+		
 		//공지사항 받아오는 곳
 		List<?> noticeList = sampleService.getNoticeList();
 		model.addAttribute("noticeList", noticeList);
 
+		//페이지네이션 적용
+		vo.setOffset((searchVO.getPageIndex()-1)*15);
+		
 		//필터 적용시키는 곳
-		List<?> sampleList = (menu == null || menu.equals("all")) ? sampleService.getBoardList() : sampleService.getFilteredBoardList(menu);
+		List<?> sampleList = (menu == null || menu.equals("") || menu.equals("all")) ? sampleService.getBoardList(vo) : sampleService.getFilteredBoardList(menu);
 		model.addAttribute("resultList", sampleList);
 		model.addAttribute("menu", menu);
 
-		int totCnt = sampleService.selectSampleListTotCnt(searchVO);
-		paginationInfo.setTotalRecordCount(totCnt);
-		model.addAttribute("paginationInfo", paginationInfo);
+		//다음글을 위하여 게시글 갯수 설정 부분
+		String idxCnt = sampleService.getIdxCnt();
+		model.addAttribute("idxCnt", idxCnt);
 		
+		//페이지네이션 페이지 갯수 생성
+		paginationInfo.setTotalRecordCount(Integer.parseInt(idxCnt));
+		model.addAttribute("paginationInfo", paginationInfo);
 		
 		//HttpSession을 이용하여 회원 정보를 세션에 저장하여 사용
 		LoginVO userInfo = (LoginVO) session.getAttribute("userInfo");
 		model.addAttribute("userInfo", userInfo);
-		 
-		//다음글을 위하여 게시글 갯수 설정 부분
-		String idxCnt = sampleService.getIdxCnt();
-		model.addAttribute("idxCnt", idxCnt);
-				
+		
 		return "sample/egovBoardList";
 	}
 	

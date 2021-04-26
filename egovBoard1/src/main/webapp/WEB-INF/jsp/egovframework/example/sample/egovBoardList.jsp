@@ -53,7 +53,7 @@
         /* pagination 페이지 링크 function */
         function fn_egov_link_page(pageNo){
         	document.listForm.pageIndex.value = pageNo;
-        	document.listForm.action = "<c:url value='/egovSampleList.do'/>";
+        	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
            	document.listForm.submit();
         }
         -->
@@ -67,8 +67,8 @@
     	<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
 	        <input type="hidden" name="selectedId" />
 	        <input type="hidden" name="selectedMenu" />
-	        <input type="hidden" id="menu" value="${menu}"/>
-	        <input type="hidden" id="idxCnt" value="${idxCnt}" />
+	        <input type="hidden" name="menu" id="menu" value="${menu}"/>
+	        <input type="hidden" name="idxCnt" id="idxCnt" value="${idxCnt}" />
 	        <div id="content_pop">
 	        	<!-- 타이틀 -->
 	        	<div id="title">
@@ -201,8 +201,6 @@
 				$('input[name=check]:checked').each(function() {
 					const check = $(this).attr('class');
 					const words = check.split('_');
-// 					const writer = $(this).parents('tr').children(':eq(3)').html();
-// 					const name = $('#name').html();
 					
 					checkArr.push(words[1]);
 				})

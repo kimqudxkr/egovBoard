@@ -36,7 +36,7 @@ import java.util.List;
 public interface EgovSampleService {
 
 	//게시글 목록을 받아옴
-	List<?> getBoardList() throws Exception;
+	List<?> getBoardList(BoardVO vo) throws Exception;
 	
 	//공지 게시글 목록을 받아옴
 	List<?> getNoticeList() throws Exception;

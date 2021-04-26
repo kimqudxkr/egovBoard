@@ -66,8 +66,8 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 
 	//게시글 목록을 받아옴
 	@Override
-	public List<?> getBoardList() throws Exception {
-		return sampleDAO.getBoardList();
+	public List<?> getBoardList(BoardVO vo) throws Exception {
+		return sampleDAO.getBoardList(vo);
 	}
 	
 	//공지 게시글 목록을 받아옴

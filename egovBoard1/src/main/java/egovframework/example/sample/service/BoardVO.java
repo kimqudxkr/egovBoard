@@ -36,6 +36,24 @@ public class BoardVO {
 	//링크2
 	private String link2;
 	
+	//한 페이지에 표시할 데이터 수
+	private int limit = 15;
+	
+	//페이지 offset
+	private int offset = 0;
+	
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	public int getOffset() {
+		return offset;
+	}
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
 	public String getLink1() {
 		return link1;
 	}

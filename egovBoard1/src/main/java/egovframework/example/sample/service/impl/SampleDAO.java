@@ -45,8 +45,8 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 @Repository("sampleDAO")
 public class SampleDAO extends EgovAbstractDAO {
 	//게시글 목록을 받아옴
-	public List<?> getBoardList() throws Exception {
-		return list("sampleDAO.getBoardList");
+	public List<?> getBoardList(BoardVO vo) throws Exception {
+		return list("sampleDAO.getBoardList", vo);
 	}
 	
 	//공지 게시글 목록을 받아옴
