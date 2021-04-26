@@ -49,6 +49,12 @@
 		]]>
 	</select>
 	
+	<select id="sampleDAO.getNonNoticeBoardCnt" resultClass="Integer">
+		SELECT COUNT(*) AS cnt
+		FROM boardtest
+		WHERE setting NOT IN ('notice')
+	</select>
+	
 	<select id="sampleDAO.getFilteredBoardList" resultClass="egovMap">
 		<![CDATA[
 			SELECT * 

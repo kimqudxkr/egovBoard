@@ -54,6 +54,11 @@ public class SampleDAO extends EgovAbstractDAO {
 		return list("sampleDAO.getNoticeList");
 	}
 	
+	//공지가 아닌 게시글 갯수 받아옴
+	public Integer getNonNoticeBoardCnt() throws Exception {
+		return (Integer) select("sampleDAO.getNonNoticeBoardCnt");
+	}
+	
 	//메뉴를이용하여 원하는 게시글만 보이도록 받아옴
 	public List<?> getFilteredBoardList(String menu) throws Exception {
 		return list("sampleDAO.getFilteredBoardList", menu);

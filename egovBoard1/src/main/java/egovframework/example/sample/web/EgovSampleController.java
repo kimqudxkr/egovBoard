@@ -103,6 +103,11 @@ public class EgovSampleController {
 		model.addAttribute("resultList", sampleList);
 		model.addAttribute("menu", menu);
 
+		//공지가 아닌 게시글 갯수
+		int nonNoticeBoardCnt = sampleService.getNonNoticeBoardCnt();
+		model.addAttribute("nonNotice", nonNoticeBoardCnt);
+		model.addAttribute("pageIndex", searchVO.getPageIndex());
+		
 		//다음글을 위하여 게시글 갯수 설정 부분
 		String idxCnt = sampleService.getIdxCnt();
 		model.addAttribute("idxCnt", idxCnt);

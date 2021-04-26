@@ -70,6 +70,11 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		return sampleDAO.getBoardList(vo);
 	}
 	
+	//공지가 아닌 게시글 갯수를 받아옴
+	public Integer getNonNoticeBoardCnt() throws Exception {
+		return sampleDAO.getNonNoticeBoardCnt();
+	}
+	
 	//공지 게시글 목록을 받아옴
 	@Override
 	public List<?> getNoticeList() throws Exception {

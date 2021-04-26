@@ -126,7 +126,7 @@
 	        			<c:forEach var="result" items="${resultList}" varStatus="status">
 	        				<c:set var="cnt" value="${cnt-1}"/>
 	            			<tr>
-	            				<td align="center" class="listtd"><c:out value="${cnt+fn:length(resultList)+1}"/></td>
+	            				<td align="center" class="listtd"><c:out value="${cnt+1+nonNotice-(pageIndex-1)*15}"/></td>
 	            				<td align="center" class="listtd">
 	            					<c:if test="${userInfo.name eq result.writer || userInfo.name eq '최고관리자'}">
 	            						<input type="checkbox" name="check" class="check_${result.idx}"/>
