@@ -42,6 +42,15 @@ public class BoardVO {
 	//페이지 offset
 	private int offset = 0;
 	
+	//필터링할 메뉴
+	private String menu;
+	
+	public String getMenu() {
+		return menu;
+	}
+	public void setMenu(String menu) {
+		this.menu = menu;
+	}
 	public int getLimit() {
 		return limit;
 	}

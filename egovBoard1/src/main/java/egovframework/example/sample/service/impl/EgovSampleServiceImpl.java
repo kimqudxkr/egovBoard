@@ -81,12 +81,6 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		return sampleDAO.getNoticeList();
 	}
 	
-	//메뉴를이용하여 원하는 게시글만 보이도록 받아옴
-	@Override
-	public List<?> getFilteredBoardList(String menu) throws Exception {
-		return sampleDAO.getFilteredBoardList(menu);
-	}
-	
 	//댓글 목록을 받아옴
 	@Override
 	public List<?> getReplyList(int idx) throws Exception {

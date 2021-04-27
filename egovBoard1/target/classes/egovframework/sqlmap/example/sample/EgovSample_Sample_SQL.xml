@@ -32,12 +32,16 @@
 	</resultMap>
 	
 	<select id="sampleDAO.getBoardList" resultClass="egovMap">
-		<![CDATA[
 			SELECT A.*, B.replyCnt
 			FROM boardtest A
 			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
-			ON A.idx = B.idx WHERE setting NOT IN ('notice') ORDER BY idx DESC LIMIT #limit# OFFSET #offset#
-		]]>
+			ON A.idx = B.idx WHERE setting NOT IN ('notice') 
+			<isNotNull property="menu">
+				<isNotEqual property="menu" compareValue="all">
+					AND setting IN (#menu#)
+				</isNotEqual>
+			</isNotNull>
+			ORDER BY idx DESC LIMIT #limit# OFFSET #offset#
 	</select>
 	
 	<select id="sampleDAO.getNoticeList" resultClass="egovMap">
@@ -53,15 +57,6 @@
 		SELECT COUNT(*) AS cnt
 		FROM boardtest
 		WHERE setting NOT IN ('notice')
-	</select>
-	
-	<select id="sampleDAO.getFilteredBoardList" resultClass="egovMap">
-		<![CDATA[
-			SELECT * 
-			FROM boardtest 
-			WHERE setting IN (#menu#)
-			ORDER BY idx DESC
-		]]>
 	</select>
 	
 	<select id="sampleDAO.getReplyList" resultClass="egovMap">

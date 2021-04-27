@@ -99,7 +99,10 @@ public class EgovSampleController {
 		vo.setOffset((searchVO.getPageIndex()-1)*15);
 		
 		//필터 적용시키는 곳
-		List<?> sampleList = (menu == null || menu.equals("") || menu.equals("all")) ? sampleService.getBoardList(vo) : sampleService.getFilteredBoardList(menu);
+		if(!(menu == null || menu.equals("")))
+			vo.setMenu(menu);
+		List<?> sampleList = sampleService.getBoardList(vo);
+//		List<?> sampleList = (menu == null || menu.equals("") || menu.equals("all")) ? sampleService.getBoardList(vo) : sampleService.getFilteredBoardList(menu);
 		model.addAttribute("resultList", sampleList);
 		model.addAttribute("menu", menu);
 

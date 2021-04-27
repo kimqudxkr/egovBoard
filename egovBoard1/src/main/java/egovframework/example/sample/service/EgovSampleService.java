@@ -44,9 +44,6 @@ public interface EgovSampleService {
 	//공지가 아닌 게시글 갯수를 받아옴
 	Integer getNonNoticeBoardCnt() throws Exception;
 	
-	//메뉴를이용하여 원하는 게시글만 보이도록 받아옴
-	List<?> getFilteredBoardList(String menu) throws Exception;
-	
 	//댓글 목록을 받아옴
 	List<?> getReplyList(int idx) throws Exception;
 	
