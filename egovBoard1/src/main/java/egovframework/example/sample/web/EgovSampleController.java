@@ -86,10 +86,15 @@ public class EgovSampleController {
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
 		paginationInfo.setPageSize(searchVO.getPageSize());
-		
+
 		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		
+		if(!(menu == null || menu.equals(""))) {
+			searchVO.setPageIndex(1);
+			paginationInfo.setCurrentPageNo(1);
+		}
 		
 		//공지사항 받아오는 곳
 		List<?> noticeList = sampleService.getNoticeList();
@@ -99,15 +104,14 @@ public class EgovSampleController {
 		vo.setOffset((searchVO.getPageIndex()-1)*15);
 		
 		//필터 적용시키는 곳
-		if(!(menu == null || menu.equals("")))
+		if(menu != null)
 			vo.setMenu(menu);
 		List<?> sampleList = sampleService.getBoardList(vo);
-//		List<?> sampleList = (menu == null || menu.equals("") || menu.equals("all")) ? sampleService.getBoardList(vo) : sampleService.getFilteredBoardList(menu);
 		model.addAttribute("resultList", sampleList);
 		model.addAttribute("menu", menu);
 
 		//공지가 아닌 게시글 갯수
-		int nonNoticeBoardCnt = sampleService.getNonNoticeBoardCnt();
+		int nonNoticeBoardCnt = sampleService.getNonNoticeBoardCnt(vo);
 		model.addAttribute("nonNotice", nonNoticeBoardCnt);
 		model.addAttribute("pageIndex", searchVO.getPageIndex());
 		
@@ -116,7 +120,7 @@ public class EgovSampleController {
 		model.addAttribute("idxCnt", idxCnt);
 		
 		//페이지네이션 페이지 갯수 생성
-		paginationInfo.setTotalRecordCount(Integer.parseInt(idxCnt));
+		paginationInfo.setTotalRecordCount(nonNoticeBoardCnt);
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		//HttpSession을 이용하여 회원 정보를 세션에 저장하여 사용

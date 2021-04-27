@@ -37,9 +37,11 @@
 			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
 			ON A.idx = B.idx WHERE setting NOT IN ('notice') 
 			<isNotNull property="menu">
+				<isNotEmpty property="menu">
 				<isNotEqual property="menu" compareValue="all">
 					AND setting IN (#menu#)
 				</isNotEqual>
+				</isNotEmpty>
 			</isNotNull>
 			ORDER BY idx DESC LIMIT #limit# OFFSET #offset#
 	</select>
@@ -54,9 +56,17 @@
 	</select>
 	
 	<select id="sampleDAO.getNonNoticeBoardCnt" resultClass="Integer">
-		SELECT COUNT(*) AS cnt
-		FROM boardtest
-		WHERE setting NOT IN ('notice')
+		SELECT count(*) as cnt
+		FROM boardtest A
+		LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
+		ON A.idx = B.idx WHERE setting NOT IN ('notice') 
+		<isNotNull property="menu">
+			<isNotEmpty property="menu">
+			<isNotEqual property="menu" compareValue="all">
+				AND setting IN (#menu#)
+			</isNotEqual>
+			</isNotEmpty>
+		</isNotNull>
 	</select>
 	
 	<select id="sampleDAO.getReplyList" resultClass="egovMap">

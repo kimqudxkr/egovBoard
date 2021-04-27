@@ -42,7 +42,7 @@ public interface EgovSampleService {
 	List<?> getNoticeList() throws Exception;
 	
 	//공지가 아닌 게시글 갯수를 받아옴
-	Integer getNonNoticeBoardCnt() throws Exception;
+	Integer getNonNoticeBoardCnt(BoardVO vo) throws Exception;
 	
 	//댓글 목록을 받아옴
 	List<?> getReplyList(int idx) throws Exception;

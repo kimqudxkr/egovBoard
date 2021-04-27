@@ -55,8 +55,8 @@ public class SampleDAO extends EgovAbstractDAO {
 	}
 	
 	//공지가 아닌 게시글 갯수 받아옴
-	public Integer getNonNoticeBoardCnt() throws Exception {
-		return (Integer) select("sampleDAO.getNonNoticeBoardCnt");
+	public Integer getNonNoticeBoardCnt(BoardVO vo) throws Exception {
+		return (Integer) select("sampleDAO.getNonNoticeBoardCnt", vo);
 	}
 	
 	//댓글 목록을 받아옴
