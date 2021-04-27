@@ -63,6 +63,9 @@
 			const content = $('.reply-content-' + cnt).html();
 
 			$('.reply').val(content);
+			
+			const btnClass = $('#save_button').removeClass('write_reply');
+			btnClass.addClass('modify_reply');
 		} else {
 			alert("작성자가 아닙니다!");
 		}
@@ -84,24 +87,19 @@
 	/* 댓글 등록 function */
 	function fn_egov_save() {
 		frm = document.detailForm;
-		const point = document.getElementsByClassName('reply-write')[0].parentNode.childElementCount;
+		const saveBtn = $('#save_button');
 
-		// 등록 시의 point는 20, 수정시의 point는 댓글 수에 따라 다름. 하지만 child element count라서 나중에 이 페이지를 수정하게 되면 바꿔야함
-		// 불안정한 코드
-		if (point == 20) {
+		if (saveBtn.is(".write_reply")) {
 			frm.action = "<c:url value='writeReply.do'/>";
-			console.log(point);
-		} else {
-			console.log(point);
+		} else if(saveBtn.is('.modify_reply')){
 			const input = document.getElementById('replyIdx');
 			input.disabled = false;
 
-			const classVal = $('.reply-write').prev().prev().attr('class')
-					.split('-');
+			const classVal = $('.reply-write').prev().prev().attr('class').split('-');
 			const idx = classVal[classVal.length - 1];
 
 			document.detailForm.replyIdx.value = idx;
-
+			document.detailForm.writer = $('#reply_writer').val();
 			document.detailForm.action = "<c:url value='/updateReply.do'/>";
 		}
 		frm.submit();
@@ -208,7 +206,7 @@
 						</tr>
 					</table>
 					<br />
-					<button type="button" class="write_reply">댓글등록</button>
+					<button type="button" id="save_button" class="write_reply">댓글등록</button>
 				</div>
 				<br />
 				<hr />

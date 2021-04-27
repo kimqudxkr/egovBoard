@@ -144,7 +144,8 @@ public class EgovSampleController {
 	//글 내용 조회 페이지
 	@RequestMapping(value = "/boardContentView.do")
 	public String boardContentView(@ModelAttribute("replyVO") ReplyVO replyVO, LoginVO userInfo, HttpSession session, 
-								   @RequestParam("selectedMenu") String menu, @RequestParam("selectedId") int idx, Model model) throws Exception {
+								   @RequestParam(value="selectedMenu", required=false) String menu, @RequestParam("selectedId") int idx, 
+								   Model model) throws Exception {
 		//조회수 증가 부분
 		BoardVO boardVO = sampleService.selectBoardByIdx(idx);
 		int cnt = boardVO.getCnt();
