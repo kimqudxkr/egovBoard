@@ -168,12 +168,22 @@
 	        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
 	        		<form:hidden path="pageIndex" />
 	        	</div>
+<!-- 	        	<div id="search-menu"> -->
+<!-- 	        		<select name="select" class="search-select"> -->
+<!-- 	        			<option value="title">제목</option> -->
+<!-- 	        			<option value="content">내용</option> -->
+<!-- 	        			<option value="title&content">제목+내용</option> -->
+<!-- 	        			<option value="writer">글쓴이</option> -->
+<!-- 	        		</select> -->
+<!-- 	        		<input type="text" class="search-input"/> -->
+<!-- 	        		<button type="button" class="search-btn">검색</button> -->
+<!-- 	        	</div> -->
 	        </div>
 	        <div id="user-menu">
 	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
 	        	 <button type="button">관리자 모드</button><br/>
-	        	 <button type="button">유지보수게시판메인</button><br/>
-	        	 <button type="button">미처리 게시글 확인</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>유지보수게시판메인</button><br/>
+	        	 <button type="button" class="checkUntreated">미처리 게시글 확인</button><br/>
 	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
 	        </div>
     	</div>
@@ -230,6 +240,11 @@
 				} else
 					alert("하나 이상 선택하세요");
     		});
+    		
+    		//미처리 게시글 확인 버튼 누를 시
+    		$('.checkUntreated').click(function() {
+    			location.href = 'javascript:fn_egov_selectList(\'untreated\');';
+    		})
     	})
     </script>
 </body>

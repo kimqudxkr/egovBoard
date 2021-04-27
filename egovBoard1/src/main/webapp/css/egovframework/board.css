@@ -37,3 +37,10 @@ button {padding:8px; background-color:#fafafa; border:1px solid black; border-ra
 #user-menu .name-content {float:left;}
 #user-menu button {background-color:red; color:white; padding:4px 4px 4px 4px; width:200px; height:30px; margin:3px 3px 3px 3px; border:0; outline:0;}
 #user-menu .logout {background-color:black; width:100px; float:left; border:0; outline:0;}
+
+#search-menu {width:100%; text-align:center; margin-top:40px;}
+#search-menu .search-select {height:24px;}
+#search-menu .search-input {width:100px;}
+#search-menu .search-btn {background-color:#ff3061; color:white; width:56px; height:24px;}
+
+.board-content {margin-left:30px;}

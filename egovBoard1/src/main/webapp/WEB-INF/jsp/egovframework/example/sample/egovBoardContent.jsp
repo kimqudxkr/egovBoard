@@ -119,7 +119,7 @@
 				<input type="hidden" name="beforeBoardIdx" id="beforeBoardIdx" value="${beforeBoardIdx}" />
 				<input type="hidden" name="selectedMenu" value="${menu}"/>
 				
-				<p style="text-align: left">
+				<p style="text-align: left" class="board-content">
 					<strong> 
 						<c:choose>
 							<c:when test="${boardVO.setting=='complete'}">처리완료</c:when>
@@ -130,8 +130,8 @@
 						</c:choose> | ${boardVO.title}
 					</strong>
 				</p>
-				<p style="text-align: left"><input type="checkbox" />개발여부</p>
-				<p style="text-align: left"> 작성자 
+				<p style="text-align: left" class="board-content"><input type="checkbox" />개발여부</p>
+				<p style="text-align: left" class="board-content"> 작성자 
 					<strong style="padding-right: 30px;" id="content_writer">${boardVO.writer}</strong>
 					<fmt:formatDate value="${boardVO.regDate }" pattern="yy-MM-dd HH:mm:ss" />
 					<span style="padding-left: 15px;">조회 ${boardVO.cnt}회</span>
@@ -170,7 +170,7 @@
 					</div>
 				</div>
 				<BR /><BR /><BR />
-				<p id="content" style="text-align: left; margin-bottom: 30px; white-space:pre;">${boardVO.content}</p>
+				<p id="content" style="text-align: left; margin-bottom: 30px; white-space:pre;" class="board-content">${boardVO.content}</p>
 				<BR /><BR />
 				<div class="reply" align="left">
 					<strong style="margin: 0;">댓글목록</strong>
@@ -226,7 +226,7 @@
 			<div id="user-menu">
 	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
 	        	 <button type="button">관리자 모드</button><br/>
-	        	 <button type="button">유지보수게시판메인</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>유지보수게시판메인</button><br/>
 	        	 <button type="button">미처리 게시글 확인</button><br/>
 	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
 	        </div>
