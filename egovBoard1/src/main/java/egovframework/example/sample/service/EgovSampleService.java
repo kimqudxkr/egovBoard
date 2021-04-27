@@ -85,6 +85,12 @@ public interface EgovSampleService {
 	
 	//게시글 개수 얻기
 	String getIdxCnt() throws Exception;
+	
+	//이전 게시글 idx 얻기
+	Integer getBeforeBoard(BoardVO vo) throws Exception;
+	
+	//다음 게시글 idx 얻기
+	Integer getAfterBoard(BoardVO vo) throws Exception;
 	//=========================================================================
 	/**
 	 * 글 총 갯수를 조회한다.

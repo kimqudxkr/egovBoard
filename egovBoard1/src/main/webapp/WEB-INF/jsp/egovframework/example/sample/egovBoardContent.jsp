@@ -117,6 +117,10 @@
 				<input type="hidden" name="selectedId" />
 				<input type="hidden" name="writer" class="writer" value="${userInfo.name}"/>
 				<input type="hidden" name="replyIdx" class="replyIdx" id="replyIdx" disabled />
+				<input type="hidden" name="afterBoardIdx" id="afterBoardIdx" value="${afterBoardIdx}" />
+				<input type="hidden" name="beforeBoardIdx" id="beforeBoardIdx" value="${beforeBoardIdx}" />
+				<input type="hidden" name="selectedMenu" value="${menu}"/>
+				
 				<p style="text-align: left">
 					<strong> 
 						<c:choose>
@@ -157,8 +161,8 @@
 				</c:if>
 				<div class="btn-group">
 					<div class="btn-group-left" style="padding: 10px; float: left">
-						<c:if test="${boardVO.idx ne 1}"><button type="button" class="before">이전글</button></c:if>
-						<c:if test="${boardVO.idx ne idxCnt}"><button type="button" class="after">다음글</button></c:if>
+						<c:if test="${beforeBoardIdx ne 0}"><button type="button" class="before">이전글</button></c:if>
+						<c:if test="${afterBoardIdx ne 0}"><button type="button" class="after">다음글</button></c:if>
 					</div>
 					<div class="btn-group-right" style="padding: 10px; float: right">
 						<button type="button" class="modify">수정</button>
@@ -210,8 +214,8 @@
 				<hr />
 				<div class="btn-group">
 					<div class="btn-group-left" style="padding: 10px; float: left">
-						<c:if test="${boardVO.idx ne 1}"><button type="button" class="before">이전글</button></c:if>
-						<c:if test="${boardVO.idx ne idxCnt}"><button type="button" class="after">다음글</button></c:if>
+						<c:if test="${beforeBoardIdx ne 0}"><button type="button" class="before">이전글</button></c:if>
+						<c:if test="${afterBoardIdx ne 0}"><button type="button" class="after">다음글</button></c:if>
 					</div>
 					<div class="btn-group-right" style="padding: 10px; float: right">
 						<button type="button" class="modify">수정</button>
@@ -254,13 +258,13 @@
 		})
 		
 		$('.before').click(function() {
-			const beforeIdx = $('.idx').val() - 1;
-			
+			const beforeIdx = $('#beforeBoardIdx').val();
+
 			location.href = 'javascript:fn_egov_select('+beforeIdx+');';
 		})
 		
 		$('.after').click(function() {
-			const nextIdx = $('.idx').val()*1 + 1;
+			const nextIdx = $('#afterBoardIdx').val();
 
 			location.href = 'javascript:fn_egov_select('+nextIdx+');';
 		})

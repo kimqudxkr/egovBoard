@@ -185,6 +185,39 @@
 		SELECT COUNT(*)
 		FROM boardtest;
 	</select>
+	
+	<select id="sampleDAO.getBeforeBoard" resultClass="Integer">
+		SELECT idx
+		FROM boardtest
+		<![CDATA[
+		WHERE idx < #idx#
+		]]>
+		<isNotNull property="menu">
+			<isNotEmpty property="menu">
+			<isNotEqual property="menu" compareValue="all">
+				AND setting IN (#menu#)
+			</isNotEqual>
+			</isNotEmpty>
+		</isNotNull>
+		ORDER BY idx DESC LIMIT 1;
+	</select>
+	
+	<select id="sampleDAO.getAfterBoard" resultClass="Integer">
+		SELECT idx
+		FROM boardtest
+		<![CDATA[
+		WHERE idx > #idx#
+		]]>
+		<isNotNull property="menu">
+			<isNotEmpty property="menu">
+			<isNotEqual property="menu" compareValue="all">
+				AND setting IN (#menu#)
+			</isNotEqual>
+			</isNotEmpty>
+		</isNotNull>
+		LIMIT 1;
+	</select>
+	
 	<!-- =================================================================================================== -->
 	<select id="sampleDAO.selectSampleListTotCnt" parameterClass="searchVO" resultClass="int">
 

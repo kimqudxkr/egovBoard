@@ -32,6 +32,7 @@
         <!--
         /* 글 내용 조회 화면 function */
         function fn_egov_select(id) {
+        	document.listForm.selectedMenu.value = $('#menu').val();
         	document.listForm.selectedId.value = id;
            	document.listForm.action = "<c:url value='/boardContentView.do'/>";
            	document.listForm.submit();

@@ -167,6 +167,17 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 	public String getIdxCnt() throws Exception {
 		return sampleDAO.getIdxCnt();
 	}
+	
+	//이전 게시글 idx 얻기
+	public Integer getBeforeBoard(BoardVO vo) throws Exception {
+		return sampleDAO.getBeforeBoard(vo);
+	}
+	
+	//다음 게시글 idx 얻기
+	public Integer getAfterBoard(BoardVO vo) throws Exception {
+		return sampleDAO.getAfterBoard(vo);
+	}
+	
 	//=========================================================================================
 	/**
 	 * 글 총 갯수를 조회한다.
