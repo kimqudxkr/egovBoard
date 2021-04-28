@@ -34,13 +34,21 @@
 </body>
 <script>
 	$(function() {
+		//로그인 버튼 누를 시
 		$('.loginBtn').click(function() {
 			location.href = 'javascript:fn_egov_login();';
 		})
 		
+		//로그인 실패 시
 		if($('#noResult').val() != "") {
 			alert($('#noResult').val());
 		}
+		
+		//비밀번호 칸에서 엔터누르면 로그인 시도
+		$('#password').keyup(function(e) {
+			if(e.keyCode == 13)
+				location.href = 'javascript:fn_egov_login();';
+		})
 	});
 </script>
 </html>
