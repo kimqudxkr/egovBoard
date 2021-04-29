@@ -45,6 +45,25 @@ public class BoardVO {
 	//필터링할 메뉴
 	private String menu;
 	
+	//검색 조건
+	private String searchType;
+	
+	//검색 값
+	private String searchValue;
+	
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getSearchValue() {
+		return searchValue;
+	}
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
 	public String getMenu() {
 		return menu;
 	}

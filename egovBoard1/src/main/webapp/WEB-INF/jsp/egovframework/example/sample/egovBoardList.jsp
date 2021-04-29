@@ -57,6 +57,12 @@
         	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
            	document.listForm.submit();
         }
+        
+        /* 글 목록 화면 function */
+        function fn_egov_selectListBySearch() {
+        	document.listForm.action = "<c:url value='/egovBoardListBySearch.do'/>";
+           	document.listForm.submit();
+        }
         -->
     </script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -75,7 +81,7 @@
 	        	<div id="title">
 	        		<h2>좋은삼정병원</h2>
 	        	</div>
-	        	<!-- List -->
+	        	<!-- 게시글 필터 메뉴 -->
 	        	<div id="nav_menu">
 	        		<br/><br/><br/>
 					<ul >
@@ -86,6 +92,7 @@
 						<li><a class="hold" href="javascript:fn_egov_selectList('hold')">보류</a></li>
 					</ul>
 	        	</div>
+	        	<!-- 게시글들이 표시될 테이블 -->
 	        	<div id="table">
 	        		<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블">
 	        			<caption style="visibility:hidden">카테고리ID, 케테고리명, 사용여부, Description, 등록자 표시하는 테이블</caption>
@@ -105,6 +112,7 @@
 	        				<th align="center">날짜</th>
 	        				<th align="center">조회</th>
 	        			</tr>
+	        			<!-- 공지 게시글들 표시 부분 -->
 	        			<c:forEach var="result" items="${noticeList}" varStatus="status">
 	            			<tr style="background-color:#eff1f4">
 	            				<td align="center" class="listtd" style="font-weight:bold;"><c:out value="공지"/></td>
@@ -123,6 +131,7 @@
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
 	            			</tr>
+	            		<!-- 일반 게시글들 표시 부분 -->
 	        			</c:forEach>
 	        			<c:forEach var="result" items="${resultList}" varStatus="status">
 	        				<c:set var="cnt" value="${cnt-1}"/>
@@ -155,6 +164,7 @@
 	        			</c:forEach>
 	        		</table>
 	        	</div>
+	        	<!-- 하단 버튼들 -->
 	        	<div class="btn-group">
 					<div class="btn-group-left" style="padding: 10px; float: left">
 						<button type="button" class="delete_select">선택삭제</button>
@@ -163,22 +173,25 @@
 						<button type="button" class="write" onclick='javascript:fn_egov_write();'>글쓰기</button>
 					</div>
 				</div>
-	        	<!-- List -->
+	        	<!-- 페이징 -->
 	        	<div id="paging">
 	        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page" />
 	        		<form:hidden path="pageIndex" />
 	        	</div>
-<!-- 	        	<div id="search-menu"> -->
-<!-- 	        		<select name="select" class="search-select"> -->
-<!-- 	        			<option value="title">제목</option> -->
-<!-- 	        			<option value="content">내용</option> -->
-<!-- 	        			<option value="title&content">제목+내용</option> -->
-<!-- 	        			<option value="writer">글쓴이</option> -->
-<!-- 	        		</select> -->
-<!-- 	        		<input type="text" class="search-input"/> -->
-<!-- 	        		<button type="button" class="search-btn">검색</button> -->
-<!-- 	        	</div> -->
+	        	<!-- 검색 메뉴 -->
+	        	<div id="search-menu">
+	        		<select name="searchType" class="search-select">
+	        			<option value="">선택</option>
+	        			<option value="title">제목</option>
+	        			<option value="content">내용</option>
+	        			<option value="titleOrContent">제목+내용</option>
+	        			<option value="writer">글쓴이</option>
+	        		</select>
+	        		<input type="text" class="search-input" name="searchValue"/>
+	        		<button type="button" class="search-btn" onclick='javascript:fn_egov_selectListBySearch();'>검색</button>
+	        	</div>
 	        </div>
+	        <!-- 유저 메뉴 -->
 	        <div id="user-menu">
 	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
 	        	 <button type="button">관리자 모드</button><br/>

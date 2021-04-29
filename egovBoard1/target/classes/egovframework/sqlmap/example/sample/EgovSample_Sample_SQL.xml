@@ -35,7 +35,8 @@
 			SELECT A.*, B.replyCnt
 			FROM boardtest A
 			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
-			ON A.idx = B.idx WHERE setting NOT IN ('notice') 
+			ON A.idx = B.idx 
+			WHERE setting NOT IN ('notice') 
 			<isNotNull property="menu">
 				<isNotEmpty property="menu">
 				<isNotEqual property="menu" compareValue="all">
@@ -43,6 +44,36 @@
 				</isNotEqual>
 				</isNotEmpty>
 			</isNotNull>
+			ORDER BY idx DESC LIMIT #limit# OFFSET #offset#
+	</select>
+	
+	<select id="sampleDAO.getBoardListBySearch" resultClass="egovMap">
+			SELECT A.*, B.replyCnt
+			FROM boardtest A
+			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
+			ON A.idx = B.idx 
+			WHERE setting NOT IN ('notice') 
+			<isNotNull property="menu">
+				<isNotEmpty property="menu">
+				<isNotEqual property="menu" compareValue="all">
+					AND setting IN (#menu#)
+				</isNotEqual>
+				</isNotEmpty>
+			</isNotNull>
+			<isNotEmpty property="searchType">
+				<isEqual property="searchType" compareValue="titleOrContent">
+					AND (title LIKE concat('%', #searchValue#, '%') OR content LIKE concat('%', #searchValue#, '%'))
+				</isEqual>
+				<isEqual property="searchType" compareValue="writer">
+					AND writer = #searchValue#
+				</isEqual>
+				<isEqual property="searchType" compareValue="title">
+					AND title LIKE concat('%', #searchValue#, '%')
+				</isEqual>
+				<isEqual property="searchType" compareValue="content">
+					AND content LIKE concat('%', #searchValue#, '%')
+				</isEqual>
+			</isNotEmpty>
 			ORDER BY idx DESC LIMIT #limit# OFFSET #offset#
 	</select>
 	
@@ -59,7 +90,8 @@
 		SELECT count(*) as cnt
 		FROM boardtest A
 		LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
-		ON A.idx = B.idx WHERE setting NOT IN ('notice') 
+		ON A.idx = B.idx 
+		WHERE setting NOT IN ('notice') 
 		<isNotNull property="menu">
 			<isNotEmpty property="menu">
 			<isNotEqual property="menu" compareValue="all">
@@ -67,6 +99,20 @@
 			</isNotEqual>
 			</isNotEmpty>
 		</isNotNull>
+		<isNotEmpty property="searchType">
+			<isEqual property="searchType" compareValue="titleOrContent">
+				AND (title LIKE concat('%', #searchValue#, '%') OR content LIKE concat('%', #searchValue#, '%'))
+			</isEqual>
+			<isEqual property="searchType" compareValue="writer">
+				AND writer = #searchValue#
+			</isEqual>
+			<isEqual property="searchType" compareValue="title">
+				AND title LIKE concat('%', #searchValue#, '%')
+			</isEqual>
+			<isEqual property="searchType" compareValue="content">
+				AND content LIKE concat('%', #searchValue#, '%')
+			</isEqual>
+		</isNotEmpty>
 	</select>
 	
 	<select id="sampleDAO.getReplyList" resultClass="egovMap">

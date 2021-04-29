@@ -38,6 +38,9 @@ public interface EgovSampleService {
 	//게시글 목록을 받아옴
 	List<?> getBoardList(BoardVO vo) throws Exception;
 	
+	//검색 게시글 목록을 받아옴
+	List<?> getBoardListBySearch(BoardVO vo) throws Exception;
+		
 	//공지 게시글 목록을 받아옴
 	List<?> getNoticeList() throws Exception;
 	

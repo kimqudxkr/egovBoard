@@ -131,6 +131,52 @@ public class EgovSampleController {
 		return "sample/egovBoardList";
 	}
 	
+	//검색한 글 목록 불러오는 부분
+	@RequestMapping(value="/egovBoardListBySearch.do")
+	public String selectLisBySearch(HttpServletRequest request, @ModelAttribute("boardVO") BoardVO boardVO,
+									@ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model,
+							 HttpSession session) throws Exception {
+		/** pageing setting */
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
+		paginationInfo.setPageSize(searchVO.getPageSize());
+
+		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		
+		//공지사항 받아오는 곳
+		List<?> noticeList = sampleService.getNoticeList();
+		model.addAttribute("noticeList", noticeList);
+
+		//페이지네이션 적용
+		boardVO.setOffset((searchVO.getPageIndex()-1)*15);
+		
+		//검색 적용
+		List<?> sampleList = sampleService.getBoardListBySearch(boardVO);
+		model.addAttribute("resultList", sampleList);
+
+		//공지가 아닌 게시글 갯수
+		int nonNoticeBoardCnt = sampleService.getNonNoticeBoardCnt(boardVO);
+		model.addAttribute("nonNotice", nonNoticeBoardCnt);
+		model.addAttribute("pageIndex", searchVO.getPageIndex());
+		
+		//다음글을 위하여 게시글 갯수 설정 부분
+		String idxCnt = sampleService.getIdxCnt();
+		model.addAttribute("idxCnt", idxCnt);
+		
+		//페이지네이션 페이지 갯수 생성
+		paginationInfo.setTotalRecordCount(nonNoticeBoardCnt);
+		model.addAttribute("paginationInfo", paginationInfo);
+		
+		//HttpSession을 이용하여 회원 정보를 세션에 저장하여 사용
+		LoginVO userInfo = (LoginVO) session.getAttribute("userInfo");
+		model.addAttribute("userInfo", userInfo);
+		
+		return "sample/egovBoardList";
+	}
+	
 	//글쓰기 페이지
 	@RequestMapping(value = "/boardWriteView.do")
 	public String boardWrite(@ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model, LoginVO userInfo,HttpSession session) throws Exception {

@@ -49,6 +49,11 @@ public class SampleDAO extends EgovAbstractDAO {
 		return list("sampleDAO.getBoardList", vo);
 	}
 	
+	//검색 게시글 목록을 받아옴
+	public List<?> getBoardListBySearch(BoardVO vo) throws Exception {
+		return list("sampleDAO.getBoardListBySearch", vo);
+	}
+	
 	//공지 게시글 목록을 받아옴
 	public List<?> getNoticeList() throws Exception {
 		return list("sampleDAO.getNoticeList");
