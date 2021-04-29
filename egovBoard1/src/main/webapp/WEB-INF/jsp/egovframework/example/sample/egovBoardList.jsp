@@ -182,13 +182,13 @@
 	        	<!-- 검색 메뉴 -->
 	        	<div id="search-menu">
 	        		<select name="searchType" class="search-select">
-	        			<option value="">선택</option>
-	        			<option value="title">제목</option>
-	        			<option value="content">내용</option>
-	        			<option value="titleOrContent">제목+내용</option>
-	        			<option value="writer">글쓴이</option>
+	        			<option value="" <c:if test="${searchType eq ''}">selected</c:if>>선택</option>
+	        			<option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
+	        			<option value="content" <c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
+	        			<option value="titleOrContent" <c:if test="${searchType eq 'titleOrContent'}">selected</c:if>>제목+내용</option>
+	        			<option value="writer" <c:if test="${searchType eq 'writer'}">selected</c:if>>글쓴이</option>
 	        		</select>
-	        		<input type="text" class="search-input" name="searchValue"/>
+	        		<input type="text" class="search-input" name="searchValue" value="${searchValue}"/>
 	        		<button type="button" class="search-btn" onclick="javascript:fn_egov_selectListBySearch('${menu}');">검색</button>
 	        	</div>
 	        </div>

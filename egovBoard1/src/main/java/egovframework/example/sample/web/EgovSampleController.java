@@ -157,8 +157,9 @@ public class EgovSampleController {
 		//검색 적용
 		List<?> sampleList = sampleService.getBoardListBySearch(boardVO);
 		model.addAttribute("resultList", sampleList);
-		System.out.println("now menu============================"+menu);
 		model.addAttribute("menu", menu);
+		model.addAttribute("searchType", boardVO.getSearchType());
+		model.addAttribute("searchValue", boardVO.getSearchValue());
 		
 		//공지가 아닌 게시글 갯수
 		int nonNoticeBoardCnt = sampleService.getNonNoticeBoardCnt(boardVO);

@@ -46,10 +46,10 @@ public class BoardVO {
 	private String menu;
 	
 	//검색 조건
-	private String searchType;
+	private String searchType = "";
 	
 	//검색 값
-	private String searchValue;
+	private String searchValue = "";
 	
 	
 	public String getSearchType() {
