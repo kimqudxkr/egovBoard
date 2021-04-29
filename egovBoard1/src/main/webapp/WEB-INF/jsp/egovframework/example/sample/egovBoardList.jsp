@@ -59,7 +59,8 @@
         }
         
         /* 글 목록 화면 function */
-        function fn_egov_selectListBySearch() {
+        function fn_egov_selectListBySearch(menu) {
+        	document.listForm.selectedMenu.value = menu;
         	document.listForm.action = "<c:url value='/egovBoardListBySearch.do'/>";
            	document.listForm.submit();
         }
@@ -188,7 +189,7 @@
 	        			<option value="writer">글쓴이</option>
 	        		</select>
 	        		<input type="text" class="search-input" name="searchValue"/>
-	        		<button type="button" class="search-btn" onclick='javascript:fn_egov_selectListBySearch();'>검색</button>
+	        		<button type="button" class="search-btn" onclick="javascript:fn_egov_selectListBySearch('${menu}');">검색</button>
 	        	</div>
 	        </div>
 	        <!-- 유저 메뉴 -->

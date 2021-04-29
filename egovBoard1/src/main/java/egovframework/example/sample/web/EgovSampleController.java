@@ -133,7 +133,8 @@ public class EgovSampleController {
 	
 	//검색한 글 목록 불러오는 부분
 	@RequestMapping(value="/egovBoardListBySearch.do")
-	public String selectLisBySearch(HttpServletRequest request, @ModelAttribute("boardVO") BoardVO boardVO,
+	public String selectLisBySearch(HttpServletRequest request, @RequestParam(value="selectedMenu", required=false) String menu,
+			 						@ModelAttribute("boardVO") BoardVO boardVO,
 									@ModelAttribute("searchVO") SampleDefaultVO searchVO, ModelMap model,
 							 HttpSession session) throws Exception {
 		/** pageing setting */
@@ -156,7 +157,9 @@ public class EgovSampleController {
 		//검색 적용
 		List<?> sampleList = sampleService.getBoardListBySearch(boardVO);
 		model.addAttribute("resultList", sampleList);
-
+		System.out.println("now menu============================"+menu);
+		model.addAttribute("menu", menu);
+		
 		//공지가 아닌 게시글 갯수
 		int nonNoticeBoardCnt = sampleService.getNonNoticeBoardCnt(boardVO);
 		model.addAttribute("nonNotice", nonNoticeBoardCnt);
