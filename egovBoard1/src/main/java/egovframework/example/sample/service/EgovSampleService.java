@@ -94,6 +94,12 @@ public interface EgovSampleService {
 	
 	//다음 게시글 idx 얻기
 	Integer getAfterBoard(BoardVO vo) throws Exception;
+	
+	//아이디 중복 체크
+	String checkId(LoginVO vo) throws Exception;
+	
+	//회원가입
+	void joinUser(LoginVO vo) throws Exception;
 	//=========================================================================
 	/**
 	 * 글 총 갯수를 조회한다.

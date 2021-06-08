@@ -340,6 +340,12 @@ public class EgovSampleController {
 		return "sample/egovLogin";
 	}
 	
+	//회원가입 페이지를 띄우는 메소드
+	@RequestMapping("/egovBoardJoin.do")
+	public String join(@ModelAttribute("LoginVO") LoginVO loginVO) throws Exception {
+		return "sample/egovBoardJoin";
+	}
+	
 	//로그인을 수행하는 메서드
 	@RequestMapping(value = "/startLogin.do", method = RequestMethod.POST)
 	public String startLogin(@ModelAttribute("LoginVO") LoginVO loginVO, Model model, HttpSession session) throws Exception {
@@ -360,6 +366,22 @@ public class EgovSampleController {
 			return "sample/egovLogin";
 		}
 	}
+	
+	//로그인을 수행하는 메서드
+		@RequestMapping(value = "/startJoin.do", method = RequestMethod.POST)
+		public String startJoin(@ModelAttribute("LoginVO") LoginVO loginVO, Model model) throws Exception {
+			String result = sampleService.checkId(loginVO);
+			
+			if(result == null) {
+				sampleService.joinUser(loginVO);
+				
+				return "redirect:/egovLogin.do";
+			} else {
+				System.out.println("중복!!!");
+				
+				return "sample/egovBoardJoin";
+			}
+		}
 	
 	//로그아웃을 수행하는 메서드
 	@RequestMapping(value="/logout.do")

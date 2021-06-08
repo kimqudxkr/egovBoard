@@ -140,9 +140,19 @@ public class SampleDAO extends EgovAbstractDAO {
 	}
 	
 	//다음 게시글 idx 얻기
-		public Integer getAfterBoard(BoardVO vo) throws Exception {
-			return (Integer) select("sampleDAO.getAfterBoard", vo);
-		}
+	public Integer getAfterBoard(BoardVO vo) throws Exception {
+		return (Integer) select("sampleDAO.getAfterBoard", vo);
+	}
+		
+	//아이디 중복 체크
+	public String checkId(LoginVO vo) throws Exception {
+		return (String) select("sampleDAO.checkId", vo);
+	}
+	
+	//회원가입
+	public void joinUser(LoginVO vo) throws Exception {
+		insert("sampleDAO.joinUser", vo);
+	}
 	//====================================================================
 	/**
 	 * 글 총 갯수를 조회한다.

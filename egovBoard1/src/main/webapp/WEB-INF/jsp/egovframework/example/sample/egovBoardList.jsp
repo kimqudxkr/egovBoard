@@ -132,8 +132,8 @@
 	            				<td align="center" class="listtd"><fmt:formatDate value="${result.regDate }" pattern="MM-dd"/>&nbsp;</td>
 	            				<td align="center" class="listtd"><c:out value="${result.cnt}"/>&nbsp;</td>
 	            			</tr>
-	            		<!-- 일반 게시글들 표시 부분 -->
 	        			</c:forEach>
+	        			<!-- 일반 게시글들 표시 부분 -->
 	        			<c:forEach var="result" items="${resultList}" varStatus="status">
 	        				<c:set var="cnt" value="${cnt-1}"/>
 	            			<tr>

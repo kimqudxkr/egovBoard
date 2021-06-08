@@ -264,6 +264,18 @@
 		LIMIT 1;
 	</select>
 	
+	<select id="sampleDAO.checkId" resultClass="String">
+		SELECT id
+		FROM board_user
+		WHERE id = #id#
+	</select>
+	
+	<insert id="sampleDAO.joinUser">
+		INSERT INTO board_user
+		(id, password, name)
+		VALUES (#id#, #password#, #name#)
+	</insert>
+	
 	<!-- =================================================================================================== -->
 	<select id="sampleDAO.selectSampleListTotCnt" parameterClass="searchVO" resultClass="int">
 

@@ -184,6 +184,15 @@ public class EgovSampleServiceImpl extends EgovAbstractServiceImpl implements Eg
 		return sampleDAO.getAfterBoard(vo);
 	}
 	
+	//아이디 중복 체크
+	public String checkId(LoginVO vo) throws Exception {
+		return sampleDAO.checkId(vo);
+	}
+	
+	//회원가입
+	public void joinUser(LoginVO vo) throws Exception {
+		sampleDAO.joinUser(vo);
+	}
 	//=========================================================================================
 	/**
 	 * 글 총 갯수를 조회한다.
