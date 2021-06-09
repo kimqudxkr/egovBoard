@@ -379,6 +379,7 @@ public class EgovSampleController {
 			} else {
 				System.out.println("중복!!!");
 				
+				model.addAttribute("duplicated", "아이디가 중복됩니다!");
 				return "sample/egovBoardJoin";
 			}
 		}

@@ -29,7 +29,7 @@
 </script>
 </head>
 <body style="background-color:#eeeeee; margin-top:100px;">
-	<input type="hidden" value="${result}" id="noResult"/>
+	<input type="hidden" value="${duplicated}" id="duplicated"/>
 	<div style="text-align:center;">
 		<h2>회원가입</h2>
 		<div class="joinDiv">
@@ -67,6 +67,11 @@
 		$('.cancel').click(function() {
 			window.history.back();
 		})
+		
+		//회원가입 실패 시
+		if($('#duplicated').val() != "") {
+			alert($('#duplicated').val());
+		}
 	});
 </script>
 </html>
