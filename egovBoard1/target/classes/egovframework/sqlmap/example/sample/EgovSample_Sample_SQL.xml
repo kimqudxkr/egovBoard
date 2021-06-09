@@ -33,7 +33,7 @@
 	
 	<select id="sampleDAO.getBoardList" resultClass="egovMap">
 			SELECT A.*, B.replyCnt
-			FROM boardtest A
+			FROM board_list A
 			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
 			ON A.idx = B.idx 
 			WHERE setting NOT IN ('notice') 
@@ -49,7 +49,7 @@
 	
 	<select id="sampleDAO.getBoardListBySearch" resultClass="egovMap">
 			SELECT A.*, B.replyCnt
-			FROM boardtest A
+			FROM board_list A
 			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
 			ON A.idx = B.idx 
 			WHERE setting NOT IN ('notice') 
@@ -80,7 +80,7 @@
 	<select id="sampleDAO.getNoticeList" resultClass="egovMap">
 		<![CDATA[
 			SELECT A.*, B.replyCnt
-			FROM boardtest A
+			FROM board_list A
 			LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
 			ON A.idx = B.idx WHERE setting IN ('notice') ORDER BY idx DESC
 		]]>
@@ -88,7 +88,7 @@
 	
 	<select id="sampleDAO.getNonNoticeBoardCnt" resultClass="Integer">
 		SELECT count(*) as cnt
-		FROM boardtest A
+		FROM board_list A
 		LEFT JOIN (SELECT idx, count(*) as replyCnt FROM board_reply GROUP BY idx ORDER BY idx DESC) B
 		ON A.idx = B.idx 
 		WHERE setting NOT IN ('notice') 
@@ -127,14 +127,14 @@
 	<select id="sampleDAO.selectBoardByIdx" resultMap="board">
 		<![CDATA[
 			SELECT *
-            FROM boardtest
+            FROM board_list
             WHERE idx=#idx#
 		]]>
 	</select>
 	
 	<insert id="sampleDAO.insertBoard">
 		<![CDATA[
-			INSERT INTO boardtest 
+			INSERT INTO board_list 
 				( writer
 				  , title
 				  , content
@@ -171,14 +171,14 @@
 	<select id="sampleDAO.selectBoard" resultMap="board">
         
             SELECT *
-            FROM boardtest
+            FROM board_list
             WHERE idx=#idx#
        
     </select>
 
 	<update id="sampleDAO.updateBoard">
 		<![CDATA[
-			UPDATE boardtest
+			UPDATE board_list
 			SET title=#title#
 				, content=#content#
 				, setting=#setting#
@@ -189,13 +189,13 @@
 	</update>
 	
 	<delete id="sampleDAO.deleteBoard">
-		DELETE FROM boardtest WHERE idx=#idx#
+		DELETE FROM board_list WHERE idx=#idx#
 	</delete>
 	
 	<update id="sampleDAO.updateIdx">
-		ALTER TABLE boardtest AUTO_INCREMENT=1;
+		ALTER TABLE board_list AUTO_INCREMENT=1;
 		SET @COUNT = 0;
-		UPDATE boardtest SET idx = @COUNT:=@COUNT+1;
+		UPDATE board_list SET idx = @COUNT:=@COUNT+1;
 	</update>
 	
 	<delete id="sampleDAO.deleteReply">
@@ -210,7 +210,7 @@
 	</update>
 	
 	<update id="sampleDAO.updateCount">
-		UPDATE boardtest
+		UPDATE board_list
 		SET cnt=#cnt#
 		WHERE idx=#idx#
 	</update>
@@ -229,12 +229,12 @@
 	
 	<select id="sampleDAO.getIdxCnt" resultClass="String">
 		SELECT COUNT(*)
-		FROM boardtest;
+		FROM board_list;
 	</select>
 	
 	<select id="sampleDAO.getBeforeBoard" resultClass="Integer">
 		SELECT idx
-		FROM boardtest
+		FROM board_list
 		<![CDATA[
 		WHERE idx < #idx#
 		]]>
@@ -250,7 +250,7 @@
 	
 	<select id="sampleDAO.getAfterBoard" resultClass="Integer">
 		SELECT idx
-		FROM boardtest
+		FROM board_list
 		<![CDATA[
 		WHERE idx > #idx#
 		]]>

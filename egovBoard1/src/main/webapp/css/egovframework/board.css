@@ -19,8 +19,8 @@ button {padding:8px; background-color:#fafafa; border:1px solid black; border-ra
 #content_pop #content {text-align:left;}
 
 .btn-group {padding:10px;}
-.btn-group .write {background-color:black; color:white; padding:8px 15px 8px 15px;}
-.btn-group .delete_select {float:left; background-color:red; color:white; padding:8px 15px 8px 15px;}
+.btn-group .write {background-color:green; color:white; padding:8px 15px 8px 15px;}
+.btn-group .delete_select {float:left; background-color:grey; color:white; padding:8px 15px 8px 15px;}
 
 .reply {width:90%; margin:0 auto; border:1px solid black; background-color:#eff1f4; padding:7px 7px 7px 7px;}
 
@@ -35,13 +35,13 @@ button {padding:8px; background-color:#fafafa; border:1px solid black; border-ra
 
 #user-menu {float:right; width:210px; padding:10px 10px 10px 10px; border-bottom:1px solid #dde4e9;}
 #user-menu .name-content {float:left;}
-#user-menu button {background-color:red; color:white; padding:4px 4px 4px 4px; width:200px; height:30px; margin:3px 3px 3px 3px; border:0; outline:0;}
-#user-menu .logout {background-color:black; width:100px; float:left; border:0; outline:0;}
+#user-menu button {background-color:green; color:white; padding:4px 4px 4px 4px; width:200px; height:30px; margin:3px 3px 3px 3px; border:0; outline:0;}
+#user-menu .logout {background-color:grey; width:100px; float:left; border:0; outline:0;}
 
 #search-menu {width:100%; text-align:center; margin-top:40px;}
 #search-menu .search-select {height:24px;}
 #search-menu .search-input {width:100px;}
-#search-menu .search-btn {background-color:#ff3061; color:white; width:56px; height:24px;}
+#search-menu .search-btn {background-color:green; color:white; width:56px; height:24px;}
 
 .board-content {margin-left:30px;}
 

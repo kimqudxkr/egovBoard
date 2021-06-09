@@ -44,7 +44,7 @@
            	document.listForm.submit();
         }
         
-        /* 글 목록 화면 function */
+        /* 필터링 적용 function */
         function fn_egov_selectList(menu) {
         	document.listForm.selectedMenu.value = menu;
         	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
@@ -58,11 +58,21 @@
            	document.listForm.submit();
         }
         
-        /* 글 목록 화면 function */
+        /* 글 검색 function */
         function fn_egov_selectListBySearch(menu) {
         	document.listForm.selectedMenu.value = menu;
         	document.listForm.action = "<c:url value='/egovBoardListBySearch.do'/>";
            	document.listForm.submit();
+        }
+        
+        /* 내가 작성한 게시글 function */
+        function fn_egov_myBoards() {
+        	const name = $('#name').text();
+        	$('#searchValue').val(name);
+        	$('#searchType option:eq(4)').prop("selected", true);
+        	
+        	document.listForm.action = "<c:url value='/egovBoardListBySearch.do'/>";
+        	document.listForm.submit();
         }
         -->
     </script>
@@ -80,7 +90,7 @@
 	        <div id="content_pop">
 	        	<!-- 타이틀 -->
 	        	<div id="title">
-	        		<h2>좋은삼정병원</h2>
+	        		<h2>게시글목록</h2>
 	        	</div>
 	        	<!-- 게시글 필터 메뉴 -->
 	        	<div id="nav_menu">
@@ -181,22 +191,22 @@
 	        	</div>
 	        	<!-- 검색 메뉴 -->
 	        	<div id="search-menu">
-	        		<select name="searchType" class="search-select">
+	        		<select name="searchType" id="searchType" class="search-select">
 	        			<option value="" <c:if test="${searchType eq ''}">selected</c:if>>선택</option>
 	        			<option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
 	        			<option value="content" <c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
 	        			<option value="titleOrContent" <c:if test="${searchType eq 'titleOrContent'}">selected</c:if>>제목+내용</option>
 	        			<option value="writer" <c:if test="${searchType eq 'writer'}">selected</c:if>>글쓴이</option>
 	        		</select>
-	        		<input type="text" class="search-input" name="searchValue" value="${searchValue}"/>
+	        		<input type="text" class="search-input" id="searchValue" name="searchValue" value="${searchValue}"/>
 	        		<button type="button" class="search-btn" onclick="javascript:fn_egov_selectListBySearch('${menu}');">검색</button>
 	        	</div>
 	        </div>
 	        <!-- 유저 메뉴 -->
 	        <div id="user-menu">
 	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
-	        	 <button type="button">관리자 모드</button><br/>
-	        	 <button type="button" onclick='location.href="egovBoardList.do"'>유지보수게시판메인</button><br/>
+	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시판목록</button><br/>
 	        	 <button type="button" class="checkUntreated">미처리 게시글 확인</button><br/>
 	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
 	        </div>

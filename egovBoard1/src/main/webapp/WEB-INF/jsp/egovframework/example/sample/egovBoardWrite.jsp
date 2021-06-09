@@ -54,6 +54,16 @@
 	      	frm.action = "<c:url value="${registerFlag == 'create' ? '/boardWrite.do' : '/updateBoard.do'}"/>";
 	        frm.submit();
         }
+        
+        /* 내가 작성한 게시글 function */
+        function fn_egov_myBoards() {
+        	const name = $('#name').text();
+        	$('#searchValue').val(name);
+        	$('#searchType option:eq(4)').prop("selected", true);
+        	
+        	document.listForm.action = "<c:url value='/egovBoardListBySearch.do'/>";
+        	document.listForm.submit();
+        }
         -->
     </script>
 </head>
@@ -65,8 +75,8 @@
 		    	<!-- 타이틀 -->
 		    	<div id="title">
 		    		<h2>
-		    			<c:if test="${registerFlag == 'create'}">좋은삼정병원 글쓰기</c:if>
-	                    <c:if test="${registerFlag == 'modify'}">좋은삼정병원 글수정</c:if>
+		    			<c:if test="${registerFlag == 'create'}">글작성</c:if>
+	                    <c:if test="${registerFlag == 'modify'}">글수정</c:if>
 		    		</h2>
 		    	</div>
 		    	<!-- // 테이블 -->
@@ -161,9 +171,9 @@
 		    </div>
 		    <div id="user-menu">
 	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
-	        	 <button type="button">관리자 모드</button><br/>
-	        	 <button type="button" onclick='location.href="egovBoardList.do"'>유지보수게시판메인</button><br/>
-	        	 <button type="button">미처리 게시글 확인</button><br/>
+	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시판목록</button><br/>
+	        	 <button type="button" class="checkUntreated">미처리 게시글 확인</button><br/>
 	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
 	        </div>
 		</div>

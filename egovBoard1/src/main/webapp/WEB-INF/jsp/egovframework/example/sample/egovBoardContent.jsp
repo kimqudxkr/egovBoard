@@ -104,6 +104,16 @@
 		}
 		frm.submit();
 	}
+	
+	/* 내가 작성한 게시글 function */
+    function fn_egov_myBoards() {
+    	const name = $('#name').text();
+    	$('#searchValue').val(name);
+    	$('#searchType option:eq(4)').prop("selected", true);
+    	
+    	document.listForm.action = "<c:url value='/egovBoardListBySearch.do'/>";
+    	document.listForm.submit();
+    }
 	-->
 </script>
 </head>
@@ -170,7 +180,7 @@
 					</div>
 				</div>
 				<BR /><BR /><BR />
-				<p id="content" style="text-align: left; margin-bottom: 30px; white-space:pre;" class="board-content">${boardVO.content}</p>
+				<p id="content" style="text-align: left; margin-bottom: 30px; white-space:pre-line;" class="board-content">${boardVO.content}</p>
 				<BR /><BR />
 				<div class="reply" align="left">
 					<strong style="margin: 0;">댓글목록</strong>
@@ -184,7 +194,7 @@
 								<strong style="padding-right: 10px;" id="reply_writer"><c:out value="${replyList.writer}" /></strong>
 								<span>작성일&nbsp;<fmt:formatDate value="${replyList.regDate }" pattern="yy-MM-dd HH:mm"/></span>
 							</p>
-							<p style="white-space:pre;" class="reply-content-${replyList.replyIdx}"><c:out value="${replyList.reply}"/></p>
+							<p style="white-space:pre-line;" class="reply-content-${replyList.replyIdx}"><c:out value="${replyList.reply}"/></p>
 							<br/>
 							<div class="reply-menu" align="right">
 								<a class="${replyList.replyIdx}" href="javascript:fn_egov_updateReply(${replyList.replyIdx})">수정</a>
@@ -225,9 +235,9 @@
 			</div>
 			<div id="user-menu">
 	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
-	        	 <button type="button">관리자 모드</button><br/>
-	        	 <button type="button" onclick='location.href="egovBoardList.do"'>유지보수게시판메인</button><br/>
-	        	 <button type="button">미처리 게시글 확인</button><br/>
+	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시판목록</button><br/>
+	        	 <button type="button" class="checkUntreated">미처리 게시글 확인</button><br/>
 	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
 	        </div>
 		</div>

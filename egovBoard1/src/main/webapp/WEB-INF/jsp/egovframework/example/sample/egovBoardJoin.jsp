@@ -12,13 +12,18 @@
 <!--
 	/* 로그인 function */
 	function fn_egov_join() {
-		if($('.id').val() !== '') {
-			console.log("값 있음");
-		} else {
-			console.log("값 없음");
+		if(($('.id').val() !== '') && ($('.password').val() !== '') && ($('.name').val() !== '') && ($('.password').val() === $('.confirmPassword').val())) {
+	 		document.detailForm.action = "<c:url value='/startJoin.do'/>";
+	 		document.detailForm.submit();
+		} else if($('.id').val() === '') {
+			alert("아이디를 입력하세요!");
+		} else if($('.password').val() === '') {
+			alert("비밀번호를 입력하세요!");
+		} else if($('.password').val() !== $('.confirmPassword').val()) {
+			alert("비밀번호 확인 값이 다릅니다!");
+		} else if($('.name').val() === '') {
+			alert("이름을 입력하세요!");
 		}
-// 		document.detailForm.action = "<c:url value='/startJoin.do'/>";
-// 		document.detailForm.submit();
 	}
 -->
 </script>
@@ -40,7 +45,7 @@
 						<p><form:input path="id" type="text" class="id"/></p>
 						<p><form:input path="password" type="password" class="password"/></p>
 						<p><input type="password" class="confirmPassword"/></p>
-						<p><form:input path="name" type="text" clsas="name"/></p>
+						<p><form:input path="name" type="text" class="name"/></p>
 					</div>
 				</div>
 				<div class="joinBtnDiv">
