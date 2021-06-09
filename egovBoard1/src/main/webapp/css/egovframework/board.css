@@ -11,10 +11,9 @@ button {padding:8px; background-color:#fafafa; border:1px solid black; border-ra
 #table .listtd span {display:inline-block; width:50px; line-height:17px; color:white; border-radius:8px; text-align:center;}
 #table .listtd strong {color:orange}
 
-#table .complete {background-color:#888;}
-#table .untreated {background-color:red;}
-#table .hold {background-color:green;}
-#table .processing {background-color:blue;}
+#table .free {background-color:#888;}
+#table .qna {background-color:#CD5C5C;}
+#table .review {background-color:blue;}
 
 #content_pop #content {text-align:left;}
 
@@ -33,10 +32,10 @@ button {padding:8px; background-color:#fafafa; border:1px solid black; border-ra
 .reply-write #secret {text-align:left; }
 .reply-write textarea {width:97%; background-color:#f5f5f5}
 
-#user-menu {float:right; width:210px; padding:10px 10px 10px 10px; border-bottom:1px solid #dde4e9;}
-#user-menu .name-content {float:left;}
+#user-menu {float:left; width:210px; padding:10px 10px 10px 10px; border-bottom:1px solid #dde4e9;}
+#user-menu .name-content {float:right;}
 #user-menu button {background-color:green; color:white; padding:4px 4px 4px 4px; width:200px; height:30px; margin:3px 3px 3px 3px; border:0; outline:0;}
-#user-menu .logout {background-color:grey; width:100px; float:left; border:0; outline:0;}
+#user-menu .logout {background-color:grey; width:200px; float:left; border:0; outline:0;}
 
 #search-menu {width:100%; text-align:center; margin-top:40px;}
 #search-menu .search-select {height:24px;}

@@ -100,7 +100,7 @@ input.txt               {height:18px; background-color:#FFF; border:1px solid #B
 input.essentiality  {height:18px; background-color:#ebebeb; border:1px solid #BCC8D8; padding-top:2px; color:#000; cursor:text;}
 
 #nav_menu ul {list-style-type:none;}
-#nav_menu li {background-color:#f3f3f3; border:1px solid; width:133px;}
+#nav_menu li {background-color:#f3f3f3; border:1px solid; width:168px;}
 #nav_menu ul li {float:left; height:100%; line-height:30px; text-align:center;}
 #nav_menu a {display:block; height:30px; vertical-align:middle; line-height:30px;}
 #nav_menu a:hover {background-color:white; font-weight:bold; color:black; } 

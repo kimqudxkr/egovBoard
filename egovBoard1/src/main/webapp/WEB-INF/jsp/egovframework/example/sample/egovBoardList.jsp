@@ -87,6 +87,13 @@
 	        <input type="hidden" name="selectedMenu" />
 	        <input type="hidden" name="menu" id="menu" value="${menu}"/>
 	        <input type="hidden" name="idxCnt" id="idxCnt" value="${idxCnt}" />
+	        <!-- 유저 메뉴 -->
+	        <div id="user-menu">
+	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
+	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시글목록</button><br/>
+	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
+	        </div>
 	        <div id="content_pop">
 	        	<!-- 타이틀 -->
 	        	<div id="title">
@@ -96,11 +103,10 @@
 	        	<div id="nav_menu">
 	        		<br/><br/><br/>
 					<ul >
-						<li><a class="all now" href="javascript:fn_egov_selectList('all')" >전체</a></li>
-						<li><a class="untreated" href="javascript:fn_egov_selectList('untreated')">미처리</a></li>
-						<li><a class="complete" href="javascript:fn_egov_selectList('complete')">처리완료</a></li>
-						<li><a class="processing" href="javascript:fn_egov_selectList('processing')">처리중</a></li>
-						<li><a class="hold" href="javascript:fn_egov_selectList('hold')">보류</a></li>
+						<li><a class="all now" href="javascript:fn_egov_selectList('all')" >전체 게시글</a></li>
+						<li><a class="free" href="javascript:fn_egov_selectList('free')">자유 게시판</a></li>
+						<li><a class="qna" href="javascript:fn_egov_selectList('qna')">질문 게시판</a></li>
+						<li><a class="review" href="javascript:fn_egov_selectList('review')">리뷰 게시판</a></li>
 					</ul>
 	        	</div>
 	        	<!-- 게시글들이 표시될 테이블 -->
@@ -155,10 +161,9 @@
 	            				</td>
 	            				<td align="left" class="listtd"><span class="${result.setting}">
 									<c:choose>
-										<c:when test="${result.setting=='complete'}">처리완료</c:when>
-										<c:when test="${result.setting=='untreated'}">미처리</c:when>
-										<c:when test="${result.setting=='processing'}">처리중</c:when>
-										<c:when test="${result.setting=='hold'}">보류</c:when>
+										<c:when test="${result.setting=='free'}">자유</c:when>
+										<c:when test="${result.setting=='qna'}">질문</c:when>
+										<c:when test="${result.setting=='review'}">리뷰</c:when>
 									</c:choose>
 								</span>&nbsp;
 									<a href="javascript:fn_egov_select('<c:out value="${result.idx}"/>')">
@@ -202,14 +207,7 @@
 	        		<button type="button" class="search-btn" onclick="javascript:fn_egov_selectListBySearch('${menu}');">검색</button>
 	        	</div>
 	        </div>
-	        <!-- 유저 메뉴 -->
-	        <div id="user-menu">
-	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
-	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
-	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시판목록</button><br/>
-	        	 <button type="button" class="checkUntreated">미처리 게시글 확인</button><br/>
-	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
-	        </div>
+	        
     	</div>
     </form:form>
     <script>

@@ -70,6 +70,12 @@
 <body style="text-align:center; margin:0 auto; display:inline; padding-top:100px;">
 	<form:form commandName="boardVO" id="detailForm" name="detailForm">
 		<div id="wrapper" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9;">
+		    <div id="user-menu">
+	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
+	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시글목록</button><br/>
+	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
+	        </div>
 		    <div id="content_pop" style="display:inline-block; border-left:1px solid #dde4e9; border-right:1px solid #dde4e9; padding:10px; width:750px">
 				<form:input path="writer" maxlength="30" cssClass="txt" size="40" value="${userInfo.name}" type="hidden"/>		    	
 		    	<!-- 타이틀 -->
@@ -105,10 +111,9 @@
 		    			<td class="tbtd_caption"><label for="setting">분류</label></td>
 		    			<td class="tbtd_content">
 		    				<form:select path="setting" cssClass="use">
-		    					<form:option value="untreated" label="미처리" />
-		    					<form:option value="complete" label="처리완료"/>
-		    					<form:option value="processing" label="처리중"/>
-		    					<form:option value="hold" label="보류" />
+		    					<form:option value="free" label="자유게시판" />
+		    					<form:option value="qna" label="질문게시판"/>
+		    					<form:option value="review" label="리뷰게시판"/>
 		    					<form:option value="notice" label="공지" />
 		    				</form:select>
 		    			</td>
@@ -169,13 +174,6 @@
 			    <input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
 			    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/>
 		    </div>
-		    <div id="user-menu">
-	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
-	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
-	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시판목록</button><br/>
-	        	 <button type="button" class="checkUntreated">미처리 게시글 확인</button><br/>
-	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
-	        </div>
 		</div>
 	</form:form>
 </body>

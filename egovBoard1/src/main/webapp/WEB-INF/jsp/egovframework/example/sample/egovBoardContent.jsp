@@ -236,8 +236,7 @@
 			<div id="user-menu">
 	        	 <div class="name-content"><strong id="name">${userInfo.name}</strong>님</div><br/>
 	        	 <button type="button" onclick="javascript:fn_egov_myBoards();">내가 작성한 게시글</button><br/>
-	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시판목록</button><br/>
-	        	 <button type="button" class="checkUntreated">미처리 게시글 확인</button><br/>
+	        	 <button type="button" onclick='location.href="egovBoardList.do"'>게시글목록</button><br/>
 	        	 <button type="button" class="logout" onclick='location.href="logout.do";'>로그아웃</button>
 	        </div>
 		</div>
