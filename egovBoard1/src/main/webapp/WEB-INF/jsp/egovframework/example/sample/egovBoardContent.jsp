@@ -20,9 +20,15 @@
 	}
 	
 	/* 글 수정 화면 function */
-	function checkWriter(type) {
+	function checkWriter(type, replyIdx) {
 		const name = $('#name').html();
-		const writer = $('#'+type+'_writer').text();
+		let writer;
+		
+		if(type === 'reply') {
+			writer = $('#'+type+'_writer_'+replyIdx).text();
+		} else {
+			writer = $('#'+type+'_writer').text();
+		}
 		
 		if(name === writer || name === '최고관리자')
 			return true;
@@ -31,7 +37,7 @@
 	}
 	
 	function fn_egov_updateBoard() {
-		if(checkWriter('content')) {
+		if(checkWriter('content', 0)) {
 			document.detailForm.action = "<c:url value='/updateBoardView.do'/>";
 			document.detailForm.submit();
 		} else {
@@ -42,7 +48,7 @@
 	
 	/* 글 삭제 function */
 	function fn_egov_deleteBoard() {
-		if(checkWriter('content')) {
+		if(checkWriter('content', 0)) {
 			if (confirm("삭제하시겠습니까?")) {
 				document.detailForm.action = "<c:url value='/deleteBoard.do'/>";
 				document.detailForm.submit();
@@ -53,14 +59,14 @@
 	}
 
 	/* 댓글 수정 화면 function */
-	function fn_egov_updateReply(cnt) {
-		if(checkWriter('reply')) {
+	function fn_egov_updateReply(replyIdx) {
+		if(checkWriter('reply', replyIdx)) {
 			const writeDiv = $('.reply-write');
-			const dest = $('.' + cnt).parent();
+			const dest = $('.' + replyIdx).parent();
 
 			writeDiv.insertBefore(dest);
 
-			const content = $('.reply-content-' + cnt).html();
+			const content = $('.reply-content-' + replyIdx).html();
 
 			$('.reply').val(content);
 			
@@ -73,7 +79,7 @@
 
 	/* 댓글 삭제 function */
 	function fn_egov_deleteReply(replyIdx) {
-		if(checkWriter('reply')) {
+		if(checkWriter('reply', replyIdx)) {
 			const input = document.getElementById('replyIdx');
 			input.disabled = false;
 			document.detailForm.replyIdx.value = replyIdx;
@@ -99,7 +105,7 @@
 			const idx = classVal[classVal.length - 1];
 
 			document.detailForm.replyIdx.value = idx;
-			document.detailForm.writer = $('#reply_writer').val();
+			document.detailForm.writer = $('#name').text();
 			document.detailForm.action = "<c:url value='/updateReply.do'/>";
 		}
 		frm.submit();
@@ -132,10 +138,9 @@
 				<p style="text-align: left" class="board-content">
 					<strong> 
 						<c:choose>
-							<c:when test="${boardVO.setting=='complete'}">처리완료</c:when>
-							<c:when test="${boardVO.setting=='untreated'}">미처리</c:when>
-							<c:when test="${boardVO.setting=='processing'}">처리중</c:when>
-							<c:when test="${boardVO.setting=='hold'}">보류</c:when>
+							<c:when test="${boardVO.setting=='free'}">자유게시판</c:when>
+							<c:when test="${boardVO.setting=='qna'}">질문게시판</c:when>
+							<c:when test="${boardVO.setting=='review'}">리뷰게시판</c:when>
 							<c:when test="${boardVO.setting=='notice'}">공지</c:when>
 						</c:choose> | ${boardVO.title}
 					</strong>
@@ -191,7 +196,7 @@
 						<c:forEach var="replyList" items="${replyList}" varStatus="status">
 							<hr />
 							<p>
-								<strong style="padding-right: 10px;" id="reply_writer"><c:out value="${replyList.writer}" /></strong>
+								<strong style="padding-right: 10px;" id="reply_writer_${replyList.replyIdx}"><c:out value="${replyList.writer}" /></strong>
 								<span>작성일&nbsp;<fmt:formatDate value="${replyList.regDate }" pattern="yy-MM-dd HH:mm"/></span>
 							</p>
 							<p style="white-space:pre-line;" class="reply-content-${replyList.replyIdx}"><c:out value="${replyList.reply}"/></p>
