@@ -29,7 +29,7 @@
     </title>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/board.css'/>"/>
     <link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/sample.css'/>"/>
-    
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!--For Commons Validator Client Side-->
     <script type="text/javascript" src="<c:url value='/cmmn/validator.do'/>"></script>
     <validator:javascript formName="boardVO" staticJavascript="false" xhtml="true" cdata="false"/>
@@ -85,6 +85,9 @@
 	                    <c:if test="${registerFlag == 'modify'}">글수정</c:if>
 		    		</h2>
 		    	</div>
+		    	<c:if test="${registerFlag == 'modify'}">
+       				<form:input path="idx" cssClass="essentiality" maxlength="10" readonly="true" type="hidden" id="idx"/>
+	    		</c:if>
 		    	<!-- // 테이블 -->
 		    	<div id="table">
 		    	<table width="100%" border="1" cellpadding="0" cellspacing="0" style="bordercolor:#D3E2EC; bordercolordark:#FFFFFF; BORDER-TOP:#C2D0DB 2px solid; BORDER-LEFT:#ffffff 1px solid; BORDER-RIGHT:#ffffff 1px solid; BORDER-BOTTOM:#C2D0DB 1px solid; border-collapse: collapse;">
@@ -92,29 +95,19 @@
 		    			<col width="150"/>
 		    			<col width="?"/>
 		    		</colgroup>
-		    		<c:if test="${registerFlag == 'modify'}">
-		        		<tr>
-		        			<td class="tbtd_caption"><label for="idx">idx</label></td>
-		        			<td class="tbtd_content">
-		        				<form:input path="idx" cssClass="essentiality" maxlength="10" readonly="true" />
-		        			</td>
-		        		</tr>
-		    		</c:if>
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="option">옵션</label></td>
 		    			<td class="tbtd_content">
-							<input type="checkbox"/>공지
-							<input type="checkbox"/>html
+							<input type="checkbox" id="notice-checkbox"/>공지
 		    			</td>
 		    		</tr>
 		    		<tr>
 		    			<td class="tbtd_caption"><label for="setting">분류</label></td>
 		    			<td class="tbtd_content">
-		    				<form:select path="setting" cssClass="use">
+		    				<form:select path="setting" cssClass="use" id="setting">
 		    					<form:option value="free" label="자유게시판" />
 		    					<form:option value="qna" label="질문게시판"/>
 		    					<form:option value="review" label="리뷰게시판"/>
-		    					<form:option value="notice" label="공지" />
 		    				</form:select>
 		    			</td>
 		    		</tr>
@@ -177,4 +170,33 @@
 		</div>
 	</form:form>
 </body>
+<script>
+	$(function() {
+		//공지사항 체크 시 분류 고정
+		$('#notice-checkbox').click(function() {
+			if($('#notice-checkbox').prop("checked")) {
+				$('#setting').append($("<option class='notice_option'>공지</option>"));
+				$('#setting').val("공지").prop("selected", true);
+				$('#setting').prop("disabled", true);
+			} else {
+				$('#setting .notice_option').remove();
+				$('#setting').val("free").prop("selected", true);
+				$('#setting').prop("disabled", false);
+			}
+		});
+
+		//공지사항 수정 시 옵션 및 분류 고정
+		const setting = "${boardVO.setting}";
+		const type = "${registerFlag}";
+		
+		if(type === 'modify' && setting === 'notice') {
+			$("#notice-checkbox").prop("checked",true);
+			$("#notice-checkbox").prop("disabled",true);
+			
+			$('#setting').append($("<option class='notice_option'>공지</option>"));
+			$('#setting').val("공지").prop("selected", true);
+			$('#setting').prop("disabled", true);
+		}
+	});
+</script>
 </html>
