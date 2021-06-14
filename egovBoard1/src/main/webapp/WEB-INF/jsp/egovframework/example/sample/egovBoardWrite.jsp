@@ -35,13 +35,7 @@
     <validator:javascript formName="boardVO" staticJavascript="false" xhtml="true" cdata="false"/>
     
     <script type="text/javaScript" language="javascript" defer="defer">
-        <!--
-        /* 글 목록 화면 function */
-        function fn_egov_selectList() {
-           	document.detailForm.action = "<c:url value='/egovBoardList.do'/>";
-           	document.detailForm.submit();
-        }
-        
+        <!--        
         /* 글 삭제 function */
         function fn_egov_delete() {
            	document.detailForm.action = "<c:url value='/deleteBoard.do'/>";
@@ -148,7 +142,7 @@
 		                </li>
 		                <li>
 		                    <span class="btn_blue_l">
-		                        <a href="javascript:fn_egov_selectList();">취소</a>
+		                        <a href="javascript:history.back();">취소</a>
 		                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
 		                    </span>
 		                </li>
